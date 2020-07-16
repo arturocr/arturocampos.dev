@@ -66,13 +66,13 @@ export default function IndexPage() {
       </Head>
       <main>
         <div className='p-6 mx-auto page max-w-2xl print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 sm:p-9 md:p-16 bg-white'>
-          <header className='flex items-center mb-8 md:mb-11'>
+          <header className='flex items-center mb-8'>
             <div className='mr-5'>
               <Logo className='h-12 w-12' />
             </div>
-            <h1 className='text-2xl font-medium text-gray-750 pb-px'>
-              Arturo Campos -{' '}
-              <span className='text-xl font-thin text-gray-500'>
+            <h1 className='text-2xl font-medium text-gray-750 flex flex-col sm:flex-row sm:items-center print:block'>
+              Arturo Campos{' '}
+              <span className='text-xl font-thin text-gray-550 sm:border-gray sm:border-l-2 sm:ml-2 sm:pl-2 print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
                 Senior Front End Engineer
               </span>
             </h1>
@@ -81,19 +81,23 @@ export default function IndexPage() {
           <div className='md:col-count-2 print:col-count-2 col-gap-md md:h-letter-col print:h-letter-col col-fill-auto'>
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
-                <h2 className='mb-4 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
+                <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   ABOUT ME
                 </h2>
                 <section className='mb-4.5 break-inside-avoid'>
                   <p className='mt-2.1 text-md text-gray-700 leading-normal'>
-                    Passionate developer based in Costa Rica, happily married to
+                    Passionate developer based in Costa Rica; happily married to
                     Marisol and proud father of Sol &amp; Nico.
                   </p>
                   <p className='mt-2.1 text-md text-gray-700 leading-normal'>
-                    I started my career as a Back End Developer, but after some
-                    time I realized that I get a lot more excited about client
-                    side technologies, since then I enjoy using JavaScript in
-                    all it’s flavors.
+                    I started my career as a Back-End Developer, but after some
+                    time I realized that I have more fun working with
+                    client-side technologies. Since then{' '}
+                    <span className='font-medium'>
+                      JavaScript is my passion
+                    </span>
+                    , enjoying it a little bit more every single day for the
+                    last 11 years.
                   </p>
                 </section>
               </div>
@@ -101,7 +105,7 @@ export default function IndexPage() {
 
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
-                <h2 className='mb-4 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
+                <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   INTERESTS
                 </h2>
 
@@ -113,8 +117,7 @@ export default function IndexPage() {
                       </span>
                       <span className='font-medium'>Family:</span> I am a family
                       guy, I love to invest time with my wife and kids who are
-                      still pretty young (5 and 6) so they absorb a lot of our
-                      energy and attention.
+                      still pretty young (5 and 6).
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
@@ -130,7 +133,7 @@ export default function IndexPage() {
                       </span>
                       <span className='font-medium'>Mountain Biking:</span> I
                       have lots of fun on my bike. I used to take part in
-                      professional races, but these days is just a recreational
+                      professional races, but now it's just a recreational
                       hobby.
                     </li>
                   </ul>
@@ -140,7 +143,7 @@ export default function IndexPage() {
 
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
-                <h2 className='mb-4 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
+                <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   SKILLS
                 </h2>
                 <section className='mb-4.5 break-inside-avoid'>
@@ -246,7 +249,7 @@ export default function IndexPage() {
 
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
-                <h2 className='mb-4 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
+                <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   EDUCATION
                 </h2>
                 <section className='mb-4.5 break-inside-avoid'>
@@ -264,7 +267,7 @@ export default function IndexPage() {
 
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
-                <h2 className='mb-4 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
+                <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   CONTACT
                 </h2>
 
@@ -379,7 +382,7 @@ export default function IndexPage() {
                         &#105;&#110;&#102;&#111;&#064;&#097;&#114;&#116;&#117;&#114;&#111;&#099;&#097;&#109;&#112;&#111;&#115;&#046;&#100;&#101;&#118;
                       </a>
                     </li>
-                    <li className='mt-1.5 leading-normal text-gray-700 text-md'>
+                    <li className='mt-1.5 leading-normal text-gray-700 text-md hidden print:block'>
                       <a href='&#116;&#101;&#108;&#58;&#43;&#53;&#48;&#54;&#56;&#56;&#56;&#57;&#45;&#54;&#52;&#48;&#50;'>
                         <svg
                           className='h-4 w-4 inline-block align-middle mr-1'
@@ -403,7 +406,7 @@ export default function IndexPage() {
 
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
-                <h2 className='mb-4 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
+                <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   EXPERIENCE
                 </h2>
                 <section className='mb-4.5 break-inside-avoid'>
@@ -421,29 +424,8 @@ export default function IndexPage() {
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Establish front-end and full stack best practices for
-                      teams using Angular, React, Node.js and such.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Collaborate with the recruiting team: filtering
-                      candidates, evaluating entry tests and conducting
-                      technical screenings.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Provide mentorship to colleagues and perform assessments
-                      to suggest areas of improvement.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Lead innovation and internal research projects.
+                      Actively code and deliver high-quality solutions to
+                      clients.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
@@ -456,28 +438,50 @@ export default function IndexPage() {
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Interact with other practice’s leads to ensure the
-                      delivery of high performing solutions to the clients.
+                      Analyze and groom feature requirements with clients to
+                      design the best solutions to their problems.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Coordinate and groom features with clients to later pass
-                      to development teams for actual implementation.
+                      Define and promote front-end and full-stack best practices
+                      for teams using Angular, React, Node.js, and such.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Actively code and develop solutions for actual clients.
+                      Collaborate with the recruiting team: filtering
+                      candidates, evaluating entry tests, and conducting
+                      technical screenings.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Promote and organize activities like Lunch &amp; Learns,
-                      workshops and more.
+                      Mentoring of colleagues and technical assessments to
+                      identify and attack areas of improvement.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Lead innovation and internal research projects.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Interact with other leads to ensure the delivery of the
+                      highest quality solutions to the clients.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Promote, organize, and teach on activities like Lunch
+                      &amp; Learns, workshops, and more.
                     </li>
                   </ul>
                 </section>
@@ -497,24 +501,23 @@ export default function IndexPage() {
                       ›
                     </span>
                     I offer my skills for freelance projects in a variety of
-                    technologies, mostly focused on front end development, but
+                    technologies, mostly focused on front-end development, but
                     also work on back-end services if needed.
                   </li>
                   <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
-                    Some of the technologies I work on more regularly are:
-                    ReactJS, Angular2+, EmberJS, VanillaJS, Wordpress, PHP,
-                    MySQL, MongoDB, etc.
+                    Marketing, online presence, e-commerce, and tooling
+                    development using ReactJS, Angular2+, EmberJS, VanillaJS,
+                    WordPress, PHP, MySQL, MongoDB, etc.
                   </li>
                   <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
-                    Also, any needed designs are part of my offering as well
-                    using tools like Adobe Creative Suite (Illustrator,
-                    Photoshop, InDesign) and Sketch.
+                    Provide UI/UX and brand design to clients who need the
+                    complete design/development package.
                   </li>
                 </ul>
               </section>
@@ -533,38 +536,36 @@ export default function IndexPage() {
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
-                    Create highly responsive web applications for the EdTech
+                    Built highly responsive web applications for the EdTech
                     industry.
                   </li>
                   <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
-                    Maintenance and performing enhancements to existing
-                    JavaScript applications.
+                    Maintained and improved existing JavaScript applications.
                   </li>
                   <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
-                    Leader of development team behind JavaScript-intense
-                    applications, using VanillaJS, Backbone.js and Ember.js.
+                    Led development efforts behind JavaScript-intense
+                    applications, using VanillaJS, Backbone.js, and Ember.js.
                   </li>
                 </ul>
-                <p className='mt-4.5 text-md text-gray-700 leading-normal'>
-                  See additional experience on my{' '}
+                <p className='mt-4.5 pt-4.5 text-md text-gray-700 leading-normal border-gray border-t'>
+                  More about my experience on my{' '}
                   <a
                     className='group'
                     href='https://www.linkedin.com/in/arturocr/'
                     rel='noopener noreferrer'
                     target='_blank'
                   >
-                    LinkedIn Profile
+                    LinkedIn profile
                     <span className='inline-block ml-1 text-gray-550 print:text-black font-normal group-hover:text-gray-700 transition duration-100 ease-in'>
                       ↗
                     </span>
                   </a>
-                  .
                 </p>
               </section>
             </section>
