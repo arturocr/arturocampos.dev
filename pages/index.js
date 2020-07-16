@@ -121,7 +121,7 @@ export default function IndexPage() {
                         ›
                       </span>
                       <span className='font-medium'>Open Source Software:</span>{' '}
-                      I enjoy exploring open source project built on top of
+                      I enjoy exploring open source projects built on top of
                       JavaScript.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
@@ -199,6 +199,12 @@ export default function IndexPage() {
                   <ul className='flex flex-wrap text-md leading-relaxed -mr-1.6 -mb-1.6'>
                     <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       CSS
+                    </li>
+                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      PostCSS
+                    </li>
+                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      Tailwind CSS
                     </li>
                     <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       HTML5
