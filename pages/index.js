@@ -87,7 +87,7 @@ export default function IndexPage() {
                 <section className='mb-4.5 break-inside-avoid'>
                   <p className='mt-2.1 text-md text-gray-700 leading-normal'>
                     Passionate developer based in Costa Rica, happily married to
-                    Marisol and proud father of two Sol &amp; Nico.
+                    Marisol and proud father of Sol &amp; Nico.
                   </p>
                   <p className='mt-2.1 text-md text-gray-700 leading-normal'>
                     I started my career as a Back End Developer, but after some
@@ -129,7 +129,7 @@ export default function IndexPage() {
                         ›
                       </span>
                       <span className='font-medium'>Mountain Biking:</span> I
-                      have lots of fun over my bike. I used to take part in
+                      have lots of fun on my bike. I used to take part in
                       professional races, but these days is just a recreational
                       hobby.
                     </li>
