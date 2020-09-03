@@ -48,27 +48,38 @@ export default function IndexPage() {
         <link
           rel='apple-touch-icon'
           sizes='180x180'
-          href='/favicon/apple-touch-icon.png'
+          href='/apple-touch-icon.png'
         />
         <link
           rel='icon'
           type='image/png'
           sizes='32x32'
-          href='/favicon/favicon-32x32.png'
+          href='/favicon-32x32.png'
         />
         <link
           rel='icon'
           type='image/png'
           sizes='16x16'
-          href='/favicon/favicon-16x16.png'
+          href='/favicon-16x16.png'
         />
         <link rel='manifest' href='/site.webmanifest' />
+        <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#fa425f' />
+        <meta
+          name='apple-mobile-web-app-title'
+          content='Arturo Campos - Senior Front End Engineer'
+        />
+        <meta
+          name='application-name'
+          content='Arturo Campos - Senior Front End Engineer'
+        />
+        <meta name='msapplication-TileColor' content='#fa425f' />
+        <meta name='theme-color' content='#ffffff' />
       </Head>
       <main>
         <div className='p-6 mx-auto page max-w-2xl print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 sm:p-9 md:p-16 bg-white'>
           <header className='flex items-center mb-8'>
             <div className='mr-5'>
-              <Logo className='h-12 w-12' />
+              <Logo className='h-12' />
             </div>
             <h1 className='text-2xl font-medium text-gray-750 flex flex-col sm:flex-row sm:items-center print:block'>
               Arturo Campos{' '}
