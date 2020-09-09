@@ -128,7 +128,7 @@ export default function IndexPage() {
                       </span>
                       <span className='font-medium'>Family:</span> I am a family
                       guy, I love to invest time with my wife and kids who are
-                      still pretty young (5 and 6).
+                      still pretty young (5 and 7).
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
