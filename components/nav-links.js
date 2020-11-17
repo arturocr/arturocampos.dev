@@ -42,7 +42,7 @@ const NavLinks = () => {
             : 'border-transparent'
         )}
       >
-        {/* <ActiveLink activeClassName='border-middle text-middle' href='/blog'>
+        <ActiveLink activeClassName='border-middle text-middle' href='/blog'>
           <a
             aria-label={t('blog')}
             className='px-1 font-semibold tracking-tighter uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary hover:text-secondary'
@@ -51,8 +51,8 @@ const NavLinks = () => {
           >
             {t('blog')}
           </a>
-        </ActiveLink> */}
-        {/* <ActiveLink
+        </ActiveLink>
+        <ActiveLink
           activeClassName='border-middle text-middle'
           href='/projects'
         >
@@ -64,7 +64,7 @@ const NavLinks = () => {
           >
             {t('projects')}
           </a>
-        </ActiveLink> */}
+        </ActiveLink>
         <ActiveLink activeClassName='border-middle text-middle' href='/uses'>
           <a
             aria-label={t('uses')}
