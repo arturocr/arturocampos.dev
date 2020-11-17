@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
+import { useAnalytics } from '@happykit/analytics';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
@@ -14,6 +15,7 @@ import '@/styles/custom.css';
 import '@/styles/prism.css';
 
 const MyApp = ({ Component, pageProps, router }) => {
+  useAnalytics({ publicKey: 'analytics_pub_bba22bdbcd' });
   useEffect(() => {
     const handleRouteChange = () => {
       window.scrollTo({
