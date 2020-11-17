@@ -1,0 +1,104 @@
+/* purgecss start ignore */
+/* Override of main container */
+#__next {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Fixes for lite-youtube web component */
+lite-youtube::before {
+  box-sizing: content-box;
+}
+lite-youtube > iframe {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+lite-youtube.lyt-activated {
+  cursor: unset;
+}
+lite-youtube.lyt-activated::before,
+lite-youtube.lyt-activated > .lty-playbtn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Global shared styles */
+blockquote > * {
+  position: relative;
+}
+blockquote::before,
+blockquote::after {
+  @apply absolute z-0 font-mono font-bold text-gray-400 opacity-75 pointer-events-none text-7xl;
+}
+blockquote::before {
+  @apply top-0 left-0 leading-none;
+  content: '\201C';
+}
+blockquote::after {
+  @apply bottom-0 right-0 -mb-2 leading-3;
+  content: '\201D';
+}
+
+/* Hamburguer Icon */
+#menu-icon > path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+#menu-icon > path:nth-child(1) {
+  stroke-dasharray: 60 207;
+}
+#menu-icon > path:nth-child(2) {
+  stroke-dasharray: 60 60;
+}
+#menu-icon > path:nth-child(3) {
+  stroke-dasharray: 60 207;
+}
+#menu-icon.opened > path:nth-child(1) {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
+#menu-icon.opened > path:nth-child(2) {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+}
+#menu-icon.opened > path:nth-child(3) {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
+
+/* Gradient background */
+.gradient {
+  @apply bg-gradient-to-r from-secondary via-middle to-accent;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply inline-block pb-1 pr-1 gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (hover: hover) {
+  a.gradient-text {
+    @apply duration-200;
+    background-size: 100%;
+    transition-property: background-size;
+  }
+  a.gradient-text:hover {
+    background-size: 175%;
+  }
+}
+
+.blurry-bg {
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+/* purgecss end ignore */

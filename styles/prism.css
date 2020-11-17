@@ -1,0 +1,129 @@
+/**
+ * Nord Theme Originally by Arctic Ice Studio
+ * https://nordtheme.com
+ *
+ * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
+ * Adapted to use Tailwind CSS by Arturo Campos (@arturocr)
+ */
+/* purgecss start ignore */
+code[class*='language-'],
+pre[class*='language-'] {
+  @apply leading-6 text-left whitespace-pre bg-none text-prism-base;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  @apply p-4 my-4 overflow-auto rounded-md;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  @apply bg-prism-bg;
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  @apply p-1 whitespace-normal rounded-md;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  @apply text-prism-comment;
+}
+
+.token.punctuation {
+  @apply text-prism-punctuation;
+}
+
+.namespace {
+  @apply opacity-75;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  @apply text-prism-punctuation;
+}
+
+.token.number {
+  @apply text-prism-number;
+}
+
+.token.boolean {
+  @apply text-prism-punctuation;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  @apply text-prism-string;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  @apply text-prism-punctuation;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  @apply text-prism-function;
+}
+
+.token.keyword {
+  @apply text-prism-punctuation;
+}
+
+.token.regex,
+.token.important {
+  @apply text-prism-regex;
+}
+
+.token.important,
+.token.bold {
+  @apply font-bold;
+}
+
+.token.italic {
+  @apply italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.mdx-marker {
+  @apply block px-4 -mx-4 bg-prism-marker shadow-prism-marker;
+  min-width: fit-content;
+}
+
+.remark-code-title {
+  @apply w-full px-2 py-1 mt-4 mb-0 font-mono text-sm font-semibold rounded-t-md text-prism-base bg-prism-marker;
+}
+
+.remark-code-title + pre {
+  @apply mt-0 rounded-t-none;
+}
+/* purgecss end ignore */
