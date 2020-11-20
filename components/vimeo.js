@@ -5,7 +5,7 @@ const Vimeo = ({ id, ...rest }) => {
   return (
     <lite-vimeo
       videoid={id}
-      class='mx-auto my-6 rounded-lg shadow-lg max-w-video'
+      class='mx-auto my-6 rounded-lg shadow-lg max-w-media'
       {...rest}
     />
   );

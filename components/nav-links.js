@@ -36,39 +36,26 @@ const NavLinks = () => {
       </div>
       <nav
         className={clsx(
-          'absolute top-0 flex flex-col h-0 px-5 ml-12 space-y-4 overflow-hidden whitespace-no-wrap transition-all duration-200 bg-white rounded-md shadow-md opacity-0 lg:opacity-100 lg:bg-transparent lg:h-auto lg:flex-row lg:space-y-0 lg:ml-0 lg:space-x-2 lg:p-0 lg:rounded-none lg:relative lg:shadow-none',
+          'absolute top-0 flex flex-col h-0 px-5 ml-12 space-y-4 overflow-hidden whitespace-nowrap transition-all duration-200 bg-white rounded-md shadow-md opacity-0 lg:opacity-100 lg:bg-transparent lg:h-auto lg:flex-row lg:space-y-0 lg:ml-0 lg:space-x-2 lg:p-0 lg:rounded-none lg:relative lg:shadow-none',
           isMenuOpen
             ? 'h-auto py-4 border opacity-100 lg:border-none'
             : 'border-transparent'
         )}
       >
-        {/* <ActiveLink activeClassName='border-middle text-middle' href='/blog'>
+        <ActiveLink activeClassName='border-middle text-middle' href='/blog'>
           <a
             aria-label={t('blog')}
-            className='px-1 font-semibold tracking-tighter uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary hover:text-secondary'
+            className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
             onClick={onTap}
             title={t('blog')}
           >
             {t('blog')}
           </a>
-        </ActiveLink> */}
-        {/* <ActiveLink
-          activeClassName='border-middle text-middle'
-          href='/projects'
-        >
-          <a
-            aria-label={t('projects')}
-            className='px-1 font-semibold tracking-tighter uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary hover:text-secondary'
-            onClick={onTap}
-            title={t('projects')}
-          >
-            {t('projects')}
-          </a>
-        </ActiveLink> */}
+        </ActiveLink>
         <ActiveLink activeClassName='border-middle text-middle' href='/uses'>
           <a
             aria-label={t('uses')}
-            className='px-1 font-semibold tracking-tighter uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary hover:text-secondary'
+            className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
             onClick={onTap}
             title={t('uses')}
           >
@@ -77,7 +64,7 @@ const NavLinks = () => {
         </ActiveLink>
         <a
           aria-label={t('resume')}
-          className='flex items-center px-1 font-semibold tracking-tighter uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary hover:text-secondary'
+          className='flex items-center px-1 font-semibold tracking-tighter text-current uppercase transition-colors duration-300 border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
           href='https://resume.arturocampos.dev/'
           onClick={onTap}
           rel='noopener noreferrer'

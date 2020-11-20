@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import 'lite-youtube-embed/src/lite-yt-embed.css';
 
 const YouTube = ({ id, title, ...rest }) => {
   const styleAttr = {
@@ -6,11 +7,10 @@ const YouTube = ({ id, title, ...rest }) => {
   };
   useEffect(() => {
     import('lite-youtube-embed');
-    import('lite-youtube-embed/src/lite-yt-embed.css');
   }, []);
   return (
     <lite-youtube
-      class='mx-auto my-6 rounded-lg shadow-lg max-w-video'
+      class='mx-auto my-6 rounded-lg shadow-lg max-w-media'
       style={styleAttr}
       videoid={id}
       {...rest}

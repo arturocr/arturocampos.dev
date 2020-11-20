@@ -14,11 +14,14 @@ const LangStrings = {
     'locale-es': 'ES',
     love: 'Love',
     'made-with': 'Made with',
+    'no-blog-posts':
+      "I haven't written any posts yet. Please check again soon.",
     'open-menu': 'Open menu',
     projects: 'Projects',
     'read-more': 'Read more',
     resume: 'Resume',
     slogan: 'Arturo Campos - Web Development & Technology Blog',
+    sorry: 'Sorry',
     uses: 'Uses',
   },
   es: {
@@ -36,11 +39,14 @@ const LangStrings = {
     'locale-es': 'ES',
     love: 'Amor',
     'made-with': 'Hecho con',
+    'no-blog-posts':
+      'Aún no he escrito ningún artículo. Por favor revisa de nuevo pronto.',
     'open-menu': 'Abrir menú',
     projects: 'Proyectos',
     'read-more': 'Leer más',
     resume: 'Currículo',
     slogan: 'Arturo Campos - Blog de Desarrollo Web y Tecnología',
+    sorry: 'Lo siento',
     uses: 'Uso',
   },
 };

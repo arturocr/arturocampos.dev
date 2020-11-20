@@ -4,11 +4,17 @@ module.exports = {
   corePlugins: {
     container: false,
   },
+  darkMode: false,
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: false,
+  purge: [
+    './components/**/*.js',
+    './content/**/*.{md,mdx}',
+    './pages/**/*.js',
+    './posts/**/*.{md,mdx}',
+  ],
   theme: {
     extend: {
       boxShadow: {
@@ -44,7 +50,7 @@ module.exports = {
         3: '3',
       },
       maxWidth: {
-        video: '720px',
+        media: '768px',
       },
     },
   },
