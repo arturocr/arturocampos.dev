@@ -10,7 +10,7 @@ const ReadMore = ({ title, url }) => {
         <span className='sr-only'>{title}</span>
         <span className='not-sr-only'>{t('read-more')} </span>
         <svg
-          className='inline-block w-4 align-middle'
+          className='inline-block w-4 h-4 align-middle'
           fill='none'
           stroke='currentColor'
           viewBox='0 0 24 24'
@@ -19,8 +19,8 @@ const ReadMore = ({ title, url }) => {
           <path
             strokeLinecap='round'
             strokeLinejoin='round'
-            strokeWidth='2'
-            d='M17 8l4 4m0 0l-4 4m4-4H3'
+            strokeWidth={2}
+            d='M14 5l7 7m0 0l-7 7m7-7H3'
           />
         </svg>
       </a>

@@ -35,14 +35,14 @@ const MyApp = ({ Component, pageProps, router }) => {
       <Head>
         <meta content='IE=edge' httpEquiv='X-UA-Compatible' />
         <meta content='width=device-width, initial-scale=1' name='viewport' />
-        <meta content='#ffffff' name='theme-color' />
+        <meta content={theme.colors.white} name='theme-color' />
         <meta content={theme.colors.primary} name='msapplication-TileColor' />
         <meta content='/browserconfig.xml' name='msapplication-config' />
       </Head>
       <DefaultSeo {...SEO} />
       <Header />
-      <div className='container flex-1 px-4 mx-auto'>
-        <main className='relative py-5'>
+      <div className='flex flex-1'>
+        <main className='container relative flex-1 px-4 py-5 mx-auto'>
           <MDXProvider components={MDXComponents}>
             <Component {...pageProps} key={router.route} />
           </MDXProvider>

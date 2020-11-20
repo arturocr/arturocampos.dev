@@ -11,8 +11,13 @@ const Error = () => {
       <Head>
         <title>{t('error-heading')} - Arturo Campos</title>
       </Head>
-      <Heading className='md:text-center'>{t('error-heading')}</Heading>
-      <p>{t('error-content')}.</p>
+      <Heading>{t('error-heading')}</Heading>
+      <p className='my-6'>{t('error-content')}.</p>
+      <p className='text-center text-7xl'>
+        <span aria-label={t('sorry')} role='img'>
+          😵
+        </span>
+      </p>
     </>
   );
 };

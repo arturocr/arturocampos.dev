@@ -11,8 +11,8 @@
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@happykit/analytics": "^1.0.1",
-    "clsx": "^1.1.1",
+    "@happykit/analytics": "^1",
+    "clsx": "^1",
     "lite-vimeo-embed": "^0.1.0",
     "lite-youtube-embed": "^0.1.2",
     "next": "^10",
@@ -20,9 +20,8 @@
     "react-dom": "^17"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^3.0.0",
     "@mdx-js/react": "^1.6.21",
-    "autoprefixer": "^10.0.1",
+    "autoprefixer": "^10.0.2",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -36,11 +35,12 @@
     "mdx-prism": "^0.3.1",
     "next-mdx-remote": "^1.0.0",
     "next-seo": "^4.17.0",
-    "postcss-import": "^13.0.0",
+    "postcss": "^8.1.8",
     "prettier": "^2.1.2",
     "rehype": "^11.0.0",
     "remark-code-titles": "^0.1.1",
-    "tailwindcss": "^1.9.6"
+    "stylelint-config-recommended": "^3.0.0",
+    "tailwindcss": "^2.0.1"
   },
   "lint-staged": {
     "{pages,components}/**/*.{js}": "npm run lint:fix"

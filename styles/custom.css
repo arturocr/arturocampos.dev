@@ -1,4 +1,3 @@
-/* purgecss start ignore */
 /* Override of main container */
 #__next {
   align-items: stretch;
@@ -28,6 +27,14 @@ lite-youtube.lyt-activated > .lty-playbtn {
 }
 
 /* Global shared styles */
+a {
+  @apply transition-colors duration-200 text-middle;
+}
+
+a:hover {
+  @apply text-secondary;
+}
+
 blockquote > * {
   position: relative;
 }
@@ -81,7 +88,7 @@ blockquote::after {
 
 /* Gradient text */
 .gradient-text {
-  @apply inline-block pb-1 pr-1 gradient;
+  @apply inline-flex pb-1 pr-1 gradient;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -98,7 +105,14 @@ blockquote::after {
 }
 
 .blurry-bg {
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
+  @apply bg-white;
 }
-/* purgecss end ignore */
+
+@supports (backdrop-filter: saturate(180%) blur(20px)) or
+  (-webkit-backdrop-filter: saturate(180%) blur(20px)) {
+  .blurry-bg {
+    @apply bg-opacity-75;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}

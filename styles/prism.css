@@ -5,7 +5,6 @@
  * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
  * Adapted to use Tailwind CSS by Arturo Campos (@arturocr)
  */
-/* purgecss start ignore */
 code[class*='language-'],
 pre[class*='language-'] {
   @apply leading-6 text-left whitespace-pre bg-none text-prism-base;
@@ -107,7 +106,7 @@ pre[class*='language-'] {
 }
 
 .token.italic {
-  @apply italic;
+  font-style: italic;
 }
 
 .token.entity {
@@ -126,4 +125,3 @@ pre[class*='language-'] {
 .remark-code-title + pre {
   @apply mt-0 rounded-t-none;
 }
-/* purgecss end ignore */

@@ -41,63 +41,70 @@ const Blog = ({ allPostsData = [] }) => {
           description,
         }}
       />
-      <div className='posts' title={t('blog')}>
-        <section className='page-content'>
-          {pagedPosts.map(post => (
-            <article key={post.slug} className='mb-4 border-b last:border-b-0'>
-              <Heading linkTo={`/blog/${post.slug}`}>
-                {post.frontMatter.title}
-              </Heading>
-              <time className='block my-2 text-sm text-center text-gray-600 md:text-left'>
-                {new Date(post.frontMatter.date).toLocaleDateString(
-                  locale,
-                  dateOptions
-                )}
-              </time>
-              {post?.frontMatter?.image ? (
-                <Link href={`/blog/${post.slug}`}>
-                  <a className='block mx-auto my-3 transition-all duration-200 transform hover:-translate-y-1 hover:shadow-lg max-w-video'>
-                    <Image
-                      className='rounded-md'
-                      src={post.frontMatter.image}
-                      alt={post.frontMatter.title}
-                      layout='responsive'
-                      height={1080}
-                      width={1920}
-                    />
-                  </a>
-                </Link>
-              ) : null}
-              <div className='mt-2 mb-4'>
-                {post.frontMatter.description && (
-                  <p>{post.frontMatter.description}</p>
-                )}
-                <p className='mt-2'>
-                  <ReadMore
-                    title={post.frontMatter.title}
-                    url={`/blog/${post.slug}`}
+      {pagedPosts.length ? (
+        pagedPosts.map(post => (
+          <article key={post.slug} className='mb-4 border-b last:border-b-0'>
+            <Heading linkTo={`/blog/${post.slug}`}>
+              {post.frontMatter.title}
+            </Heading>
+            <time className='block my-2 text-sm text-center text-gray-600 md:text-left'>
+              {new Date(post.frontMatter.date).toLocaleDateString(
+                locale,
+                dateOptions
+              )}
+            </time>
+            {post?.frontMatter?.image ? (
+              <Link href={`/blog/${post.slug}`}>
+                <a className='block mx-auto my-3 transition-all duration-200 transform hover:-translate-y-1 hover:shadow-lg max-w-media'>
+                  <Image
+                    className='rounded-md'
+                    src={post.frontMatter.image}
+                    alt={post.frontMatter.title}
+                    layout='responsive'
+                    height={1080}
+                    width={1920}
                   />
-                </p>
-              </div>
-            </article>
-          ))}
-
-          {/* Paging */}
-          {numPages > 1 && (
-            <div className='pagination'>
-              {Array.from({ length: numPages }, (_, i) => (
-                <button
-                  key={`pagination-number${i + 1}`}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={currentPage === i + 1 ? 'active' : ''}
-                >
-                  {i + 1}
-                </button>
-              ))}
+                </a>
+              </Link>
+            ) : null}
+            <div className='mt-2 mb-4'>
+              {post.frontMatter.description && (
+                <p>{post.frontMatter.description}</p>
+              )}
+              <p className='mt-2'>
+                <ReadMore
+                  title={post.frontMatter.title}
+                  url={`/blog/${post.slug}`}
+                />
+              </p>
             </div>
-          )}
-        </section>
-      </div>
+          </article>
+        ))
+      ) : (
+        <>
+          <Heading>{t('blog')}</Heading>
+          <p className='my-6'>{t('no-blog-posts')}</p>
+          <p className='text-center text-7xl'>
+            <span aria-label={t('sorry')} role='img'>
+              😬
+            </span>
+          </p>
+        </>
+      )}
+      {/* Paging */}
+      {numPages > 1 && (
+        <div className='pagination'>
+          {Array.from({ length: numPages }, (_, i) => (
+            <button
+              key={`pagination-number${i + 1}`}
+              onClick={() => setCurrentPage(i + 1)}
+              className={currentPage === i + 1 ? 'active' : ''}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </>
   );
 };
