@@ -7,26 +7,26 @@ export default function IndexPage() {
       <Head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <title>Arturo Campos - Senior Front End Engineer</title>
+        <title>Arturo Campos - Senior Front-end Engineer</title>
         <meta
           name='title'
-          content='Arturo Campos - Senior Front End Engineer'
+          content='Arturo Campos - Senior Front-end Engineer'
         />
         <meta
           name='description'
-          content='Online Resume of Senior Front End Engineer Arturo Campos'
+          content='Online Resume of Senior Front-end Engineer Arturo Campos'
         />
         <meta
           property='og:title'
-          content='Arturo Campos - Senior Front End Engineer'
+          content='Arturo Campos - Senior Front-end Engineer'
         />
         <meta
           property='og:description'
-          content='Online Resume of Senior Front End Engineer Arturo Campos'
+          content='Online Resume of Senior Front-end Engineer Arturo Campos'
         />
         <meta
           property='og:image'
-          content='https://resume.arturocampos.dev/images/share.png'
+          content='https://arturocampos.dev/images/og.png'
         />
         <meta property='twitter:card' content='summary_large_image' />
         <meta
@@ -35,15 +35,15 @@ export default function IndexPage() {
         />
         <meta
           property='twitter:title'
-          content='Arturo Campos - Senior Front End Engineer'
+          content='Arturo Campos - Senior Front-end Engineer'
         />
         <meta
           property='twitter:description'
-          content='Online Resume of Senior Front End Engineer Arturo Campos'
+          content='Online Resume of Senior Front-end Engineer Arturo Campos'
         />
         <meta
           property='twitter:image'
-          content='https://resume.arturocampos.dev/images/share.png'
+          content='https://arturocampos.dev/images/og.png'
         />
         <link
           rel='apple-touch-icon'
@@ -63,28 +63,28 @@ export default function IndexPage() {
           href='/favicon-16x16.png'
         />
         <link rel='manifest' href='/site.webmanifest' />
-        <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#fa425f' />
+        <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#f04770' />
         <meta
           name='apple-mobile-web-app-title'
-          content='Arturo Campos - Senior Front End Engineer'
+          content='Arturo Campos - Senior Front-end Engineer'
         />
         <meta
           name='application-name'
-          content='Arturo Campos - Senior Front End Engineer'
+          content='Arturo Campos - Senior Front-end Engineer'
         />
-        <meta name='msapplication-TileColor' content='#fa425f' />
+        <meta name='msapplication-TileColor' content='#f04770' />
         <meta name='theme-color' content='#ffffff' />
       </Head>
       <main>
-        <div className='p-6 mx-auto page max-w-2xl print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 sm:p-9 md:p-16 bg-white'>
+        <div className='max-w-2xl p-6 mx-auto bg-white page print:max-w-letter md:max-w-letter md:h-letter xsm:p-8 sm:p-9 md:p-16'>
           <header className='flex items-center mb-8'>
-            <div className='mr-5'>
-              <Logo className='h-12' />
+            <div className='mr-3'>
+              <Logo className='h-12 stroke-2' />
             </div>
-            <h1 className='text-2xl font-medium text-gray-750 flex flex-col sm:flex-row sm:items-center print:block'>
+            <h1 className='flex flex-col text-2xl font-medium text-gray-750 sm:flex-row sm:items-center print:block'>
               Arturo Campos{' '}
               <span className='text-xl font-thin text-gray-550 sm:border-gray sm:border-l-2 sm:ml-2 sm:pl-2 print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
-                Senior Front End Engineer
+                Senior Front-end Engineer
               </span>
             </h1>
           </header>
@@ -97,7 +97,7 @@ export default function IndexPage() {
                 </h2>
                 <section className='mb-4.5 break-inside-avoid'>
                   <p className='mt-2.1 text-md text-gray-700 leading-normal'>
-                    Passionate developer based in Costa Rica; happily married to
+                    Passionate engineer based in Costa Rica; happily married to
                     Marisol and proud father of Sol &amp; Nico.
                   </p>
                   <p className='mt-2.1 text-md text-gray-700 leading-normal'>
@@ -292,7 +292,7 @@ export default function IndexPage() {
                         target='_blank'
                       >
                         <svg
-                          className='h-4 w-4 inline-block align-middle mr-1'
+                          className='inline-block w-4 h-4 mr-1 align-middle'
                           viewBox='0 0 24 24'
                           fill='none'
                           stroke='currentColor'
@@ -304,7 +304,7 @@ export default function IndexPage() {
                           <line x1='8' y1='12' x2='16' y2='12'></line>
                         </svg>
                         arturocampos.dev
-                        <span className='inline-block ml-1 text-gray-550 print:text-black font-normal group-hover:text-gray-700 transition duration-100 ease-in'>
+                        <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
                           ↗
                         </span>
                       </a>
@@ -317,7 +317,7 @@ export default function IndexPage() {
                         target='_blank'
                       >
                         <svg
-                          className='h-4 w-4 inline-block align-middle mr-1'
+                          className='inline-block w-4 h-4 mr-1 align-middle'
                           viewBox='0 0 24 24'
                           fill='none'
                           stroke='currentColor'
@@ -328,7 +328,7 @@ export default function IndexPage() {
                           <path d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z'></path>
                         </svg>
                         twitter.com/arturocr
-                        <span className='inline-block ml-1 text-gray-550 print:text-black font-normal group-hover:text-gray-700 transition duration-100 ease-in'>
+                        <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
                           ↗
                         </span>
                       </a>
@@ -341,7 +341,7 @@ export default function IndexPage() {
                         target='_blank'
                       >
                         <svg
-                          className='h-4 w-4 inline-block align-baseline mr-1'
+                          className='inline-block w-4 h-4 mr-1 align-baseline'
                           viewBox='0 0 24 24'
                           fill='none'
                           stroke='currentColor'
@@ -354,14 +354,14 @@ export default function IndexPage() {
                           <circle cx='4' cy='4' r='2'></circle>
                         </svg>
                         linkedin.com/arturocr
-                        <span className='inline-block ml-1 text-gray-550 print:text-black font-normal group-hover:text-gray-700 transition duration-100 ease-in'>
+                        <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
                           ↗
                         </span>
                       </a>
                     </li>
                     <li className='mt-1.5 leading-normal text-gray-700 text-md'>
                       <svg
-                        className='h-4 w-4 inline-block align-baseline mr-1'
+                        className='inline-block w-4 h-4 mr-1 align-baseline'
                         viewBox='0 0 24 24'
                         strokeWidth='2'
                         stroke='currentColor'
@@ -378,7 +378,7 @@ export default function IndexPage() {
                     <li className='mt-1.5 leading-normal text-gray-700 text-md'>
                       <a href='&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#097;&#114;&#116;&#117;&#114;&#111;&#099;&#097;&#109;&#112;&#111;&#115;&#046;&#100;&#101;&#118;'>
                         <svg
-                          className='h-4 w-4 inline-block align-middle mr-1'
+                          className='inline-block w-4 h-4 mr-1 align-middle'
                           fill='none'
                           viewBox='0 0 24 24'
                           stroke='currentColor'
@@ -396,7 +396,7 @@ export default function IndexPage() {
                     <li className='mt-1.5 leading-normal text-gray-700 text-md hidden print:block'>
                       <a href='&#116;&#101;&#108;&#58;&#43;&#53;&#48;&#54;&#56;&#56;&#56;&#57;&#45;&#54;&#52;&#48;&#50;'>
                         <svg
-                          className='h-4 w-4 inline-block align-middle mr-1'
+                          className='inline-block w-4 h-4 mr-1 align-middle'
                           viewBox='0 0 24 24'
                           fill='none'
                           stroke='currentColor'
@@ -426,11 +426,18 @@ export default function IndexPage() {
                       Gorilla Logic
                     </h3>
                     <p className='leading-normal text-md text-gray-650'>
-                      Jun 2016 – Present | Web Practice Lead / Senior Web
-                      Developer
+                      Jun 2016 – Present | Solutions Architect / Web Practice
+                      Lead
                     </p>
                   </header>
                   <ul>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Decide, propose and implement systems architectures that
+                      align with and solve client's needs.
+                    </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
@@ -444,13 +451,6 @@ export default function IndexPage() {
                       </span>{' '}
                       Technically lead projects using state of the art
                       technologies.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Analyze and groom feature requirements with clients to
-                      design the best solutions to their problems.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
@@ -500,10 +500,10 @@ export default function IndexPage() {
               <section className='mb-4.5 break-inside-avoid'>
                 <header>
                   <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
-                    Freelance Web Developer
+                    Freelance Front-end Engineer
                   </h3>
                   <p className='leading-normal text-md text-gray-650'>
-                    2008 – Present | Senior Web Developer
+                    2008 – Present | Senior Front-end Engineer
                   </p>
                 </header>
                 <ul>
@@ -512,7 +512,7 @@ export default function IndexPage() {
                       ›
                     </span>
                     I offer my skills for freelance projects in a variety of
-                    technologies, mostly focused on front-end development, but
+                    technologies, mostly focused on front-end engineering, but
                     also work on back-end services if needed.
                   </li>
                   <li className='mt-2.1 text-md text-gray-700 leading-normal'>
@@ -539,7 +539,7 @@ export default function IndexPage() {
                     Edify Software Consulting
                   </h3>
                   <p className='leading-normal text-md text-gray-650'>
-                    Apr 2011 – Jun 2016 | Senior Front End Developer
+                    Apr 2011 – Jun 2016 | Senior Front-end Developer
                   </p>
                 </header>
                 <ul>
@@ -573,7 +573,7 @@ export default function IndexPage() {
                     target='_blank'
                   >
                     LinkedIn
-                    <span className='inline-block ml-1 text-gray-550 print:text-black font-normal group-hover:text-gray-700 transition duration-100 ease-in'>
+                    <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
                       ↗
                     </span>
                   </a>
