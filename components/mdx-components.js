@@ -63,7 +63,7 @@ const MDXComponents = {
   a: CustomLink,
   ul: props => <ul className='list-disc list-inside' {...props} />,
   ol: props => <ol className='list-decimal list-inside' {...props} />,
-  li: props => <li className='my-1' {...props} />,
+  li: props => <li className='my-2' {...props} />,
   blockquote: props => (
     <blockquote
       className='relative px-12 py-2 overflow-hidden font-light text-gray-800 bg-gray-300 rounded-md'
