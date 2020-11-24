@@ -3,8 +3,9 @@ import { NextSeo } from 'next-seo';
 import hydrate from 'next-mdx-remote/hydrate';
 
 import Heading from '@/components/heading';
+import { siteBaseUrl } from '@/lib/constants';
 import { getContent } from '@/lib/content';
-import { getComponents, getLocalizedUrl } from '@/lib/util';
+import { getComponents, getLocalizedPath } from '@/lib/util';
 
 const Home = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const router = useRouter();
@@ -12,18 +13,18 @@ const Home = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const content = hydrate(mdxSource, {
     components: getComponents(hydrationComponentsList),
   });
-  const localizedUrl = getLocalizedUrl(router);
+  const localizedPath = getLocalizedPath(router);
   const { description } = frontMatter;
 
   return (
     <>
       <NextSeo
-        canonical={localizedUrl}
+        canonical={`${siteBaseUrl}${localizedPath}`}
         description={description}
         openGraph={{
           description,
           locale,
-          url: localizedUrl,
+          url: `${siteBaseUrl}${localizedPath}`,
         }}
       />
       <Heading className='md:text-center'>{frontMatter.title}</Heading>

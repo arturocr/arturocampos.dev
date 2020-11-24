@@ -1,7 +1,4 @@
-const title = 'Arturo Campos – Front-end Engineer';
-const description =
-  'Front-end Engineer, JavaScript enthusiast, and proud father';
-const siteBaseUrl = 'https://arturocampos.dev';
+import { description, siteBaseUrl, title } from '@/lib/constants';
 
 const SEO = {
   title,
@@ -29,5 +26,4 @@ const SEO = {
   },
 };
 
-export { siteBaseUrl };
 export default SEO;

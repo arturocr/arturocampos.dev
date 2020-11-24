@@ -23,6 +23,8 @@ const LangStrings = {
     slogan: 'Arturo Campos - Web Development & Technology Blog',
     sorry: 'Sorry',
     uses: 'Uses',
+    view: 'view',
+    views: 'views',
   },
   es: {
     about: 'Acerca de',
@@ -48,6 +50,8 @@ const LangStrings = {
     slogan: 'Arturo Campos - Blog de Desarrollo Web y Tecnología',
     sorry: 'Lo siento',
     uses: 'Uso',
+    view: 'vista',
+    views: 'vistas',
   },
 };
 

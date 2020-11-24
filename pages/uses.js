@@ -4,15 +4,16 @@ import hydrate from 'next-mdx-remote/hydrate';
 
 import Heading from '@/components/heading';
 import useTranslation from '@/i18n/useTranslation';
+import { siteBaseUrl } from '@/lib/constants';
 import { getContent } from '@/lib/content';
-import { getLocalizedUrl } from '@/lib/util';
+import { getLocalizedPath } from '@/lib/util';
 
 const Uses = ({ mdxSource, frontMatter }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { locale } = router;
   const content = hydrate(mdxSource);
-  const localizedUrl = getLocalizedUrl(router);
+  const localizedPath = getLocalizedPath(router);
   const title = `${t('uses')} - Arturo Campos`;
   const { description } = frontMatter;
 
@@ -20,10 +21,10 @@ const Uses = ({ mdxSource, frontMatter }) => {
     <>
       <NextSeo
         title={title}
-        canonical={localizedUrl}
+        canonical={`${siteBaseUrl}${localizedPath}`}
         description={description}
         openGraph={{
-          url: localizedUrl,
+          url: `${siteBaseUrl}${localizedPath}`,
           locale,
           title,
           description,

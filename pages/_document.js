@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { domain } from '@/lib/constants';
 import theme from '@/lib/theme';
 
 class MyDocument extends Document {
@@ -38,6 +39,16 @@ class MyDocument extends Document {
           <link
             rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              // Only load on production environment.
+              if (window.location.host !== '${domain}') {
+                window.goatcounter = {no_onload: true};
+              }
+              `,
+            }}
           />
           <script
             async
