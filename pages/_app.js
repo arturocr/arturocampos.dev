@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
-import { useAnalytics } from '@happykit/analytics';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import MDXComponents from '@/components/mdx-components';
 import SEO from '../next-seo.config';
+import { pageView } from '@/lib/goat-counter';
 import theme from '@/lib/theme';
 
 import '@/styles/globals.css';
@@ -15,9 +15,9 @@ import '@/styles/custom.css';
 import '@/styles/prism.css';
 
 const MyApp = ({ Component, pageProps, router }) => {
-  useAnalytics({ publicKey: 'analytics_pub_bba22bdbcd' });
   useEffect(() => {
-    const handleRouteChange = () => {
+    const handleRouteChange = url => {
+      pageView(url);
       window.scrollTo({
         top: 0,
         left: 0,

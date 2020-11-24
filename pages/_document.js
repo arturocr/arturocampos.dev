@@ -11,6 +11,7 @@ class MyDocument extends Document {
             href='https://fonts.gstatic.com/'
             crossOrigin=''
           />
+          <link rel='preconnect' href='https://arturocampos.goatcounter.com' />
           <link
             rel='apple-touch-icon'
             sizes='180x180'
@@ -38,6 +39,11 @@ class MyDocument extends Document {
             rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'
           />
+          <script
+            async
+            data-goatcounter='https://arturocampos.goatcounter.com/count'
+            src='//gc.zgo.at/count.js'
+          ></script>
         </Head>
         <body className='text-gray-700 body-font'>
           <Main />
