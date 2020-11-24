@@ -1,4 +1,5 @@
 import { NextSeo, ArticleJsonLd } from 'next-seo';
+import { siteBaseUrl } from '@/lib/constants';
 
 const PostSeo = ({
   author,
@@ -11,9 +12,7 @@ const PostSeo = ({
 }) => {
   const publishedAt = new Date(date).toISOString();
   const featuredImage = {
-    url: image
-      ? `https://arturocampos.dev${image}`
-      : 'https://arturocampos.dev/image/og.png',
+    url: image ? `${siteBaseUrl}${image}` : `${siteBaseUrl}/image/og.png`,
     alt: title,
   };
 

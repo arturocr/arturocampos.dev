@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -7,22 +8,33 @@ import Heading from '@/components/heading';
 import PostSeo from '@/components/post-seo';
 import useTranslation from '@/i18n/useTranslation';
 import { getAllPostSlugs, getContent } from '@/lib/content';
-import { dateOptions } from '@/lib/constants';
-import { getComponents, getLocalizedUrl } from '@/lib/util';
+import { dateOptions, siteBaseUrl } from '@/lib/constants';
+import { getPathViews } from '@/lib/goat-counter';
+import { getComponents, getLocalizedPath } from '@/lib/util';
 
 const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { locale } = router;
+  const [views, setViews] = useState(0);
   const content = hydrate(mdxSource, {
     components: getComponents(hydrationComponentsList),
   });
-  const localizedUrl = getLocalizedUrl(router);
+  const localizedPath = getLocalizedPath(router);
   const { image: imagePath } = frontMatter;
+
+  useEffect(async () => {
+    const viewsCount = await getPathViews(localizedPath);
+    setViews(viewsCount);
+  }, []);
 
   return (
     <>
-      <PostSeo locale={locale} url={localizedUrl} {...frontMatter} />
+      <PostSeo
+        locale={locale}
+        url={`${siteBaseUrl}${localizedPath}`}
+        {...frontMatter}
+      />
       <div className='flex items-center px-2 py-1 mb-4 space-x-1 overflow-hidden text-xs font-medium text-gray-600 uppercase bg-gray-100 border border-gray-300 rounded-md'>
         <Link href='/'>
           <a className='inline-flex items-center'>{t('home')}</a>
@@ -36,9 +48,14 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
       </div>
       <article>
         <Heading>{frontMatter.title}</Heading>
-        <time className='block my-2 text-sm text-center text-gray-600 md:text-left'>
-          {new Date(frontMatter.date).toLocaleDateString(locale, dateOptions)}
-        </time>
+        <div className='flex justify-between my-2 text-sm text-gray-600'>
+          <time>
+            {new Date(frontMatter.date).toLocaleDateString(locale, dateOptions)}
+          </time>
+          <span>
+            {views} {views !== 1 ? t('views') : t('view')}
+          </span>
+        </div>
         {imagePath ? (
           <picture className='block mx-auto my-3 max-w-media'>
             <Image

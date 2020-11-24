@@ -7,15 +7,15 @@ import { NextSeo } from 'next-seo';
 import Heading from '@/components/heading';
 import ReadMore from '@/components/read-more';
 import useTranslation from '@/i18n/useTranslation';
-import { dateOptions } from '@/lib/constants';
+import { dateOptions, siteBaseUrl } from '@/lib/constants';
 import { getSortedPostsData } from '@/lib/content';
-import { getLocalizedUrl } from '@/lib/util';
+import { getLocalizedPath } from '@/lib/util';
 
 const Blog = ({ allPostsData = [] }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { locale } = router;
-  const localizedUrl = getLocalizedUrl(router);
+  const localizedPath = getLocalizedPath(router);
   const title = `${t('blog')} - Arturo Campos`;
   const description = t('blog-description');
 
@@ -32,10 +32,10 @@ const Blog = ({ allPostsData = [] }) => {
     <>
       <NextSeo
         title={title}
-        canonical={localizedUrl}
+        canonical={`${siteBaseUrl}${localizedPath}`}
         description={description}
         openGraph={{
-          url: localizedUrl,
+          url: `${siteBaseUrl}${localizedPath}`,
           locale,
           title,
           description,
@@ -45,10 +45,10 @@ const Blog = ({ allPostsData = [] }) => {
         pagedPosts.map(post => (
           <article key={post.slug} className='mb-4 border-b last:border-b-0'>
             <Heading linkTo={`/blog/${post.slug}`}>
-              {post.frontMatter.title}
+              {post.frontMatter?.title}
             </Heading>
             <time className='block my-2 text-sm text-center text-gray-600 md:text-left'>
-              {new Date(post.frontMatter.date).toLocaleDateString(
+              {new Date(post.frontMatter?.date).toLocaleDateString(
                 locale,
                 dateOptions
               )}
