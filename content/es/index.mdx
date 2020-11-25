@@ -3,18 +3,8 @@ title: Hola, soy Arturo Campos
 description: Front-end Engineer, entusiasta de JavaScript y padre orgulloso
 ---
 
-<div className='text-center my-5 sm:float-left sm:mr-4 sm:mb-1'>
-  <div className='rounded-full border-secondary inline-flex border-2 shadow-2xl'>
-    <Image
-      className='rounded-full'
-      alt='Foto de Arturo Campos'
-      src='/images/arturo.jpg'
-      layout='intrinsic'
-      height={150}
-      width={150}
-    />
-  </div>
-</div>
+<div className='mt-5 flex flex-col-reverse items-center md:space-x-7 md:flex-row'> 
+  <div className='flex-1 text-center md:text-left px-5 md:px-0'>
 
 Soy un Solutions Architect y Web Practice Lead en [Gorilla Logic](https://gorillalogic.com) 🦍 , actualmente viviendo en Costa Rica 🇨🇷
 
@@ -25,3 +15,18 @@ También soy el orgulloso padre de Sol 🩰 y Nico 🎮, además del feliz espos
 Me encanta recorrer senderos y caminos en mi mountain bike 🚵
 
 Completa libertad de contactarme y espero que disfruten de mis [blog posts](/blog) 📝
+
+  </div>
+  <div className='md:border-gray-300 md:border-l md:pl-7 md:py-7'>
+    <div className='rounded-full border-secondary inline-flex border-2 shadow-xl'>
+      <Image
+        className='rounded-full'
+        alt='Foto de Arturo Campos'
+        src='/images/arturo.jpg'
+        layout='intrinsic'
+        height={160}
+        width={160}
+      />
+    </div>
+  </div>
+</div>
