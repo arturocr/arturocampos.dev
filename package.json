@@ -16,7 +16,8 @@
     "lite-youtube-embed": "^0.1.2",
     "next": "^10",
     "react": "^17",
-    "react-dom": "^17"
+    "react-dom": "^17",
+    "swr": "^0.3.9"
   },
   "devDependencies": {
     "@mdx-js/react": "^1.6.21",

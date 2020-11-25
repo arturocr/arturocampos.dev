@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import hydrate from 'next-mdx-remote/hydrate';
+import useSWR from 'swr';
 
 import Heading from '@/components/heading';
 import PostSeo from '@/components/post-seo';
@@ -11,24 +11,22 @@ import ViewsCounter from '@/components/views-counter';
 import useTranslation from '@/i18n/useTranslation';
 import { siteBaseUrl } from '@/lib/constants';
 import { getAllPostSlugs, getContent } from '@/lib/content';
-import { getPathViews } from '@/lib/goat-counter';
+import fetcher from '@/lib/fetcher';
+import { getViewsEndpoint } from '@/lib/goat-counter';
 import { getComponents, getLocalizedPath } from '@/lib/util';
 
 const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { locale } = router;
-  const [views, setViews] = useState(0);
   const content = hydrate(mdxSource, {
     components: getComponents(hydrationComponentsList),
   });
-  const localizedPath = getLocalizedPath(router);
   const { image: imagePath } = frontMatter;
+  const localizedPath = getLocalizedPath(router);
 
-  useEffect(async () => {
-    const viewsCount = await getPathViews(localizedPath);
-    setViews(viewsCount);
-  }, [localizedPath]);
+  const { data } = useSWR(getViewsEndpoint(localizedPath), fetcher);
+  const views = data?.count_unique || 0;
 
   return (
     <>

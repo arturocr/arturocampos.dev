@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 import Heading from '@/components/heading';
 import PublishedDate from '@/components/published-date';
 import ReadMore from '@/components/read-more';
 import ViewsCounter from '@/components/views-counter';
-import { getPathViews } from '@/lib/goat-counter';
+import fetcher from '@/lib/fetcher';
+import { getViewsEndpoint } from '@/lib/goat-counter';
 import { getLocalizedPath } from '@/lib/util';
 
 const BlogPost = ({ post }) => {
   const router = useRouter();
-  const [views, setViews] = useState(0);
   const { defaultLocale, locale } = router;
   const blogPostPath = `/blog/${post.slug}`;
   const localizedPath = getLocalizedPath({
@@ -20,11 +20,8 @@ const BlogPost = ({ post }) => {
     locale,
     asPath: blogPostPath,
   });
-
-  useEffect(async () => {
-    const viewsCount = await getPathViews(localizedPath);
-    setViews(viewsCount);
-  }, [localizedPath]);
+  const { data } = useSWR(getViewsEndpoint(localizedPath), fetcher);
+  const views = data?.count_unique || 0;
 
   return (
     <article className='mb-4 border-b last:border-b-0'>
