@@ -6,9 +6,11 @@ import hydrate from 'next-mdx-remote/hydrate';
 
 import Heading from '@/components/heading';
 import PostSeo from '@/components/post-seo';
+import PublishedDate from '@/components/published-date';
+import ViewsCounter from '@/components/views-counter';
 import useTranslation from '@/i18n/useTranslation';
+import { siteBaseUrl } from '@/lib/constants';
 import { getAllPostSlugs, getContent } from '@/lib/content';
-import { dateOptions, siteBaseUrl } from '@/lib/constants';
 import { getPathViews } from '@/lib/goat-counter';
 import { getComponents, getLocalizedPath } from '@/lib/util';
 
@@ -49,12 +51,8 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
       <article>
         <Heading>{frontMatter.title}</Heading>
         <div className='flex justify-between my-2 text-sm text-gray-600'>
-          <time>
-            {new Date(frontMatter.date).toLocaleDateString(locale, dateOptions)}
-          </time>
-          <span>
-            {views} {views !== 1 ? t('views') : t('view')}
-          </span>
+          <PublishedDate date={frontMatter.date} locale={locale} />
+          <ViewsCounter views={views} />
         </div>
         {imagePath ? (
           <picture className='block mx-auto my-3 max-w-media'>

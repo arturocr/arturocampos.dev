@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 
+import BlogPost from '@/components/blog-post';
 import Heading from '@/components/heading';
-import ReadMore from '@/components/read-more';
 import useTranslation from '@/i18n/useTranslation';
-import { dateOptions, siteBaseUrl } from '@/lib/constants';
+import { siteBaseUrl } from '@/lib/constants';
 import { getSortedPostsData } from '@/lib/content';
 import { getLocalizedPath } from '@/lib/util';
 
@@ -43,42 +41,12 @@ const Blog = ({ allPostsData = [] }) => {
       />
       {pagedPosts.length ? (
         pagedPosts.map(post => (
-          <article key={post.slug} className='mb-4 border-b last:border-b-0'>
-            <Heading linkTo={`/blog/${post.slug}`}>
-              {post.frontMatter?.title}
-            </Heading>
-            <time className='block my-2 text-sm text-center text-gray-600 md:text-left'>
-              {new Date(post.frontMatter?.date).toLocaleDateString(
-                locale,
-                dateOptions
-              )}
-            </time>
-            {post?.frontMatter?.image ? (
-              <Link href={`/blog/${post.slug}`}>
-                <a className='block mx-auto my-3 transition-all transform hover:-translate-y-1 hover:shadow-lg max-w-media'>
-                  <Image
-                    className='rounded-md'
-                    src={post.frontMatter.image}
-                    alt={post.frontMatter.title}
-                    layout='responsive'
-                    height={1080}
-                    width={1920}
-                  />
-                </a>
-              </Link>
-            ) : null}
-            <div className='mt-2 mb-4'>
-              {post.frontMatter.description && (
-                <p>{post.frontMatter.description}</p>
-              )}
-              <p className='mt-2'>
-                <ReadMore
-                  title={post.frontMatter.title}
-                  url={`/blog/${post.slug}`}
-                />
-              </p>
-            </div>
-          </article>
+          <BlogPost
+            key={post.slug}
+            locale={locale}
+            localizedPath={localizedPath}
+            post={post}
+          />
         ))
       ) : (
         <>
