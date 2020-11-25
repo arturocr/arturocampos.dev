@@ -24,7 +24,7 @@ const CustomLink = props => {
     return (
       <Link href={href}>
         <a
-          className='transition-colors duration-200 text-middle hover:text-secondary'
+          className='transition-colors text-middle hover:text-secondary'
           {...props}
         />
       </Link>
@@ -33,7 +33,7 @@ const CustomLink = props => {
 
   return (
     <a
-      className='transition-colors duration-200 text-middle hover:text-secondary'
+      className='transition-colors text-middle hover:text-secondary'
       target='_blank'
       rel='noopener noreferrer'
       {...props}

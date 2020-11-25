@@ -6,7 +6,7 @@ const ReadMore = ({ title, url }) => {
   const { t } = useTranslation();
   return (
     <Link href={url}>
-      <a className='transition-colors duration-200 text-middle hover:text-secondary'>
+      <a className='transition-colors text-middle hover:text-secondary'>
         <span className='sr-only'>{title}</span>
         <span className='not-sr-only'>{t('read-more')} </span>
         <svg

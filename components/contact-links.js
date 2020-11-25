@@ -2,7 +2,7 @@ const ContactLinks = () => (
   <ul className='flex flex-wrap justify-center list-none'>
     <li className='inline-flex mx-1'>
       <a
-        className='inline-block p-2 transition-colors duration-200 text-middle hover:text-secondary'
+        className='inline-block p-2 transition-colors text-middle hover:text-secondary'
         href='https://twitter.com/arturocr'
         rel='noopener noreferrer'
         target='_blank'
@@ -23,7 +23,7 @@ const ContactLinks = () => (
     </li>
     <li className='inline-flex mx-1'>
       <a
-        className='inline-block p-2 transition-colors duration-200 text-middle hover:text-secondary'
+        className='inline-block p-2 transition-colors text-middle hover:text-secondary'
         href='https://www.facebook.com/arturo025'
         rel='noopener noreferrer'
         target='_blank'
@@ -44,7 +44,7 @@ const ContactLinks = () => (
     </li>
     <li className='inline-flex mx-1'>
       <a
-        className='inline-block p-2 transition-colors duration-200 text-middle hover:text-secondary'
+        className='inline-block p-2 transition-colors text-middle hover:text-secondary'
         href='https://www.linkedin.com/in/arturocr/'
         rel='noopener noreferrer'
         target='_blank'
@@ -67,7 +67,7 @@ const ContactLinks = () => (
     </li>
     <li className='inline-flex mx-1'>
       <a
-        className='inline-block p-2 transition-colors duration-200 text-middle hover:text-secondary'
+        className='inline-block p-2 transition-colors text-middle hover:text-secondary'
         href='https://github.com/arturocr'
         rel='noopener noreferrer'
         target='_blank'
@@ -88,7 +88,7 @@ const ContactLinks = () => (
     </li>
     <li className='inline-flex mx-1'>
       <a
-        className='inline-block p-2 transition-colors duration-200 text-middle hover:text-secondary'
+        className='inline-block p-2 transition-colors text-middle hover:text-secondary'
         href='https://t.me/arturocr'
         rel='noopener noreferrer'
         target='_blank'
@@ -109,7 +109,7 @@ const ContactLinks = () => (
     </li>
     <li className='inline-flex mx-1'>
       <a
-        className='inline-block p-2 transition-colors duration-200 text-middle hover:text-secondary'
+        className='inline-block p-2 transition-colors text-middle hover:text-secondary'
         href='&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#097;&#114;&#116;&#117;&#114;&#111;&#099;&#097;&#109;&#112;&#111;&#115;&#046;&#100;&#101;&#118;'
         rel='noopener noreferrer'
         target='_blank'

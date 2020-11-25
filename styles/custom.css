@@ -28,11 +28,13 @@ lite-youtube.lyt-activated > .lty-playbtn {
 
 /* Global shared styles */
 a {
-  @apply transition-colors duration-200 text-middle;
+  @apply transition-colors text-middle;
 }
 
-a:hover {
-  @apply text-secondary;
+@media (hover: hover) {
+  a:hover {
+    @apply text-secondary;
+  }
 }
 
 blockquote > * {
@@ -81,18 +83,19 @@ blockquote::after {
   stroke-dashoffset: -134;
 }
 
-/* Gradient background */
-.gradient {
-  @apply bg-gradient-to-r from-secondary via-middle to-accent;
-}
-
 /* Gradient text */
 .gradient-text {
-  @apply inline-flex pb-1 pr-1 gradient;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  @apply inline-block pb-1 pr-1 text-secondary;
 }
+
+@supports (background-clip: text) and (-webkit-text-fill-color: transparent) {
+  .gradient-text {
+    @apply bg-gradient-to-r from-secondary via-middle to-accent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 @media (hover: hover) {
   a.gradient-text {
     @apply duration-200;

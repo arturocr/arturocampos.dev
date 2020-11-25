@@ -19,7 +19,7 @@ const LanguageSelector = () => {
   return (
     <label className='relative inline-flex group'>
       <svg
-        className='absolute top-0 right-0 w-2 h-2 my-4 mr-3 transition-colors duration-200 pointer-events-none group-hover:text-secondary'
+        className='absolute top-0 right-0 w-2 h-2 my-4 mr-3 transition-colors pointer-events-none group-hover:text-secondary'
         viewBox='0 0 412 232'
         xmlns='http://www.w3.org/2000/svg'
       >
@@ -30,7 +30,7 @@ const LanguageSelector = () => {
         />
       </svg>
       <select
-        className='h-10 pl-3 pr-6 font-light transition-colors duration-200 bg-transparent border border-gray-600 rounded-full appearance-none cursor-pointer hover:border-secondary focus:outline-none'
+        className='h-10 pl-3 pr-6 font-light transition-colors bg-transparent border border-gray-600 rounded-full appearance-none cursor-pointer hover:border-secondary focus:outline-none'
         onChange={navigate}
         defaultValue={locale}
         title={t('language')}

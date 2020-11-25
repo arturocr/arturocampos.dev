@@ -55,7 +55,7 @@ const Blog = ({ allPostsData = [] }) => {
             </time>
             {post?.frontMatter?.image ? (
               <Link href={`/blog/${post.slug}`}>
-                <a className='block mx-auto my-3 transition-all duration-200 transform hover:-translate-y-1 hover:shadow-lg max-w-media'>
+                <a className='block mx-auto my-3 transition-all transform hover:-translate-y-1 hover:shadow-lg max-w-media'>
                   <Image
                     className='rounded-md'
                     src={post.frontMatter.image}
