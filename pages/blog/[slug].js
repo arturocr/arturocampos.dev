@@ -26,7 +26,7 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   useEffect(async () => {
     const viewsCount = await getPathViews(localizedPath);
     setViews(viewsCount);
-  }, []);
+  }, [localizedPath]);
 
   return (
     <>
