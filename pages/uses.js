@@ -1,11 +1,14 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import hydrate from 'next-mdx-remote/hydrate';
+import useSWR from 'swr';
 
 import Heading from '@/components/heading';
+import ViewsCounter from '@/components/views-counter';
 import useTranslation from '@/i18n/useTranslation';
 import { siteBaseUrl } from '@/lib/constants';
 import { getContent } from '@/lib/content';
+import fetcher from '@/lib/fetcher';
 import { getLocalizedPath } from '@/lib/util';
 
 const Uses = ({ mdxSource, frontMatter }) => {
@@ -16,6 +19,12 @@ const Uses = ({ mdxSource, frontMatter }) => {
   const localizedPath = getLocalizedPath(router);
   const title = `${t('uses')} - Arturo Campos`;
   const { description } = frontMatter;
+  const { data } = useSWR(
+    `/api/visitors?slug=${encodeURIComponent(localizedPath)}`,
+    fetcher,
+    { revalidateOnFocus: false }
+  );
+  const views = data?.visitors || 0;
 
   return (
     <>
@@ -31,6 +40,9 @@ const Uses = ({ mdxSource, frontMatter }) => {
         }}
       />
       <Heading>{frontMatter.title}</Heading>
+      <div className='flex justify-end my-2 text-sm text-gray-600'>
+        <ViewsCounter loading={!data} views={views} />
+      </div>
       <div>{content}</div>
     </>
   );
