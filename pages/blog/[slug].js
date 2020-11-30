@@ -12,7 +12,6 @@ import useTranslation from '@/i18n/useTranslation';
 import { siteBaseUrl } from '@/lib/constants';
 import { getAllPostSlugs, getContent } from '@/lib/content';
 import fetcher from '@/lib/fetcher';
-import { getViewsEndpoint } from '@/lib/goat-counter';
 import { getComponents, getLocalizedPath } from '@/lib/util';
 
 const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
@@ -24,9 +23,12 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   });
   const { image: imagePath } = frontMatter;
   const localizedPath = getLocalizedPath(router);
-
-  const { data } = useSWR(getViewsEndpoint(localizedPath), fetcher);
-  const views = data?.count_unique || 0;
+  const { data } = useSWR(
+    `/api/visitors?slug=${encodeURIComponent(localizedPath)}`,
+    fetcher,
+    { revalidateOnFocus: false }
+  );
+  const views = data?.visitors || 0;
 
   return (
     <>
@@ -50,7 +52,7 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
         <Heading>{frontMatter.title}</Heading>
         <div className='flex justify-between my-2 text-sm text-gray-600'>
           <PublishedDate date={frontMatter.date} locale={locale} />
-          <ViewsCounter views={views} />
+          <ViewsCounter loading={!data} views={views} />
         </div>
         {imagePath ? (
           <picture className='block mx-auto my-3 max-w-media'>

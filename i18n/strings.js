@@ -49,7 +49,7 @@ const LangStrings = {
     resume: 'Currículo',
     slogan: 'Arturo Campos - Blog de Desarrollo Web y Tecnología',
     sorry: 'Lo siento',
-    uses: 'Uso',
+    uses: 'Uses',
     view: 'vista',
     views: 'vistas',
   },

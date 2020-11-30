@@ -8,7 +8,6 @@ import PublishedDate from '@/components/published-date';
 import ReadMore from '@/components/read-more';
 import ViewsCounter from '@/components/views-counter';
 import fetcher from '@/lib/fetcher';
-import { getViewsEndpoint } from '@/lib/goat-counter';
 import { getLocalizedPath } from '@/lib/util';
 
 const BlogPost = ({ post }) => {
@@ -20,15 +19,18 @@ const BlogPost = ({ post }) => {
     locale,
     asPath: blogPostPath,
   });
-  const { data } = useSWR(getViewsEndpoint(localizedPath), fetcher);
-  const views = data?.count_unique || 0;
+  const { data } = useSWR(
+    `/api/visitors?slug=${encodeURIComponent(localizedPath)}&justRead=true`,
+    fetcher
+  );
+  const views = data?.visitors || 0;
 
   return (
     <article className='mb-4 border-b last:border-b-0'>
       <Heading linkTo={blogPostPath}>{post.frontMatter?.title}</Heading>
       <div className='flex justify-between my-2 text-sm text-gray-600'>
         <PublishedDate date={post.frontMatter?.date} locale={locale} />
-        <ViewsCounter views={views} />
+        <ViewsCounter loading={!data} views={views} />
       </div>
       {post?.frontMatter?.image ? (
         <Link href={blogPostPath}>

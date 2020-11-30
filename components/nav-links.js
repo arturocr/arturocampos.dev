@@ -54,12 +54,12 @@ const NavLinks = () => {
         </ActiveLink>
         <ActiveLink activeClassName='border-middle text-middle' href='/uses'>
           <a
-            aria-label={t('uses')}
+            aria-label={`/${t('uses')}`}
             className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
             onClick={onTap}
-            title={t('uses')}
+            title={`/${t('uses')}`}
           >
-            {t('uses')}
+            {`/${t('uses')}`}
           </a>
         </ActiveLink>
         <a
