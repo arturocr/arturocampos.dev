@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { domain } from '@/lib/constants';
+import { GA_TRACKING_ID } from '@/lib/gtag';
 import theme from '@/lib/theme';
 
 class MyDocument extends Document {
@@ -12,7 +12,6 @@ class MyDocument extends Document {
             href='https://fonts.gstatic.com/'
             crossOrigin=''
           />
-          <link rel='preconnect' href='https://arturocampos.goatcounter.com' />
           <link
             rel='apple-touch-icon'
             sizes='180x180'
@@ -40,21 +39,21 @@ class MyDocument extends Document {
             rel='stylesheet'
             href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'
           />
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `
-              // Only load on production environment.
-              if (window.location.host !== '${domain}') {
-                window.goatcounter = {no_onload: true};
-              }
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}');
               `,
             }}
           />
-          <script
-            async
-            data-goatcounter='https://arturocampos.goatcounter.com/count'
-            src='//gc.zgo.at/count.js'
-          ></script>
         </Head>
         <body className='text-gray-700 body-font'>
           <Main />

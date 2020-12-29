@@ -20,11 +20,11 @@ const Uses = ({ mdxSource, frontMatter }) => {
   const title = `${t('uses')} - Arturo Campos`;
   const { description } = frontMatter;
   const { data } = useSWR(
-    `/api/visitors?slug=${encodeURIComponent(localizedPath)}`,
+    `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
     fetcher,
     { revalidateOnFocus: false }
   );
-  const views = data?.visitors || 0;
+  const views = data?.pageViews || 0;
 
   return (
     <>

@@ -24,11 +24,11 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const { image: imagePath } = frontMatter;
   const localizedPath = getLocalizedPath(router);
   const { data } = useSWR(
-    `/api/visitors?slug=${encodeURIComponent(localizedPath)}`,
+    `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
     fetcher,
     { revalidateOnFocus: false }
   );
-  const views = data?.visitors || 0;
+  const views = data?.pageViews || 0;
 
   return (
     <>
@@ -57,11 +57,12 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
         {imagePath ? (
           <picture className='block mx-auto my-3 max-w-media'>
             <Image
-              className='rounded-md'
-              src={imagePath}
               alt={frontMatter.title}
-              layout='responsive'
+              className='rounded-md'
               height={1080}
+              layout='responsive'
+              priority
+              src={imagePath}
               width={1920}
             />
           </picture>

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "clsx": "^1",
+    "googleapis": "^66.0.0",
     "lite-vimeo-embed": "^0.1.0",
     "lite-youtube-embed": "^0.1.2",
     "next": "^10",
