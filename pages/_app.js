@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import MDXComponents from '@/components/mdx-components';
 import SEO from '../next-seo.config';
-import { pageView } from '@/lib/goat-counter';
+import { pageview } from '@/lib/gtag';
 import theme from '@/lib/theme';
 
 import '@/styles/globals.css';
@@ -17,7 +17,7 @@ import '@/styles/prism.css';
 const MyApp = ({ Component, pageProps, router }) => {
   useEffect(() => {
     const handleRouteChange = url => {
-      pageView(url);
+      pageview(url, document.title);
       window.scrollTo({
         top: 0,
         left: 0,

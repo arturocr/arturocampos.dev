@@ -20,10 +20,10 @@ const BlogPost = ({ post }) => {
     asPath: blogPostPath,
   });
   const { data } = useSWR(
-    `/api/visitors?slug=${encodeURIComponent(localizedPath)}&justRead=true`,
+    `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
     fetcher
   );
-  const views = data?.visitors || 0;
+  const views = data?.pageViews || 0;
 
   return (
     <article className='mb-4 border-b last:border-b-0'>
@@ -36,11 +36,12 @@ const BlogPost = ({ post }) => {
         <Link href={blogPostPath}>
           <a className='block mx-auto my-3 transition-all transform hover:-translate-y-1 hover:shadow-lg max-w-media'>
             <Image
-              className='rounded-md'
-              src={post.frontMatter.image}
               alt={post.frontMatter.title}
-              layout='responsive'
+              className='rounded-md'
               height={1080}
+              layout='responsive'
+              priority
+              src={post.frontMatter.image}
               width={1920}
             />
           </a>
