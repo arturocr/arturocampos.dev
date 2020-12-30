@@ -4,7 +4,7 @@ import ContactLinks from '@/components/contact-links';
 const Footer = () => {
   const { t } = useTranslation();
   return (
-    <footer className='w-full pt-3 pb-2 text-sm font-light text-center text-gray-600 bg-gray-100'>
+    <footer className='w-full pt-3 pb-2 text-sm font-light text-center text-gray-600 bg-gray-100 md:pb-6'>
       <p className='my-0'>
         &copy; {new Date().getFullYear()} Arturo Campos | {t('made-with')}{' '}
         <span aria-label={t('love')} className='align-middle' role='img'>

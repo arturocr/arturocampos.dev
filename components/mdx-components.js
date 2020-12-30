@@ -1,24 +1,9 @@
-// import React from 'react';
-// import clsx from 'clsx';
 import Link from 'next/link';
-
-// const uniqueClassNames = classNames =>
-//   Array.from(new Set(classNames.split(' '))).join(' ');
-
-// const WithCombinedClasses = ({ children, className }) => {
-//   const ChildrenWithClasses = () =>
-//     React.Children.map(children, child =>
-//       React.cloneElement(child, {
-//         className: uniqueClassNames(clsx([child.props.className, className])),
-//       })
-//     );
-
-//   return <ChildrenWithClasses />;
-// };
 
 const CustomLink = props => {
   const href = props.href;
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+  const isAnchorLink = href?.startsWith('#');
+  const isInternalLink = href?.startsWith('/');
 
   if (isInternalLink) {
     return (
@@ -34,8 +19,8 @@ const CustomLink = props => {
   return (
     <a
       className='transition-colors text-middle hover:text-secondary'
-      target='_blank'
-      rel='noopener noreferrer'
+      target={!isAnchorLink ? '_blank' : undefined}
+      rel={!isAnchorLink ? 'noopener noreferrer' : undefined}
       {...props}
     />
   );

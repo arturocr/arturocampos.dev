@@ -49,6 +49,10 @@ const MyApp = ({ Component, pageProps, router }) => {
         </main>
       </div>
       <Footer />
+      <div id='body-b-l'></div>
+      <div id='body-b-r'></div>
+      <div id='body-b-t'></div>
+      <div id='body-b-b'></div>
     </>
   );
 };

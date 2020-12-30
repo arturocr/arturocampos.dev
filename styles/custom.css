@@ -1,29 +1,21 @@
 /* Override of main container */
 #__next {
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  @apply relative z-0 flex flex-col items-stretch min-h-screen bg-white;
 }
 
 /* Fixes for lite-youtube web component */
 lite-youtube::before {
-  box-sizing: content-box;
+  @apply box-content;
 }
 lite-youtube > iframe {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  @apply absolute top-0 left-0 w-full h-full;
 }
 lite-youtube.lyt-activated {
   cursor: unset;
 }
 lite-youtube.lyt-activated::before,
 lite-youtube.lyt-activated > .lty-playbtn {
-  opacity: 0;
-  pointer-events: none;
+  @apply opacity-0 pointer-events-none;
 }
 
 @layer components {
@@ -117,6 +109,34 @@ lite-youtube.lyt-activated > .lty-playbtn {
       @apply bg-opacity-75;
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       backdrop-filter: saturate(180%) blur(20px);
+    }
+  }
+  @screen md {
+    #body-b-l,
+    #body-b-r,
+    #body-b-t,
+    #body-b-b {
+      @apply fixed z-50 p-2;
+    }
+    #body-b-l,
+    #body-b-r {
+      @apply top-0 bottom-0;
+    }
+    #body-b-l {
+      @apply left-0 bg-secondary;
+    }
+    #body-b-r {
+      @apply right-0 bg-accent;
+    }
+    #body-b-t,
+    #body-b-b {
+      @apply left-0 right-0 bg-gradient-to-r from-secondary via-middle to-accent;
+    }
+    #body-b-t {
+      @apply top-0;
+    }
+    #body-b-b {
+      @apply bottom-0;
     }
   }
 }
