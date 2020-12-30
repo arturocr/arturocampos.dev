@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import MDXComponents from '@/components/mdx-components';
 import SEO from '../next-seo.config';
-import { pageview } from '@/lib/gtag';
+import { pageview } from '@/lib/analytics';
 import theme from '@/lib/theme';
 
 import '@/styles/globals.css';

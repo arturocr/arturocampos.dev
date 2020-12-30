@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { GA_TRACKING_ID } from '@/lib/gtag';
+import { GA_TRACKING_ID } from '@/lib/analytics';
 import theme from '@/lib/theme';
 
 class MyDocument extends Document {
@@ -40,20 +40,24 @@ class MyDocument extends Document {
             href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'
           />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+          {GA_TRACKING_ID ? (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+              />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${GA_TRACKING_ID}');
               `,
-            }}
-          />
+                }}
+              />
+            </>
+          ) : null}
         </Head>
         <body className='text-gray-700 body-font'>
           <Main />
