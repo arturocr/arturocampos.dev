@@ -1,0 +1,119 @@
+---
+author: Arturo Campos
+title: Track and show page views with Next.js and Google Analytics
+slug: nextjs-with-google-analytics
+date: '2020-12-29T02:30:00-06:00'
+description: How to correctly setup Google Analytics with Next.js and also use it as the source for page views count.
+image: /images/blog/nextjs-with-google-analytics.jpg
+---
+
+When I [initially built this website](https://github.com/arturocr/arturocampos.dev/commit/e19ff8598bf26ca0de166358628ac6ed367108db) I decided to use something different to Google Analytics for the tracking of my visitors.
+
+At the moment I decided to use [HappyKit's Analytics](https://happykit.dev/solutions/analytics) solution, however, it was not really compatible with Next.js' Internationalized Routing, since it was not actively tracking some of the dynamic routes, even though I highly recommend to take a look at the solution, the developer has some new features in the roadmap.
+
+After exploring some options, I found out about [GoatCounter](https://www.goatcounter.com/) which turned out to be a really nice and privacy-focused solution, I [decided to give it a try](https://github.com/arturocr/arturocampos.dev/commit/c63bff446667c65b988624cc11d733eb1e3d936e) and even [used it to display the page views](https://github.com/arturocr/arturocampos.dev/commit/ec827683398f6f17139a6fb41f6b6af87a4e0833) in my blog posts using [their API](https://www.goatcounter.com/api).
+
+However, I had a concern, the data retention window is for only 6 months and since I wanted to use the analytics engine as the single source of truth for the page views counters, and also run this website in the free tier I decided to ditch it and explore other options (again, please go and take a look at the amazing job their team is doing, totally worth it).
+
+So, I was there, wondering which option should I use, so as a final trial before getting back to Google Analytics, I coded a [custom page views tracker using API routes and FaunaDB](https://github.com/arturocr/arturocampos.dev/commit/1d50543fb4fe8f0d34d17fdaf288d908980affe6). It was a really interesting exercise however it was getting a little bit too complex to deal with, especially when I wanted to have real page view counters and not just a counter that would increment every time the URL was hitten, even if it was just a refresh.
+
+It's important to mention that all this jumping around different tracking solutions definitely made me lose the page views that I already had since some were registered in one of the analytics platforms and some in the others.
+
+So, after all those tries, I ended up getting back to Google Analytics, however this time there was a challenge in the plan, I wanted to pull the page views from Google Analytics using Google APIs.
+
+## Track page views with Google Analytics
+
+Let's start by adding the code required to actually track page views when someone visits a page. In order to that, there are some libraries out there that offer a "simple solution", but I wanted to have complete control over the code.
+
+First, create a small module in the route of your preference that will basically expose three things: the Google Analytics tracking ID, a `pageview` method and an `event` method. In my case I created it inside the top-level `lib` folder.
+
+```javascript:lib/gtag.js
+export const GA_TRACKING_ID = 'UA-XXXXXXXXX-X';
+
+export const pageview = (url, title) => {
+  window.gtag('config', GA_TRACKING_ID, {
+    page_location: url,
+    page_title: title,
+  });
+};
+
+export const event = ({ action, category, label, value }) => {
+  window.gtag('event', action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
+};
+```
+
+Secondly, lets modify the `_document.js` file inside the `pages` directory to include the Google Analytics JavaScript snippet.
+
+```javascript{10-19}:pages/_document.js
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { GA_TRACKING_ID } from '@/lib/gtag';
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head>
+          ...
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}');
+              `,
+            }}
+          />
+          ...
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
+
+This injects asynchronously the snippet that initializes Google Analytics.
+
+Third, we need to track a page view each time Next.js Router transitions, in order to achieve this, lets update `_app.js` with some code:
+
+```javascript{1-2,5-13}:pages/_app.js
+import { useEffect } from 'react';
+import { pageview } from '@/lib/gtag';
+
+const MyApp = ({ Component, pageProps, router }) => {
+  useEffect(() => {
+    const handleRouteChange = url => {
+      pageview(url, document.title);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+
+  return (
+    <Component {...pageProps} />
+  );
+};
+
+export default MyApp;
+```
+
+With just those few lines of code, the website will track page views from now on,
+if you noticed the `event` method in `lib/gtag.js`, it is a method that can be used
+to track specific user events like the submission of a form for example.
