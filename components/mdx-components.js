@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const CustomLink = props => {
   const href = props.href;
@@ -16,11 +17,21 @@ const CustomLink = props => {
     );
   }
 
+  if (isAnchorLink) {
+    return (
+      <AnchorLink
+        className='transition-colors text-middle hover:text-secondary'
+        offset={() => 120} // Offset of sticky header
+        {...props}
+      />
+    );
+  }
+
   return (
     <a
       className='transition-colors text-middle hover:text-secondary'
-      target={!isAnchorLink ? '_blank' : undefined}
-      rel={!isAnchorLink ? 'noopener noreferrer' : undefined}
+      target='_blank'
+      rel='noopener noreferrer'
       {...props}
     />
   );
@@ -46,8 +57,10 @@ const MDXComponents = {
   kbd: InlineCode,
   p: props => <p className='my-4' {...props} />,
   a: CustomLink,
-  ul: props => <ul className='list-disc list-inside' {...props} />,
-  ol: props => <ol className='list-decimal list-inside' {...props} />,
+  ul: props => <ul className='my-3 ml-6 list-disc list-outside' {...props} />,
+  ol: props => (
+    <ol className='my-3 ml-6 list-decimal list-outside' {...props} />
+  ),
   li: props => <li className='my-2' {...props} />,
   blockquote: props => (
     <blockquote

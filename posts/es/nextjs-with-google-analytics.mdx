@@ -1,10 +1,342 @@
 ---
 author: Arturo Campos
-title: Registrar y mostrar el conteo de visitas por página con Next.js y Google Analytics
+title: Registrar y mostrar visitas con Next.js y Google Analytics
 slug: nextjs-with-google-analytics
-date: '2020-12-29T02:30:00-06:00'
+date: '2020-12-31T21:45:00-06:00'
 description: Cómo configurar correctamente Google Analytics con Next.js y al mismo tiempo utilizarlo para mostrar el contador de visitas en cada página.
-image: /images/blog/nextjs-with-google-analytics.jpg
+image: /images/blog/nextjs-with-google-analytics.png
 ---
 
-When I initially built this website I decided to use something different to Google Analytics for the tracking of my visitors. At the moment I decided to use HappyKit's Analytics solution
+_[Salte directamente a la solución](#solution) y evite la charla de introducción.._
+
+---
+
+Cuando creé [inicialmente](https://github.com/arturocr/arturocampos.dev/commit/e19ff8598bf26ca0de166358628ac6ed367108db) este sitio web, decidí usar algo diferente a Google Analytics para el seguimiento de mis visitantes.
+
+En ese momento, decidí usar la solución [HappyKit Analytics](https://happykit.dev/solutions/analytics), sin embargo, no era realmente compatible con el enrutamiento internacionalizado de Next.js, ya que no estaba rastreando activamente algunas de las rutas dinámicas, aunque recomiendo encarecidamente echar un vistazo a ese producto. El desarrollador tiene algunas características nuevas en mente para el futuro.
+
+Después de explorar algunas opciones, descubrí [GoatCounter](https://www.goatcounter.com/) que resultó ser una solución realmente agradable y centrada en la privacidad, I [decidí probarla](https://github.com/arturocr/arturocampos.dev/commit/c63bff446667c65b988624cc11d733eb1e3d936e) e incluso [la usé para mostrar las visitas por página](https://github.com/arturocr/arturocampos.dev/commit/ec827683398f6f17139a6fb41f6b6af87a4e0833) en las publicaciones de mi blog usando [su API](https://www.goatcounter.com/api).
+
+Sin embargo, tenía una inquietud, la ventana de retención de datos es de solo 6 meses y, como quería usar el motor de análisis como la única fuente de verdad para los contadores de visitas de página, y ejecutar este sitio web con el costo mínimo, decidí deshacerme de él y explore otras opciones (sin embargo, recomiendo dar vistazo al increíble trabajo que está haciendo el equipo detrás del producto, vale la pena).
+
+Entonces, estaba allí, preguntándome qué opción debería usar, así que como prueba final antes de volver a Google Analytics, escribí [un rastreador de vistas de página personalizado usando rutas API y FaunaDB](https://github.com/arturocr/arturocampos.dev/commit/1d50543fb4fe8f0d34d17fdaf288d908980affe6). Fue un ejercicio realmente interesante, sin embargo, se estaba volviendo un poco complejo de manejar, especialmente cuando quería tener contadores de vistas de página reales y no solo un contador que aumentara cada vez que se accediera a una URL, incluso si era solo una actualización.
+
+Es importante mencionar que todo este salto entre diferentes productos de rastreo definitivamente me hizo perder registros de visitas que ya tenía ya que algunas estaban registradas en una de las plataformas y otras en las otras.
+
+Entonces, después de todos esos intentos, terminé volviendo a Google Analytics, sin embargo, esta vez había un desafío en el plan, quería extraer las vistas de página de Google Analytics usando las API de Google.
+
+---
+
+<span id='solution' aria-hidden='true' />
+
+## Registro de las visitas con Google Analytics
+
+_Debo mencionar que este enfoque está muy inspirado en el paquete [next-ga](https://github.com/sergiodxa/next-ga) y en el [plugin experimental de Next.js](https://github.com/vercel/next.js/tree/canary/packages/next-plugin-google-analytics) para Google Analytics._
+
+Comencemos agregando el código necesario para realizar el seguimiento de visitas cuando alguien visita una página. Para hacer eso, existen algunas bibliotecas que ofrecen una "solución simple", pero quería tener un control total sobre el código.
+
+Primero, creamos un pequeño módulo en la ruta de su preferencia que básicamente expondrá tres cosas: el ID de seguimiento de Google Analytics, un método `pageview` y un método `event`. En mi caso, lo creé dentro de la carpeta lib en el nivel superior.
+
+```javascript:lib/gtag.js
+export const GA_TRACKING_ID = 'UA-XXXXXXXXX-X';
+
+export const pageview = (url, title) => {
+  window.gtag('config', GA_TRACKING_ID, {
+    page_location: url,
+    page_title: title,
+  });
+};
+
+export const event = ({ action, category, label, value }) => {
+  window.gtag('event', action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
+};
+```
+
+En segundo lugar, modifiquemos el archivo `_document.js` dentro del directorio `pages` para incluir el fragmento de JavaScript de Google Analytics.
+
+```javascript{10-19}:pages/_document.js
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { GA_TRACKING_ID } from '@/lib/gtag';
+
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head>
+          ...
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_TRACKING_ID}');
+              `,
+            }}
+          />
+          ...
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
+
+Esto inyecta de forma asincrónica el fragmento que inicializa Google Analytics. Lo que ayuda a mantener un buen rendimiento, que es una de las preocupaciones más comunes cuando se incluye Google Analytics en un sitio web.
+
+En tercer lugar, necesitamos rastrear una vista de página cada vez que una ruta transicione, para lograr esto, podemos aprovechar el router de Next.js para ejecutar una función callback cada vez que cambia la ruta, el evento `routeChangeComplete` es el que queremos utilizar en este caso. Actualicemos `_app.js` con el código correspondiente:
+
+```javascript{1-2,5-13}:pages/_app.js
+import { useEffect } from 'react';
+import { pageview } from '@/lib/gtag';
+
+const MyApp = ({ Component, pageProps, router }) => {
+  useEffect(() => {
+    const handleRouteChange = url => {
+      pageview(url, document.title);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+
+  return (
+    <Component {...pageProps} />
+  );
+};
+
+export default MyApp;
+```
+
+Con solo esas pocas líneas de código, el sitio web rastreará las visitas a cada página de ahora en adelante, si notaron el método `event` en `lib/gtag.js`, es un método que puede usarse para rastrear eventos de usuario específicos como el envío de un formulario por ejemplo.
+
+---
+
+## Mostrar un contador de visitas con datos de Google Analytics
+
+En este punto, el seguimiento de vistas está funcionando, así que estamos listos para agregar el contador de visitas a las páginas de mi blog. Aprovecharé las [rutas API](https://nextjs.org/docs/api-routes/introduction) de Next.js para esto.
+
+Comencemos creando un nuevo archivo dentro del directorio `pages/api`:
+
+```javascript:pages/api/page-views.js
+export default async (req, res) => {
+  const startDate = req.query.startDate || '2020-01-01';
+  const slug = req.query.slug;
+
+  try {
+    res.status(200).json({
+      pageViews: 0,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+```
+
+Esta función esperará dos parámetros en el query string: `startDate` y `slug` que se utilizarán para filtrar los resultados.
+
+Si abre la URL `http://localhost:3000/api/page-views` en su navegador, verá que responde con el JSON proporcionado.
+
+<Image
+  alt='Respuesta initial falsa del API'
+  src='/images/blog/nextjs-with-google-analytics__api-route.png'
+  layout='responsive'
+  height='974'
+  width='1224'
+/>
+
+Ahora, para conectarnos a la API de Google Analytics y obtener las visitas por página para una URL específica, necesitamos instalar el cliente Node.js de las API de Google.
+
+```shell
+npm install googleapis --save
+# o
+yarn add googleapis
+```
+
+Antes de conectarnos a las API de Google, necesitamos obtener acceso, así que sigamos los siguientes pasos:
+
+1. Ir al [Google Developer Console](https://console.developers.google.com/).
+1. Crear un nuevo proyecto.
+1. Ir a la sección Credentials, seleccionar "Create Credentials" y escoger "Service Account".
+   - Navegar a los detalles del Service Account y expandir la sección "Show domain-wide delegation", marcar la opción "Enable G Suite Domain-wide Delegation".
+   - Damos click en "Add Key" (más abajo en esa misma página), escogemos JSON y damos click en "Create".
+   - Guardamos el archivo JSON, lo necesitaremos luego.
+   - Damos click en el botón "Save" al final de esa página.
+1. Navegamos de regreso al inicio del proyecto y damos click en "+ Enable APIs and Services".
+1. Buscamos "Google Analytics API" y lo habilitamos.
+1. Ahora vamos al [dashboard de Google Analytics](https://analytics.google.com/).
+1. Una vez seleccionada la cuenta de Analytics correcta, vamos al Admin panel.
+1. Damos click en "View User Management".
+1. Agregamos un nuevo usuario, el email es el que encontramos en el campo `client_email` del archivo JSON que guardamos antes.
+
+OK, vamos a configurar las variables de ambiente con los secretos que acabamos de generar.
+
+Creamos un archivo `.env.local` en la raíz del proyecto.
+
+```shell:.env.local
+GOOGLE_ANALYTICS_VIEW_ID=123456789
+GOOGLE_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
+GOOGLE_CLIENT_ID=1234567890
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nR2D2=\n-----END PRIVATE KEY-----\n"
+```
+
+`GOOGLE_ANALYTICS_VIEW_ID` es el View ID que podemos encontrar en el Admin Panel de Google Analytics (arriba de "View User Management").
+
+Los otros valores están en el archivo JSON del paso #3:
+
+- `GOOGLE_CLIENT_EMAIL` -> `client_email`
+- `GOOGLE_CLIENT_ID` -> `client_id`
+- `GOOGLE_PRIVATE_KEY` -> `private_key`
+
+En este punto es posible acceder a esas variables de ambiente usando `process.env.GOOGLE_CLIENT_EMAIL`, por ejemplo, esto es posible gracias a la configuración automágica de [Variables de Ambiente](https://nextjs.org/docs/basic-features/environment-variables) de Next.js.
+
+Ahora es momento de conectar la ruta API al API de Analytics.
+
+Importamos el paquete `googleapis` y creamos los credenciales:
+
+```javascript{1,8-15}:pages/api/page-views.js
+import { google } from 'googleapis';
+
+export default async (req, res) => {
+  const startDate = req.query.startDate || '2020-01-01';
+  const slug = req.query.slug;
+
+  try {
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
+      },
+      scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+    });
+
+    res.status(200).json({
+      pageViews: 0,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+```
+
+Luego, instanciamos el cliente de Google Analytics v3 y hacemos la llamada para obtener las métricas.
+
+```javascript{9-27}:pages/api/page-views.js
+import { google } from 'googleapis';
+
+export default async (req, res) => {
+  const startDate = req.query.startDate || '2020-01-01';
+  const slug = req.query.slug;
+
+  try {
+    ...
+    const analytics = google.analytics({
+      auth,
+      version: 'v3',
+    });
+
+    const response = await analytics.data.ga.get({
+      'end-date': 'today',
+      ids: `ga:${process.env.GOOGLE_ANALYTICS_VIEW_ID}`,
+      metrics: 'ga:pageviews',
+      dimensions: 'ga:pagePath',
+      filters: `ga:pagePath==${slug}`,
+      'start-date': startDate,
+    });
+
+    const pageViews = response?.data?.totalsForAllResults['ga:pageviews'];
+
+    return res.status(200).json({
+      pageViews,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+}
+```
+
+Algunas observaciones aquí:
+
+- El parámetro `filters` restringe los resultados a una URL específica.
+- El parámetro `startDate`, si no se provee, se setea a `2020-01-01` para obtener datos desde esa fecha (anterior al lanzamiento de mi blog).
+
+Abrimos un URL como `http://localhost:3000/api/page-views?slug=/blog/hello-world`, en este caso estoy incluyendo un slug válido y existente, lo que me da el siguiente resultado:
+
+<Image
+  alt='Respuesta de API con valores reales'
+  src='/images/blog/nextjs-with-google-analytics__api-route-response.png'
+  layout='responsive'
+  height='974'
+  width='1486'
+/>
+
+¡Genial!
+
+Ahora es momento de conectar la página de blog con el API y mostrar el contador de visitas. Me gusta mucho la simplicidad que [SWR](https://swr.vercel.app/) provee cuando se trabaja con hooks y APIs, puede instalarlo o su usar su propio método.
+
+```shell
+npm install swr --save
+# o
+yarn add swr
+```
+
+Mi página de artículo de blog vive en `pages/blog/[slug].js`, estos son los cambios requeridos para mostrar el contador de visitas:
+
+```javascript{2,6-14,19}:pages/blog/[slug].js
+...
+import useSWR from 'swr';
+
+export default ({ mdxSource, frontMatter }) => {
+  ...
+  const { data } = useSWR(
+    `/api/page-views?slug=${encodeURIComponent(localizedSlug)}`,
+    async url => {
+      const res = await fetch(url);
+      return res.json();
+    },
+    { revalidateOnFocus: false }
+  );
+  const views = data?.pageViews || 0;
+
+  return (
+    <>
+      ...
+      <div>{views} vistas</div>
+      ...
+    </>
+  );
+}
+```
+
+Y, ¡eso es todo! 🎉
+
+<Image
+  alt='Resultado final mostrando el contador de visitas'
+  src='/images/blog/nextjs-with-google-analytics__final-result[es].png'
+  layout='responsive'
+  height='292'
+  width='1574'
+/>
+
+Como la llamada al API ocurre del lado del cliente, cada vez que se ingrese a un artículo del blog, se mostrará información fresca de las visitas a esa página, información traída directamente del API de Google Analytics.
+
+Sinceramente espero que hayan disfrutado este artículo, por favor no duden en compartirlo. 😁
+
+Gracias por leerme, y hasta el próximo post. ⚡️

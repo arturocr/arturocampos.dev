@@ -30,7 +30,7 @@ export default async (req, res) => {
 
     const pageViews = response?.data?.totalsForAllResults['ga:pageviews'];
 
-    return res.status(201).json({
+    return res.status(200).json({
       pageViews,
     });
   } catch (err) {
