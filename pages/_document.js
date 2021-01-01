@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { GA_TRACKING_ID } from '@/lib/analytics';
+import { GA_TRACKING_ID } from '@/lib/gtag';
 import theme from '@/lib/theme';
 
 class MyDocument extends Document {
