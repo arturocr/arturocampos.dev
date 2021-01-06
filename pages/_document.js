@@ -8,9 +8,11 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            rel='preconnect'
-            href='https://fonts.gstatic.com/'
-            crossOrigin=''
+            rel='preload'
+            href='/fonts/inter-var-latin.woff2'
+            as='font'
+            type='font/woff2'
+            crossOrigin='anonymous'
           />
           <link
             rel='apple-touch-icon'
@@ -34,10 +36,6 @@ class MyDocument extends Document {
             rel='mask-icon'
             href='/safari-pinned-tab.svg'
             color={theme.colors.primary}
-          />
-          <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'
           />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           {GA_TRACKING_ID ? (
