@@ -16,19 +16,25 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }) => {
         <tbody>
           <tr className='border-t'>
             <td className='py-2'>{t('gross-salary')}:</td>
-            <td className='pr-2 text-right'>{currencyFormatter(salary)}</td>
+            <td className='pr-2 font-mono text-right'>
+              {currencyFormatter(salary)}
+            </td>
           </tr>
           <tr className='border-t'>
             <td className='py-2'>{t('income-taxes')}:</td>
-            <td className='pr-2 text-right'>
+            <td className='pr-2 font-mono text-right'>
               {currencyFormatter(rentDeductions)}
             </td>
           </tr>
           <tr className='border-t'>
             <td className='py-2'>
-              {t('ccss')} ({socialSecurityTax}%):
+              {t('ccss')} (
+              <span className='p-1 font-mono bg-gray-200 rounded'>
+                {socialSecurityTax}%
+              </span>
+              ):
             </td>
-            <td className='pr-2 text-right'>
+            <td className='pr-2 font-mono text-right'>
               {currencyFormatter(socialSecurityDeduction)}
             </td>
           </tr>
@@ -36,7 +42,7 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }) => {
             <td className='py-2'>
               <strong>{t('total-deductions')}:</strong>
             </td>
-            <td className='pr-2 text-right'>
+            <td className='pr-2 font-mono text-right'>
               {currencyFormatter(totalDeductions)}
             </td>
           </tr>
@@ -44,7 +50,7 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }) => {
             <td className='py-2'>
               <strong>{t('net-salary')}:</strong>
             </td>
-            <td className='pr-2 text-right'>
+            <td className='pr-2 font-mono text-right'>
               {currencyFormatter(salary - totalDeductions)}
             </td>
           </tr>
@@ -52,9 +58,9 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }) => {
             <td className='py-2'>
               <strong>{t('percentage-retained')}:</strong>
             </td>
-            <td className='pr-2 text-right'>
+            <td className='pr-2 font-mono text-right'>
               {retentionPercentage > 0 ? '~' : ''}
-              {Math.round(retentionPercentage * 10000) / 10000}%
+              {(Math.round(retentionPercentage * 10000) / 10000).toFixed(2)}%
             </td>
           </tr>
         </tbody>

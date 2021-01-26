@@ -13,7 +13,7 @@ const Calculator = () => {
       <section className='flex flex-wrap my-4'>
         <article className='w-1/2 md:w-1/3'>
           <Link href='/projects/tax-calculator-crc'>
-            <a className='block p-4 m-1 font-bold text-center transition-all border border-gray-200 rounded-md shadow-lg hover:shadow-xl'>
+            <a className='block p-4 m-1 font-bold leading-tight text-center transition-all border border-gray-200 rounded-md shadow-lg hover:shadow-xl'>
               <Image
                 alt={t('calculator')}
                 className='rounded-md'

@@ -1,7 +1,6 @@
 const LangStrings = {
   en: {
     about: 'About',
-    'above-excedent': 'Above the excedent of',
     and: 'and',
     blog: 'Blog',
     'blog-description':
@@ -18,6 +17,7 @@ const LangStrings = {
     'error-content': 'Oops something went wrong',
     'error-heading': 'Error',
     'exchange-rate': 'Exchange rate',
+    from: 'From',
     'gross-salary': 'Gross Salary',
     home: 'Home',
     'income-taxes': 'Income Taxes',
@@ -38,9 +38,10 @@ const LangStrings = {
     slogan: 'Arturo Campos - Web Development & Technology Blog',
     sorry: 'Sorry',
     source: 'Source',
+    to: 'to',
     'total-deductions': 'Total Deductions',
     tracts: 'Tracts',
-    until: 'until',
+    'up-to': 'up to',
     uses: 'Uses',
     view: 'view',
     views: 'views',
@@ -48,7 +49,6 @@ const LangStrings = {
   },
   es: {
     about: 'Acerca de',
-    'above-excedent': 'Sobre el excedente de',
     and: 'y',
     blog: 'Blog',
     'blog-description':
@@ -65,6 +65,7 @@ const LangStrings = {
     'error-content': 'Algo salió mal',
     'error-heading': 'Error',
     'exchange-rate': 'Tipo de cambio',
+    from: 'Sobre el excedente de',
     'gross-salary': 'Salario Bruto',
     home: 'Inicio',
     'income-taxes': 'Impuestos sobre la Renta',
@@ -85,9 +86,10 @@ const LangStrings = {
     slogan: 'Arturo Campos - Blog de Desarrollo Web y Tecnología',
     sorry: 'Lo siento',
     source: 'Fuente',
+    to: 'hasta',
     'total-deductions': 'Total de Deducciones',
     tracts: 'Tractos',
-    until: 'hasta',
+    'up-to': 'hasta',
     uses: 'Uses',
     view: 'vista',
     views: 'vistas',

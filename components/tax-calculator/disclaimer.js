@@ -14,7 +14,7 @@ const Disclaimer = ({ config, locale }) => {
       <p className='mt-4 text-sm italic'>
         *{t('calculator-amounts-info')}{' '}
         {new Date(periodBegins).toLocaleDateString(locale, shortDateOptions)}{' '}
-        {t('until')}{' '}
+        {t('to')}{' '}
         {new Date(periodEnds).toLocaleDateString(locale, shortDateOptions)}.{' '}
         <a href={sourceLink} rel='noopener noreferrer' target='_blank'>
           {t('source')}

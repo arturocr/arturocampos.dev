@@ -27,8 +27,8 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }) => {
 
   const calculatedSalary =
     calculatorState.salaryCurrency === 'CRC'
-      ? calculatorState.salary
-      : calculatorState.exchangeRate * calculatorState.salary;
+      ? parseFloat(calculatorState.salary || 0)
+      : calculatorState.exchangeRate * parseFloat(calculatorState.salary || 0);
 
   const tractDeductible = tract => {
     let tractDiff = 0;
@@ -60,7 +60,7 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }) => {
         <div className='flex items-stretch flex-1'>
           <span className='flex items-center text-sm leading-normal whitespace-no-wrap'>
             <select
-              className='transition-colors border-gray-300 rounded-l pr-9 focus:ring-0 focus:border-secondary'
+              className='font-mono transition-colors border-gray-300 rounded-l cursor-pointer pr-9 focus:ring-0 focus:border-secondary'
               defaultValue={calculatorState.salaryCurrency}
               onChange={e =>
                 setCalculatorState({
@@ -78,11 +78,12 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }) => {
           </span>
           <input
             defaultValue={calculatorState.salary || undefined}
-            className='flex-1 flex-grow flex-shrink -ml-px placeholder-gray-400 transition-colors border-gray-300 rounded rounded-l-none focus:ring-0 focus:border-secondary'
+            className='flex-1 flex-grow flex-shrink -ml-px font-mono placeholder-gray-400 transition-colors border-gray-300 rounded rounded-l-none focus:ring-0 focus:border-secondary'
+            min={0}
             onChange={e =>
               setCalculatorState({
                 ...calculatorState,
-                salary: e.target.value,
+                salary: Math.abs(e.target.value),
               })
             }
             placeholder={t('your-salary')}
@@ -97,17 +98,18 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }) => {
           )}
         >
           <div className='flex -mr-px'>
-            <span className='flex items-center px-3 text-sm leading-normal whitespace-no-wrap border border-gray-300 rounded rounded-r-none group-focus:border-secondary'>
+            <span className='flex items-center px-3 font-mono text-sm leading-normal whitespace-no-wrap border border-gray-300 rounded rounded-r-none group-focus:border-secondary'>
               {salaryCurrencies[1].symbol}
             </span>
           </div>
           <input
             defaultValue={calculatorState.exchangeRate || undefined}
-            className='relative flex-1 flex-grow flex-shrink placeholder-gray-400 transition-colors border-gray-300 rounded rounded-l-none focus:ring-0 focus:border-secondary'
+            className='relative flex-1 flex-grow flex-shrink font-mono placeholder-gray-400 transition-colors border-gray-300 rounded rounded-l-none focus:ring-0 focus:border-secondary'
+            min={0}
             onChange={e =>
               setCalculatorState({
                 ...calculatorState,
-                exchangeRate: e.target.value,
+                exchangeRate: Math.abs(e.target.value),
               })
             }
             placeholder={t('exchange-rate')}

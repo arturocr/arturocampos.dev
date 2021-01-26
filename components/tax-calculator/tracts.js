@@ -23,21 +23,28 @@ const Tracts = ({ tracts }) => {
             <td className='py-2 text-right'>
               {tract.from ? (
                 <>
-                  {t('above-excedent')} {currencyFormatter(tract.from)}
+                  {t('from')}{' '}
+                  <span className='inline-block p-1 my-px font-mono bg-gray-200 rounded'>
+                    {currencyFormatter(tract.from)}
+                  </span>
                 </>
               ) : null}{' '}
               {tract.to ? (
                 <>
                   <span className={clsx(!tract.from && 'capitalize')}>
-                    {t('until')}
+                    {t('up-to')}
                   </span>{' '}
-                  {currencyFormatter(tract.to)}
+                  <span className='inline-block p-1 my-px font-mono bg-gray-200 rounded'>
+                    {currencyFormatter(tract.to)}
+                  </span>
                 </>
               ) : null}
             </td>
-            <td className='px-5 text-center'>{tract.percentage}%</td>
+            <td className='px-5 font-mono text-right'>{tract.percentage}%</td>
             <td className='pr-2 text-right'>
-              {currencyFormatter(tract.deductible)}
+              <span className='font-mono'>
+                {currencyFormatter(tract.deductible)}
+              </span>
             </td>
           </tr>
         ))}
