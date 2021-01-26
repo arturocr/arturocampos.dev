@@ -52,6 +52,19 @@ const NavLinks = () => {
             {t('blog')}
           </a>
         </ActiveLink>
+        <ActiveLink
+          activeClassName='border-middle text-middle'
+          href='/projects'
+        >
+          <a
+            aria-label={t('projects')}
+            className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
+            onClick={onTap}
+            title={t('projects')}
+          >
+            {t('projects')}
+          </a>
+        </ActiveLink>
         <ActiveLink activeClassName='border-middle text-middle' href='/uses'>
           <a
             aria-label={`/${t('uses')}`}
@@ -71,16 +84,7 @@ const NavLinks = () => {
           target='_blank'
           title={t('resume')}
         >
-          {t('resume')}{' '}
-          <svg
-            className='w-4 ml-1'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path d='M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z' />
-            <path d='M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z' />
-          </svg>
+          {t('resume')}
         </a>
       </nav>
     </>

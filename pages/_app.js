@@ -18,11 +18,6 @@ const MyApp = ({ Component, pageProps, router }) => {
   useEffect(() => {
     const handleRouteChange = url => {
       pageview(url, document.title);
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth',
-      });
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {

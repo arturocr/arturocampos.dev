@@ -56,10 +56,13 @@ module.exports = {
     },
   },
   variants: {
-    borderWidth: ['responsive', 'last', 'hover', 'focus'],
-    textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+    extend: {
+      borderColor: ['group-focus'],
+      borderWidth: ['last', 'hover', 'focus'],
+    },
   },
   plugins: [
+    require('@tailwindcss/forms'),
     function ({ addComponents }) {
       addComponents({
         '.container': {

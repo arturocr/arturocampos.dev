@@ -12,7 +12,7 @@ const PostSeo = ({
 }) => {
   const publishedAt = new Date(date).toISOString();
   const featuredImage = {
-    url: image ? `${siteBaseUrl}${image}` : `${siteBaseUrl}/image/og.png`,
+    url: image ? `${siteBaseUrl}${image}` : `${siteBaseUrl}/images/og.png`,
     alt: title,
   };
 
