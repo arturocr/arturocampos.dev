@@ -9,12 +9,7 @@ module.exports = {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
-  purge: [
-    './components/**/*.js',
-    './content/**/*.{md,mdx}',
-    './pages/**/*.js',
-    './posts/**/*.{md,mdx}',
-  ],
+  purge: ['./components/**/*.js', './data/**/*.{md,mdx}', './pages/**/*.js'],
   theme: {
     extend: {
       boxShadow: {
