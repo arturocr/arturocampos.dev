@@ -10,7 +10,7 @@ import ViewsCounter from '@/components/views-counter';
 import fetcher from '@/lib/fetcher';
 import { getLocalizedPath } from '@/lib/util';
 
-const BlogPost = ({ post }) => {
+const BlogPost = ({ index, post }) => {
   const router = useRouter();
   const { defaultLocale, locale } = router;
   const blogPostPath = `/blog/${post.slug}`;
@@ -40,7 +40,8 @@ const BlogPost = ({ post }) => {
               className='rounded-md'
               height={1080}
               layout='responsive'
-              priority
+              priority={index < 2}
+              quality={70}
               src={post.frontMatter.image}
               width={1920}
             />

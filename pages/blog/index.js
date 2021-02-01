@@ -40,11 +40,10 @@ const Blog = ({ allPostsData = [] }) => {
         }}
       />
       {pagedPosts.length ? (
-        pagedPosts.map(post => (
+        pagedPosts.map((post, index) => (
           <BlogPost
+            index={index}
             key={post.slug}
-            locale={locale}
-            localizedPath={localizedPath}
             post={post}
           />
         ))
