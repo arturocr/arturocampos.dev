@@ -81,10 +81,10 @@ export default function IndexPage() {
             <div className='mr-3'>
               <Logo className='h-12 stroke-2' />
             </div>
-            <h1 className='flex flex-col text-2xl font-medium text-gray-750 sm:flex-row sm:items-center print:block'>
+            <h1 className='flex items-center text-2xl font-medium text-gray-750 print:block'>
               Arturo Campos{' '}
-              <span className='text-xl font-thin text-gray-550 sm:border-gray sm:border-l-2 sm:ml-2 sm:pl-2 print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
-                Senior Front-end Engineer
+              <span className='pl-2 ml-2 text-xl font-thin border-l-2 text-gray-550 border-gray print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
+                Solutions Architect
               </span>
             </h1>
           </header>
@@ -108,7 +108,7 @@ export default function IndexPage() {
                       JavaScript is my passion
                     </span>
                     , enjoying it a little bit more every single day for the
-                    last 11 years.
+                    last 12 years.
                   </p>
                 </section>
               </div>
@@ -181,6 +181,9 @@ export default function IndexPage() {
                         React
                       </li>
                       <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                        Next.js
+                      </li>
+                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Angular
                       </li>
                       <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
@@ -193,10 +196,10 @@ export default function IndexPage() {
                         Ember
                       </li>
                       <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
-                        Next.js
+                        Gatsby
                       </li>
                       <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
-                        Gatsby
+                        Nuxt.js
                       </li>
                     </ul>
                   </div>
@@ -243,6 +246,9 @@ export default function IndexPage() {
                     </li>
                     <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Sketch
+                    </li>
+                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      Figma
                     </li>
                     <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Vercel
@@ -373,7 +379,7 @@ export default function IndexPage() {
                         <circle cx='12' cy='11' r='3' />
                         <path d='M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1 -2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z' />
                       </svg>
-                      San Ramón, Alajuela, Costa Rica
+                      Cartago, Costa Rica
                     </li>
                     <li className='mt-1.5 leading-normal text-gray-700 text-md'>
                       <a href='&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#064;&#097;&#114;&#116;&#117;&#114;&#111;&#099;&#097;&#109;&#112;&#111;&#115;&#046;&#100;&#101;&#118;'>

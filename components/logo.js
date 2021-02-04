@@ -1,28 +1,31 @@
 export default function Logo({ ...props }) {
   return (
-    <svg viewBox='0 0 32 42' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg
+      fill='none'
+      viewBox='0 0 36 49'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
       <path
-        className='transition-colors duration-200 group-hover:text-accent'
-        fill='none'
-        stroke='currentColor'
+        className='stroke-current'
+        d='M21.2 20L25.4667 2L2 25.9633L14.8 29L10.5333 47L34 23.0367L21.2 20Z'
         strokeLinecap='round'
         strokeLinejoin='round'
-        d='M19.1,16.9L23.7,1L1,22.3l11.9,2.8L8.3,41L31,19.8L19.1,16.9z'
+        strokeWidth='3'
       />
       <path
-        className='transition-colors duration-200 fill-current group-hover:text-secondary text-middle'
-        fill='currentColor'
+        d='M29 15H29.01'
         stroke='#f04770'
         strokeLinecap='round'
         strokeLinejoin='round'
-        d='M25.1,12.4c0-0.3,0.2-0.5,0.5-0.5c0.3,0,0.5,0.2,0.5,0.5s-0.2,0.5-0.5,0.5C25.3,12.9,25.1,12.7,25.1,12.4z'
+        strokeWidth='4'
       />
       <path
-        className='transition-colors duration-200 fill-current group-hover:text-secondary text-middle'
+        d='M7 34H7.01'
         stroke='#f04770'
         strokeLinecap='round'
         strokeLinejoin='round'
-        d='M5.9,29.6c0-0.3,0.2-0.5,0.5-0.5s0.5,0.2,0.5,0.5s-0.2,0.5-0.5,0.5S5.9,29.9,5.9,29.6z'
+        strokeWidth='4'
       />
     </svg>
   );
