@@ -7,22 +7,22 @@ export default function IndexPage() {
       <Head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <title>Arturo Campos - Senior Front-end Engineer</title>
+        <title>Arturo Campos - Solutions Architect</title>
         <meta
           name='title'
-          content='Arturo Campos - Senior Front-end Engineer'
+          content='Arturo Campos - Solutions Architect'
         />
         <meta
           name='description'
-          content='Online Resume of Senior Front-end Engineer Arturo Campos'
+          content='Online Resume of Solutions Architect Arturo Campos'
         />
         <meta
           property='og:title'
-          content='Arturo Campos - Senior Front-end Engineer'
+          content='Arturo Campos - Solutions Architect'
         />
         <meta
           property='og:description'
-          content='Online Resume of Senior Front-end Engineer Arturo Campos'
+          content='Online Resume of Solutions Architect Arturo Campos'
         />
         <meta
           property='og:image'
@@ -35,11 +35,11 @@ export default function IndexPage() {
         />
         <meta
           property='twitter:title'
-          content='Arturo Campos - Senior Front-end Engineer'
+          content='Arturo Campos - Solutions Architect'
         />
         <meta
           property='twitter:description'
-          content='Online Resume of Senior Front-end Engineer Arturo Campos'
+          content='Online Resume of Solutions Architect Arturo Campos'
         />
         <meta
           property='twitter:image'
@@ -66,11 +66,11 @@ export default function IndexPage() {
         <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#f04770' />
         <meta
           name='apple-mobile-web-app-title'
-          content='Arturo Campos - Senior Front-end Engineer'
+          content='Arturo Campos - Solutions Architect'
         />
         <meta
           name='application-name'
-          content='Arturo Campos - Senior Front-end Engineer'
+          content='Arturo Campos - Solutions Architect'
         />
         <meta name='msapplication-TileColor' content='#f04770' />
         <meta name='theme-color' content='#ffffff' />
@@ -83,13 +83,13 @@ export default function IndexPage() {
             </div>
             <h1 className='flex items-center text-2xl font-medium text-gray-750 print:block'>
               Arturo Campos{' '}
-              <span className='pl-2 ml-2 text-xl font-thin border-l-2 text-gray-550 border-gray print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
+              <span className='pl-2 ml-2 text-xl border-l-2 font-extralight text-gray-550 border-gray print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
                 Solutions Architect
               </span>
             </h1>
           </header>
 
-          <div className='md:col-count-2 print:col-count-2 col-gap-md md:h-letter-col print:h-letter-col col-fill-auto'>
+          <div className='md:col-count-2 print:col-count-2 gap-md md:h-letter-col print:h-letter-col col-fill-auto'>
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
                 <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
@@ -122,7 +122,7 @@ export default function IndexPage() {
 
                 <section className='mb-4.5 break-inside-avoid'>
                   <ul>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>
@@ -130,7 +130,7 @@ export default function IndexPage() {
                       guy, I love to invest time with my wife and kids who are
                       still pretty young (5 and 7).
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>
@@ -138,8 +138,8 @@ export default function IndexPage() {
                       I enjoy exploring open source projects built on top of
                       JavaScript.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px z-10'>
                         ›
                       </span>
                       <span className='font-medium'>Mountain Biking:</span> I
@@ -168,37 +168,37 @@ export default function IndexPage() {
                   </header>
                   <div className='my-3.2 last:pb-1.5'>
                     <ul className='flex flex-wrap text-md leading-relaxed -mr-1.6 -mb-1.6'>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         ES6
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         ES7
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         ES8
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         React
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Next.js
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Angular
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Vue
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Node
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Ember
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Gatsby
                       </li>
-                      <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                         Nuxt.js
                       </li>
                     </ul>
@@ -214,49 +214,49 @@ export default function IndexPage() {
                 </header>
                 <div className='my-3.2 last:pb-1.5'>
                   <ul className='flex flex-wrap text-md leading-relaxed -mr-1.6 -mb-1.6'>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       CSS
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       PostCSS
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Tailwind CSS
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       HTML5
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Git
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Webpack
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
-                      Linux Servers
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                      Linux
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       UI Design
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Photoshop
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Illustrator
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Sketch
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Figma
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Vercel
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       Azure
                     </li>
-                    <li className='px-2.5 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
+                    <li className='px-2 mr-1.6 mb-1.6 text-base text-gray-750 print:bg-white print:border-inset bg-gray-200'>
                       PHP
                     </li>
                   </ul>
@@ -341,6 +341,27 @@ export default function IndexPage() {
                     </li>
                     <li className='mt-1.5 leading-normal text-gray-700 text-md'>
                       <a
+                        href='https://github.com/arturocr'
+                        className='group'
+                        rel='noopener noreferrer'
+                        target='_blank'
+                      >
+                        <svg
+                          className='inline-block w-4 h-4 mr-1 align-middle'
+                          fill='currentColor'
+                          stroke='none'
+                          viewBox='0 0 24 24'
+                        >
+                          <path d='m16.24 22a1 1 0 0 1 -1-1v-2.6a2.15 2.15 0 0 0 -.54-1.66 1 1 0 0 1 .61-1.67c2.44-.29 4.69-1.07 4.69-5.3a4 4 0 0 0 -.67-2.22 2.75 2.75 0 0 1 -.41-2.06 3.71 3.71 0 0 0 0-1.41 7.65 7.65 0 0 0 -2.09 1.09 1 1 0 0 1 -.84.15 10.15 10.15 0 0 0 -5.52 0 1 1 0 0 1 -.84-.15 7.4 7.4 0 0 0 -2.11-1.09 3.52 3.52 0 0 0 0 1.41 2.84 2.84 0 0 1 -.43 2.08 4.07 4.07 0 0 0 -.67 2.23c0 3.89 1.88 4.93 4.7 5.29a1 1 0 0 1 .82.66 1 1 0 0 1 -.21 1 2.06 2.06 0 0 0 -.55 1.56v2.69a1 1 0 0 1 -2 0v-.57a6 6 0 0 1 -5.27-2.09 3.9 3.9 0 0 0 -1.16-.88 1 1 0 1 1 .5-1.94 4.93 4.93 0 0 1 2 1.36c1 1 2 1.88 3.9 1.52a3.89 3.89 0 0 1 .23-1.58c-2.06-.52-5-2-5-7a6 6 0 0 1 1-3.33.85.85 0 0 0 .13-.62 5.69 5.69 0 0 1 .33-3.21 1 1 0 0 1 .63-.57c.34-.1 1.56-.3 3.87 1.2a12.16 12.16 0 0 1 5.69 0c2.31-1.5 3.53-1.31 3.86-1.2a1 1 0 0 1 .63.57 5.71 5.71 0 0 1 .33 3.22.75.75 0 0 0 .11.57 6 6 0 0 1 1 3.34c0 5.07-2.92 6.54-5 7a4.28 4.28 0 0 1 .22 1.67v2.54a1 1 0 0 1 -.94 1z' />
+                        </svg>
+                        github.com/arturocr
+                        <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
+                          ↗
+                        </span>
+                      </a>
+                    </li>
+                    <li className='mt-1.5 leading-normal text-gray-700 text-md'>
+                      <a
                         href='https://www.linkedin.com/in/arturocr/'
                         className='group'
                         rel='noopener noreferrer'
@@ -348,12 +369,12 @@ export default function IndexPage() {
                       >
                         <svg
                           className='inline-block w-4 h-4 mr-1 align-baseline'
-                          viewBox='0 0 24 24'
                           fill='none'
                           stroke='currentColor'
-                          strokeWidth='2'
                           strokeLinecap='round'
                           strokeLinejoin='round'
+                          strokeWidth='2'
+                          viewBox='0 0 24 24'
                         >
                           <path d='M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z'></path>
                           <rect x='2' y='9' width='4' height='12'></rect>
@@ -400,7 +421,9 @@ export default function IndexPage() {
                       </a>
                     </li>
                     <li className='mt-1.5 leading-normal text-gray-700 text-md hidden print:block'>
-                      <a href='&#116;&#101;&#108;&#58;&#43;&#53;&#48;&#54;&#56;&#56;&#56;&#57;&#45;&#54;&#52;&#48;&#50;'>
+                      <a
+                        href='&#116;&#101;&#108;&#58;&#43;&#53;&#48;&#54;&#56;&#56;&#56;&#57;&#45;&#54;&#52;&#48;&#50;'
+                      >
                         <svg
                           className='inline-block w-4 h-4 mr-1 align-middle'
                           viewBox='0 0 24 24'
@@ -437,35 +460,35 @@ export default function IndexPage() {
                     </p>
                   </header>
                   <ul>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Decide, propose and implement systems architectures that
                       align with and solve client's needs.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Actively code and deliver high-quality solutions to
                       clients.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Technically lead projects using state of the art
                       technologies.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Define and promote front-end and full-stack best practices
                       for teams using Angular, React, Node.js, and such.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
@@ -473,27 +496,27 @@ export default function IndexPage() {
                       candidates, evaluating entry tests, and conducting
                       technical screenings.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Mentoring of colleagues and technical assessments to
                       identify and attack areas of improvement.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Lead innovation and internal research projects.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
                       Interact with other leads to ensure the delivery of the
                       highest quality solutions to the clients.
                     </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
@@ -513,7 +536,7 @@ export default function IndexPage() {
                   </p>
                 </header>
                 <ul>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
@@ -521,7 +544,7 @@ export default function IndexPage() {
                     technologies, mostly focused on front-end engineering, but
                     also work on back-end services if needed.
                   </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
@@ -529,7 +552,7 @@ export default function IndexPage() {
                     development using ReactJS, Angular2+, EmberJS, VanillaJS,
                     WordPress, PHP, MySQL, MongoDB, etc.
                   </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
@@ -549,20 +572,20 @@ export default function IndexPage() {
                   </p>
                 </header>
                 <ul>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
                     Built highly responsive web applications for the EdTech
                     industry.
                   </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
                     Maintained and improved existing JavaScript applications.
                   </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal'>
+                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                     <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                       ›
                     </span>
