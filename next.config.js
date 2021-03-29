@@ -1,6 +1,11 @@
 const i18n = require('./i18n/config');
 
 module.exports = {
+  future: {
+    strictPostcssConfiguration: true,
+    webpack5: true,
+  },
+  i18n,
   async redirects() {
     return [
       {
@@ -10,7 +15,6 @@ module.exports = {
       },
     ];
   },
-  i18n,
   webpack: (config, { isServer }) => {
     if (isServer) {
       require('./scripts/generate-sitemap');
