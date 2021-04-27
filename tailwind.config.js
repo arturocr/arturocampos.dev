@@ -1,14 +1,8 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  corePlugins: {
-    container: false,
-  },
+  mode: 'jit',
   darkMode: false,
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
   purge: ['./components/**/*.js', './data/**/*.{md,mdx}', './pages/**/*.js'],
   theme: {
     extend: {
@@ -33,7 +27,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...fontFamily.sans],
       },
       fontSize: {
         '7xl': '5rem',
@@ -49,30 +43,11 @@ module.exports = {
         media: '768px',
       },
     },
-  },
-  variants: {
-    extend: {
-      borderColor: ['group-focus'],
-      borderWidth: ['last', 'hover', 'focus'],
+    screens: {
+      'sm': '600px',
+      'md': '700px',
+      'lg': '800px',
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    function ({ addComponents }) {
-      addComponents({
-        '.container': {
-          maxWidth: '100%',
-          '@screen sm': {
-            maxWidth: '600px',
-          },
-          '@screen md': {
-            maxWidth: '700px',
-          },
-          '@screen lg': {
-            maxWidth: '800px',
-          },
-        },
-      });
-    },
-  ],
+  plugins: [require('@tailwindcss/forms')],
 };

@@ -29,125 +29,117 @@ lite-youtube.lyt-activated > .lty-playbtn {
   @apply opacity-0 pointer-events-none;
 }
 
-@layer components {
-  /* Global shared styles */
-  a {
-    @apply transition-colors text-middle;
-  }
+/* Global shared styles */
+a {
+  @apply transition-colors text-middle hover:text-secondary;
+}
 
-  @media (hover: hover) {
-    a:hover {
-      @apply text-secondary;
-    }
-  }
+blockquote > * {
+  @apply relative;
+}
+blockquote::before,
+blockquote::after {
+  @apply absolute z-0 font-mono font-bold text-gray-400 opacity-75 pointer-events-none text-7xl;
+}
+blockquote::before {
+  @apply top-0 left-0 leading-none;
+  content: '\201C';
+}
+blockquote::after {
+  @apply bottom-0 right-0 -mb-2 leading-3;
+  content: '\201D';
+}
 
-  blockquote > * {
-    @apply relative;
-  }
-  blockquote::before,
-  blockquote::after {
-    @apply absolute z-0 font-mono font-bold text-gray-400 opacity-75 pointer-events-none text-7xl;
-  }
-  blockquote::before {
-    @apply top-0 left-0 leading-none;
-    content: '\201C';
-  }
-  blockquote::after {
-    @apply bottom-0 right-0 -mb-2 leading-3;
-    content: '\201D';
-  }
+/* Hamburguer Icon */
+#menu-icon > path {
+  @apply stroke-current stroke-4;
+  fill: none;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+#menu-icon > path:nth-child(1) {
+  stroke-dasharray: 60 207;
+}
+#menu-icon > path:nth-child(2) {
+  stroke-dasharray: 60 60;
+}
+#menu-icon > path:nth-child(3) {
+  stroke-dasharray: 60 207;
+}
+#menu-icon.opened > path:nth-child(1) {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
+#menu-icon.opened > path:nth-child(2) {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+}
+#menu-icon.opened > path:nth-child(3) {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+}
 
-  /* Hamburguer Icon */
-  #menu-icon > path {
-    @apply stroke-current stroke-4;
-    fill: none;
-    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  #menu-icon > path:nth-child(1) {
-    stroke-dasharray: 60 207;
-  }
-  #menu-icon > path:nth-child(2) {
-    stroke-dasharray: 60 60;
-  }
-  #menu-icon > path:nth-child(3) {
-    stroke-dasharray: 60 207;
-  }
-  #menu-icon.opened > path:nth-child(1) {
-    stroke-dasharray: 90 207;
-    stroke-dashoffset: -134;
-  }
-  #menu-icon.opened > path:nth-child(2) {
-    stroke-dasharray: 1 60;
-    stroke-dashoffset: -30;
-  }
-  #menu-icon.opened > path:nth-child(3) {
-    stroke-dasharray: 90 207;
-    stroke-dashoffset: -134;
-  }
+/* Gradient text */
+.gradient-text {
+  @apply inline-block pb-1 pr-1 text-secondary;
+}
 
-  /* Gradient text */
+@supports (background-clip: text) and (-webkit-text-fill-color: transparent) {
   .gradient-text {
-    @apply inline-block pb-1 pr-1 text-secondary;
+    @apply bg-gradient-to-r from-secondary via-middle to-accent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+}
 
-  @supports (background-clip: text) and (-webkit-text-fill-color: transparent) {
-    .gradient-text {
-      @apply bg-gradient-to-r from-secondary via-middle to-accent;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+@media (hover: hover) {
+  a.gradient-text {
+    @apply duration-200;
+    background-size: 100%;
+    transition-property: background-size;
   }
-
-  @media (hover: hover) {
-    a.gradient-text {
-      @apply duration-200;
-      background-size: 100%;
-      transition-property: background-size;
-    }
-    a.gradient-text:hover {
-      background-size: 175%;
-    }
+  a.gradient-text:hover {
+    background-size: 175%;
   }
+}
 
+.blurry-bg {
+  @apply bg-white;
+}
+
+@supports (backdrop-filter: saturate(180%) blur(20px)) or
+  (-webkit-backdrop-filter: saturate(180%) blur(20px)) {
   .blurry-bg {
-    @apply bg-white;
+    @apply bg-opacity-75;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
   }
-
-  @supports (backdrop-filter: saturate(180%) blur(20px)) or
-    (-webkit-backdrop-filter: saturate(180%) blur(20px)) {
-    .blurry-bg {
-      @apply bg-opacity-75;
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      backdrop-filter: saturate(180%) blur(20px);
-    }
+}
+@screen md {
+  #body-b-l,
+  #body-b-r,
+  #body-b-t,
+  #body-b-b {
+    @apply fixed z-50 p-2;
   }
-  @screen md {
-    #body-b-l,
-    #body-b-r,
-    #body-b-t,
-    #body-b-b {
-      @apply fixed z-50 p-2;
-    }
-    #body-b-l,
-    #body-b-r {
-      @apply top-0 bottom-0;
-    }
-    #body-b-l {
-      @apply left-0 bg-secondary;
-    }
-    #body-b-r {
-      @apply right-0 bg-accent;
-    }
-    #body-b-t,
-    #body-b-b {
-      @apply left-0 right-0 bg-gradient-to-r from-secondary via-middle to-accent;
-    }
-    #body-b-t {
-      @apply top-0;
-    }
-    #body-b-b {
-      @apply bottom-0;
-    }
+  #body-b-l,
+  #body-b-r {
+    @apply top-0 bottom-0;
+  }
+  #body-b-l {
+    @apply left-0 bg-secondary;
+  }
+  #body-b-r {
+    @apply right-0 bg-accent;
+  }
+  #body-b-t,
+  #body-b-b {
+    @apply left-0 right-0 bg-gradient-to-r from-secondary via-middle to-accent;
+  }
+  #body-b-t {
+    @apply top-0;
+  }
+  #body-b-b {
+    @apply bottom-0;
   }
 }
