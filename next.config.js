@@ -13,6 +13,11 @@ module.exports = {
         destination: '/es/projects/tax-calculator-crc',
         permanent: true,
       },
+      {
+        source: '/calculadora',
+        destination: '/es/projects/tax-calculator-crc',
+        permanent: true,
+      },
     ];
   },
   webpack: (config, { isServer }) => {
