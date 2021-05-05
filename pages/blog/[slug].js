@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import hydrate from 'next-mdx-remote/hydrate';
+import { MDXRemote } from 'next-mdx-remote';
 import useSWR from 'swr';
 
 import Heading from '@/components/heading';
@@ -18,9 +18,7 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { locale } = router;
-  const content = hydrate(mdxSource, {
-    components: getComponents(hydrationComponentsList),
-  });
+  const components = getComponents(hydrationComponentsList);
   const { image: imagePath } = frontMatter;
   const localizedPath = getLocalizedPath(router);
   const { data } = useSWR(
@@ -67,7 +65,9 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
             />
           </picture>
         ) : null}
-        <div>{content}</div>
+        <div>
+          <MDXRemote {...mdxSource} components={components} />
+        </div>
       </article>
     </>
   );

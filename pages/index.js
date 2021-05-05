@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import hydrate from 'next-mdx-remote/hydrate';
+import { MDXRemote } from 'next-mdx-remote';
 
 import Heading from '@/components/heading';
 import { siteBaseUrl } from '@/lib/constants';
@@ -10,9 +10,7 @@ import { getComponents, getLocalizedPath } from '@/lib/util';
 const Home = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const router = useRouter();
   const { locale } = router;
-  const content = hydrate(mdxSource, {
-    components: getComponents(hydrationComponentsList),
-  });
+  const components = getComponents(hydrationComponentsList);
   const localizedPath = getLocalizedPath(router);
   const { description } = frontMatter;
 
@@ -28,7 +26,7 @@ const Home = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
         }}
       />
       <Heading className='md:text-center'>{frontMatter.title}</Heading>
-      {content}
+      <MDXRemote {...mdxSource} components={components} />
     </>
   );
 };
