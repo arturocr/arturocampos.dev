@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 
+import DonateButton from '@/components/donate-button';
 import Heading from '@/components/heading';
 import Calculator from '@/components/tax-calculator';
 import Disclaimer from '@/components/tax-calculator/disclaimer';
@@ -56,6 +57,7 @@ const TaxCalculator = ({ config, salaryCurrencies, tracts }) => {
           tracts={tracts}
         />
         <Disclaimer config={config} locale={locale} />
+        <DonateButton text={t('donate')} />
       </section>
     </>
   );
