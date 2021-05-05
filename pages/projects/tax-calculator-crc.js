@@ -57,7 +57,7 @@ const TaxCalculator = ({ config, salaryCurrencies, tracts }) => {
           tracts={tracts}
         />
         <Disclaimer config={config} locale={locale} />
-        <DonateButton text={t('donate')} />
+        <DonateButton />
       </section>
     </>
   );

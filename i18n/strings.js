@@ -15,6 +15,8 @@ const LangStrings = {
     coffee: 'Coffee',
     details: 'Details',
     donate: 'Donate with',
+    'donation-prose':
+      "If you've found this little project useful, it wouldn't hurt to consider a small donation, I always need to buy more coffee.",
     'error-content': 'Oops something went wrong',
     'error-heading': 'Error',
     'exchange-rate': 'Exchange rate',
@@ -64,6 +66,8 @@ const LangStrings = {
     coffee: 'Café',
     details: 'Detalles',
     donate: 'Donar con',
+    'donation-prose':
+      'Si este pequeño proyecto le ha parecido útil, no estaría de más considerar una donación, siempre es necesario comprar más café.',
     'error-content': 'Algo salió mal',
     'error-heading': 'Error',
     'exchange-rate': 'Tipo de cambio',
