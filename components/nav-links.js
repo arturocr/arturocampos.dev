@@ -36,10 +36,10 @@ const NavLinks = () => {
       </div>
       <nav
         className={clsx(
-          'absolute top-0 flex flex-col h-0 px-5 ml-12 space-y-4 overflow-hidden whitespace-nowrap transition-all bg-white rounded-md shadow-md opacity-0 lg:opacity-100 lg:bg-transparent lg:h-auto lg:flex-row lg:space-y-0 lg:ml-0 lg:space-x-2 lg:p-0 lg:rounded-none lg:relative lg:shadow-none',
+          'absolute top-0 flex flex-col px-5 ml-12 space-y-4 overflow-hidden whitespace-nowrap transition-all bg-white rounded-md shadow-md opacity-0 lg:opacity-100 lg:bg-transparent lg:h-auto lg:flex-row lg:space-y-0 lg:ml-0 lg:space-x-2 lg:p-0 lg:rounded-none lg:relative lg:shadow-none',
           isMenuOpen
             ? 'h-auto py-4 border opacity-100 lg:border-none'
-            : 'border-transparent'
+            : 'h-0 border-transparent'
         )}
       >
         <ActiveLink activeClassName='border-middle text-middle' href='/blog'>
