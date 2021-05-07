@@ -16,12 +16,12 @@ const modDate = new Date().toISOString();
     '!pages/**/\\[*\\].js', // Ignore dynamic routes
     '!pages/api', // Ignore API routes
   ]);
-  const posts = await globby(['posts/**/*.mdx', 'posts/**/_*.mdx']);
+  const posts = await globby(['data/posts/**/*.mdx', 'data/posts/**/_*.mdx']);
 
   const pagesRoutes = [];
 
   const postsRoutes = posts.map(post => {
-    const postPath = post.replace('posts/', '').replace('.mdx', '');
+    const postPath = post.replace('data/posts/', '').replace('.mdx', '');
     const pathParts = postPath.split('/');
     if (pathParts.length === 1) {
       return pathParts[0];
