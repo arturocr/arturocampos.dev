@@ -90,11 +90,6 @@ const DonateButton = () => {
             </svg>
           </span>
         </button>
-        <img
-          alt=''
-          className='sr-only'
-          src='https://www.paypal.com/en_CR/i/scr/pixel.gif'
-        />
       </form>
     </div>
   );

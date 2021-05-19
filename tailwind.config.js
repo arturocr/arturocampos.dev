@@ -28,6 +28,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', ...fontFamily.sans],
+        mono: ['Inconsolata', ...fontFamily.mono],
       },
       fontSize: {
         '7xl': '5rem',
@@ -44,9 +45,9 @@ module.exports = {
       },
     },
     screens: {
-      'sm': '600px',
-      'md': '700px',
-      'lg': '800px',
+      sm: '600px',
+      md: '700px',
+      lg: '800px',
     },
   },
   plugins: [require('@tailwindcss/forms')],
