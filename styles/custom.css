@@ -49,6 +49,11 @@ blockquote::after {
   @apply bottom-0 right-0 -mb-2 leading-3;
   content: '\201D';
 }
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 /* Hamburguer Icon */
 #menu-icon > path {

@@ -54,67 +54,102 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }) => {
     0
   );
 
+  const getCurrencySymbol = () =>
+    salaryCurrencies.find(
+      currency => currency.value === calculatorState.salaryCurrency
+    )['symbol'];
+
   return (
     <>
       <div className='flex flex-col my-4 space-y-3 sm:flex-row sm:space-x-5 sm:space-y-0'>
-        <div className='flex items-stretch flex-1'>
-          <span className='flex items-center text-sm leading-normal whitespace-no-wrap'>
-            <select
-              className='font-mono transition-colors border-gray-300 rounded-l cursor-pointer pr-9 focus:ring-0 focus:border-secondary'
-              defaultValue={calculatorState.salaryCurrency}
+        <div className='flex-1'>
+          <label
+            className='block text-sm font-medium text-gray-700'
+            htmlFor='salary'
+          >
+            {t('your-salary')}
+          </label>
+          <div className='relative mt-1 font-mono rounded-md shadow-sm'>
+            <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+              <span className='text-gray-500'>{getCurrencySymbol()}</span>
+            </div>
+            <input
+              className='block w-full pr-16 border-gray-300 rounded-md focus:ring-secondary focus:border-secondary pl-7'
+              id='salary'
+              min={0}
+              name='salary'
               onChange={e =>
                 setCalculatorState({
                   ...calculatorState,
-                  salaryCurrency: e.target.value,
+                  salary: Math.abs(e.target.value),
                 })
               }
-            >
-              {salaryCurrencies.map(salaryCurrency => (
-                <option key={salaryCurrency.value} value={salaryCurrency.value}>
-                  {salaryCurrency.symbol}
-                </option>
-              ))}
-            </select>
-          </span>
-          <input
-            defaultValue={calculatorState.salary || undefined}
-            className='flex-1 flex-grow flex-shrink -ml-px font-mono placeholder-gray-400 transition-colors border-gray-300 rounded rounded-l-none focus:ring-0 focus:border-secondary'
-            min={0}
-            onChange={e =>
-              setCalculatorState({
-                ...calculatorState,
-                salary: Math.abs(e.target.value),
-              })
-            }
-            placeholder={t('your-salary')}
-            type='number'
-          />
+              placeholder='0.00'
+              type='number'
+            />
+            <div className='absolute inset-y-0 right-0 flex items-center'>
+              <label htmlFor='currency' className='sr-only'>
+                Currency
+              </label>
+              <select
+                className='h-full py-0 pl-2 pr-8 text-gray-500 bg-transparent border-transparent rounded-md focus:ring-secondary focus:border-secondary'
+                defaultValue={calculatorState.salaryCurrency}
+                id='currency'
+                name='currency'
+                onChange={e =>
+                  setCalculatorState({
+                    ...calculatorState,
+                    salaryCurrency: e.target.value,
+                  })
+                }
+              >
+                {salaryCurrencies.map(salaryCurrency => (
+                  <option
+                    key={salaryCurrency.value}
+                    value={salaryCurrency.value}
+                  >
+                    {salaryCurrency.value}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
         </div>
         <div
           className={clsx(
-            'group relative flex items-stretch flex-1 transition-opacity',
+            'flex-1 transition-opacity',
             salaryCurrencies[1].value === calculatorState.salaryCurrency &&
-              'opacity-0'
+              'opacity-0 hidden sm:flex'
           )}
         >
-          <div className='flex -mr-px'>
-            <span className='flex items-center px-3 font-mono text-sm leading-normal whitespace-no-wrap border border-gray-300 rounded rounded-r-none group-focus:border-secondary'>
-              {salaryCurrencies[1].symbol}
-            </span>
+          <label
+            className='block text-sm font-medium text-gray-700'
+            htmlFor='exchangeRate'
+          >
+            {t('exchange-rate')}
+          </label>
+          <div className='relative mt-1 font-mono rounded-md shadow-sm'>
+            <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+              <span className='text-gray-500'>
+                {salaryCurrencies[1].symbol}
+              </span>
+            </div>
+            <input
+              className='block w-full pr-12 border-gray-300 rounded-md focus:ring-secondary focus:border-secondary pl-7'
+              defaultValue={calculatorState.exchangeRate || undefined}
+              id='exchangeRate'
+              min={0}
+              name='exchangeRate'
+              onChange={e =>
+                setCalculatorState({
+                  ...calculatorState,
+                  exchangeRate: Math.abs(e.target.value),
+                })
+              }
+              placeholder='0.00'
+              type='number'
+            />
           </div>
-          <input
-            defaultValue={calculatorState.exchangeRate || undefined}
-            className='relative flex-1 flex-grow flex-shrink font-mono placeholder-gray-400 transition-colors border-gray-300 rounded rounded-l-none focus:ring-0 focus:border-secondary'
-            min={0}
-            onChange={e =>
-              setCalculatorState({
-                ...calculatorState,
-                exchangeRate: Math.abs(e.target.value),
-              })
-            }
-            placeholder={t('exchange-rate')}
-            type='number'
-          />
         </div>
       </div>
       <Tracts tracts={tractsWithDeductible} />
