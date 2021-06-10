@@ -25,7 +25,6 @@ const TaxCalculator = ({ config, salaryCurrencies, tracts }) => {
     url: `${siteBaseUrl}/images/calculator-og.png`,
     alt: title,
   };
-  console.log(localizedPath);
   const { data } = useSWR(
     `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
     fetcher,
