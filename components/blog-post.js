@@ -34,7 +34,7 @@ const BlogPost = ({ index, post }) => {
       </div>
       {post?.frontMatter?.image ? (
         <Link href={blogPostPath}>
-          <a className='block mx-auto my-3 transition-all transform hover:-translate-y-1 hover:shadow-lg max-w-media'>
+          <a className='block mx-auto my-3 max-w-media'>
             <Image
               alt={post.frontMatter.title}
               className='rounded-md'
