@@ -9,7 +9,7 @@ const Header = () => {
   const { t } = useTranslation();
 
   return (
-    <div className='sticky top-0 z-10 text-gray-600 md:mx-4 md:pt-4 blurry-bg'>
+    <div className='sticky top-0 z-10 text-gray-600 bg-white bg-opacity-75 backdrop-filter backdrop-blur-md md:mx-4 md:pt-4'>
       <header className='container relative flex items-center px-4 py-6 mx-auto'>
         <div className='relative w-5/12'>
           <NavLinks />
