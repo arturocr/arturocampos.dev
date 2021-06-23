@@ -19,7 +19,7 @@ const LanguageSelector = () => {
   return (
     <label className='inline-flex group'>
       <select
-        className='font-light transition-colors bg-transparent border-gray-600 rounded-full appearance-none cursor-pointer pr-7 hover:border-secondary focus:ring-0 focus:border-secondary'
+        className='transition-colors bg-transparent border-gray-600 rounded-full appearance-none cursor-pointer pr-7 hover:border-secondary focus:ring-0 focus:border-secondary'
         onChange={navigate}
         defaultValue={locale}
         title={t('language')}

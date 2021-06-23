@@ -36,7 +36,7 @@ const MyApp = ({ Component, pageProps, router }) => {
       </Head>
       <DefaultSeo {...SEO} />
       <Header />
-      <div className='flex flex-1'>
+      <div className='flex flex-1 md:before:fixed md:before:z-50 md:before:p-2 md:before:top-0 md:before:bottom-0 md:before:right-0 md:before:bg-accent md:after:fixed md:after:z-50 md:after:p-2 md:after:right-0 md:after:left-0 md:after:bg-gradient-to-r md:after:from-secondary md:after:via-middle md:after:to-accent md:after:bottom-0'>
         <main className='container relative flex-1 px-4 py-5 mx-auto'>
           <MDXProvider components={MDXComponents}>
             <Component {...pageProps} key={router.route} />
@@ -44,10 +44,6 @@ const MyApp = ({ Component, pageProps, router }) => {
         </main>
       </div>
       <Footer />
-      <div id='body-b-l'></div>
-      <div id='body-b-r'></div>
-      <div id='body-b-t'></div>
-      <div id='body-b-b'></div>
     </>
   );
 };

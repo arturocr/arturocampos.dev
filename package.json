@@ -45,7 +45,7 @@
     "rehype": "^11.0.0",
     "remark-code-titles": "^0.1.2",
     "stylelint-config-recommended": "^5.0.0",
-    "tailwindcss": "^2.1.4"
+    "tailwindcss": "^2.2.4"
   },
   "lint-staged": {
     "{pages,components}/**/*.{js}": "npm run lint:fix"
