@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import Link from 'next/link';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 

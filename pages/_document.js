@@ -8,11 +8,11 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900'
+            href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=optional'
             rel='stylesheet'
           />
           <link
-            href='https://fonts.googleapis.com/css2?family=Inconsolata'
+            href='https://fonts.googleapis.com/css2?family=Inconsolata&display=optional'
             rel='stylesheet'
           />
           <link

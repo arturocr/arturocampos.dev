@@ -1,6 +1,6 @@
 import { google } from 'googleapis';
 
-export default async (req, res) => {
+const pageViewsAPI = async (req, res) => {
   const startDate = req.query.startDate || '2020-01-01';
   const slug = req.query.slug;
 
@@ -37,3 +37,5 @@ export default async (req, res) => {
     return res.status(500).json({ error: err.message });
   }
 };
+
+export default pageViewsAPI;
