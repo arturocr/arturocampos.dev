@@ -41,7 +41,7 @@
     "next-remote-watch": "^1.0.0",
     "postcss": "^8.3.5",
     "prettier": "^2.3.1",
-    "prismjs": ">=1.23.0",
+    "prismjs": ">=1.24.0",
     "rehype": "^11.0.0",
     "remark-code-titles": "^0.1.2",
     "stylelint-config-recommended": "^5.0.0",
