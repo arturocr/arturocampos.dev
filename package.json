@@ -16,7 +16,7 @@
     "googleapis": "^82.0.0",
     "lite-vimeo-embed": "^0.1.0",
     "lite-youtube-embed": "^0.2.0",
-    "next": "^11.0.1",
+    "next": "^11.1.0",
     "next-seo": "^4.26.0",
     "react": "^17",
     "react-anchor-link-smooth-scroll": "^1.0.12",
