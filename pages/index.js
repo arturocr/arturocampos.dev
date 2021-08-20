@@ -138,7 +138,7 @@ export default function IndexPage() {
                       </span>
                       <span className='font-medium'>Mountain Biking:</span> I
                       have lots of fun on my bike. I used to take part in
-                      professional races, but now it's just a recreational
+                      professional races, but now it&apos;s just a recreational
                       hobby.
                     </li>
                   </ul>
@@ -266,7 +266,7 @@ export default function IndexPage() {
                       University of Costa Rica
                     </h3>
                     <p className='leading-normal text-md text-gray-650'>
-                      2004 – 2007 | Bachelor's Degree in Software Engineering
+                      2004 – 2007 | Bachelor&apos;s Degree in Software Engineering
                     </p>
                   </header>
                 </section>
@@ -508,7 +508,7 @@ export default function IndexPage() {
                         ›
                       </span>{' '}
                       Decide, propose and implement systems architectures that
-                      align with and solve (existing and new) client's needs.
+                      align with and solve (existing and new) client&apos;s needs.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
@@ -567,7 +567,7 @@ export default function IndexPage() {
                     </li>
                   </ul>
                   <p className='mt-4.5 pt-4.5 text-md text-gray-700 leading-normal border-gray border-t'>
-                    There's more, learn about my experience on{' '}
+                    There&apos;s more, learn about my experience on{' '}
                     <a
                       className='group'
                       href='https://www.linkedin.com/in/arturocr/'

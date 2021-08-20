@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.0",
     "postcss": "^8.3.6",
     "postcss-preset-env": "^6.7.0",
     "tailwindcss": "^2.2.7"
