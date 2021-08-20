@@ -7,22 +7,19 @@ export default function IndexPage() {
       <Head>
         <meta charSet='utf-8' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <title>Arturo Campos - Solutions Architect</title>
-        <meta
-          name='title'
-          content='Arturo Campos - Solutions Architect'
-        />
+        <title>Arturo Campos - Front-end Architect</title>
+        <meta name='title' content='Arturo Campos - Front-end Architect' />
         <meta
           name='description'
-          content='Online Resume of Solutions Architect Arturo Campos'
+          content='Online Resume of Front-end Architect Arturo Campos'
         />
         <meta
           property='og:title'
-          content='Arturo Campos - Solutions Architect'
+          content='Arturo Campos - Front-end Architect'
         />
         <meta
           property='og:description'
-          content='Online Resume of Solutions Architect Arturo Campos'
+          content='Online Resume of Front-end Architect Arturo Campos'
         />
         <meta
           property='og:image'
@@ -35,11 +32,11 @@ export default function IndexPage() {
         />
         <meta
           property='twitter:title'
-          content='Arturo Campos - Solutions Architect'
+          content='Arturo Campos - Front-end Architect'
         />
         <meta
           property='twitter:description'
-          content='Online Resume of Solutions Architect Arturo Campos'
+          content='Online Resume of Front-end Architect Arturo Campos'
         />
         <meta
           property='twitter:image'
@@ -66,11 +63,11 @@ export default function IndexPage() {
         <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#f04770' />
         <meta
           name='apple-mobile-web-app-title'
-          content='Arturo Campos - Solutions Architect'
+          content='Arturo Campos - Front-end Architect'
         />
         <meta
           name='application-name'
-          content='Arturo Campos - Solutions Architect'
+          content='Arturo Campos - Front-end Architect'
         />
         <meta name='msapplication-TileColor' content='#f04770' />
         <meta name='theme-color' content='#ffffff' />
@@ -84,11 +81,10 @@ export default function IndexPage() {
             <h1 className='flex items-center text-2xl font-medium text-gray-750 print:block'>
               Arturo Campos{' '}
               <span className='pl-2 ml-2 text-xl border-l-2 font-extralight text-gray-550 border-gray print:border-gray print:border-l-2 print:ml-2 print:pl-2'>
-                Solutions Architect
+                Front-end Architect
               </span>
             </h1>
           </header>
-
           <div className='md:col-count-2 print:col-count-2 gap-md md:h-letter-col print:h-letter-col col-fill-auto'>
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
@@ -108,18 +104,16 @@ export default function IndexPage() {
                       JavaScript is my passion
                     </span>
                     , enjoying it a little bit more every single day for the
-                    last 12 years.
+                    last 13 years.
                   </p>
                 </section>
               </div>
             </section>
-
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
                 <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   INTERESTS
                 </h2>
-
                 <section className='mb-4.5 break-inside-avoid'>
                   <ul>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
@@ -128,7 +122,7 @@ export default function IndexPage() {
                       </span>
                       <span className='font-medium'>Family:</span> I am a family
                       guy, I love to invest time with my wife and kids who are
-                      still pretty young (5 and 7).
+                      still pretty young (6 and 8).
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
@@ -151,7 +145,6 @@ export default function IndexPage() {
                 </section>
               </div>
             </section>
-
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
                 <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
@@ -205,7 +198,6 @@ export default function IndexPage() {
                   </div>
                 </section>
               </div>
-
               <section className='mb-4.5 break-inside-avoid'>
                 <header>
                   <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
@@ -263,7 +255,6 @@ export default function IndexPage() {
                 </div>
               </section>
             </section>
-
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
                 <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
@@ -281,13 +272,11 @@ export default function IndexPage() {
                 </section>
               </div>
             </section>
-
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
                 <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
                   CONTACT
                 </h2>
-
                 <section className='mb-4.5 break-inside-avoid'>
                   <ul className='list-inside pr-7'>
                     <li className='mt-1.5 leading-normal text-gray-700 text-md'>
@@ -421,9 +410,7 @@ export default function IndexPage() {
                       </a>
                     </li>
                     <li className='mt-1.5 leading-normal text-gray-700 text-md hidden print:block'>
-                      <a
-                        href='&#116;&#101;&#108;&#58;&#43;&#53;&#48;&#54;&#56;&#56;&#56;&#57;&#45;&#54;&#52;&#48;&#50;'
-                      >
+                      <a href='&#116;&#101;&#108;&#58;&#43;&#53;&#48;&#54;&#56;&#56;&#56;&#57;&#45;&#54;&#52;&#48;&#50;'>
                         <svg
                           className='inline-block w-4 h-4 mr-1 align-middle'
                           viewBox='0 0 24 24'
@@ -443,7 +430,6 @@ export default function IndexPage() {
                 </section>
               </div>
             </section>
-
             <section className='mt-8 first:mt-0'>
               <div className='break-inside-avoid'>
                 <h2 className='mb-2.5 font-bold tracking-widest text-sm2 text-gray-550 print:font-normal'>
@@ -452,10 +438,67 @@ export default function IndexPage() {
                 <section className='mb-4.5 break-inside-avoid'>
                   <header>
                     <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
+                      Parsley Health
+                    </h3>
+                    <p className='leading-normal text-md text-gray-650'>
+                      Jul 2021 – Present | Principal Software Engineer / Pod
+                      Lead
+                    </p>
+                  </header>
+                  <ul>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Coordinate with Product and Design teams in the definition
+                      and scoping of software development.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Actively participate in the development and maintenance of
+                      software that embodies and enables the mission and vision
+                      of the company.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Manage direct report resources and enable them with
+                      anything necessary to accomplish the goals of the team.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Report with certain metrics to managers about team
+                      throughput and performance.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Collaborate with the recruiting team on the interviewing
+                      process and decision-making about new hires.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>{' '}
+                      Coordinate with other pod leads to sync on the forward
+                      movement of epics development without unnecessary efforts
+                      and optimizing the process.
+                    </li>
+                  </ul>
+                </section>
+                <section className='mb-4.5 break-inside-avoid'>
+                  <header>
+                    <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
                       Gorilla Logic
                     </h3>
                     <p className='leading-normal text-md text-gray-650'>
-                      Jun 2016 – Present | Solutions Architect / Web Practice
+                      Jun 2016 – Jul 2021 | Solutions Architect / Web Practice
                       Lead
                     </p>
                   </header>
@@ -465,28 +508,14 @@ export default function IndexPage() {
                         ›
                       </span>{' '}
                       Decide, propose and implement systems architectures that
-                      align with and solve client's needs.
+                      align with and solve (existing and new) client's needs.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Actively code and deliver high-quality solutions to
+                      Actively code, lead and deliver high-quality solutions to
                       clients.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Technically lead projects using state of the art
-                      technologies.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Define and promote front-end and full-stack best practices
-                      for teams using Angular, React, Node.js, and such.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
@@ -500,114 +529,59 @@ export default function IndexPage() {
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
                         ›
                       </span>{' '}
-                      Mentoring of colleagues and technical assessments to
-                      identify and attack areas of improvement.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Lead innovation and internal research projects.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Interact with other leads to ensure the delivery of the
-                      highest quality solutions to the clients.
-                    </li>
-                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                        ›
-                      </span>{' '}
-                      Promote, organize, and teach on activities like Lunch
-                      &amp; Learns, workshops, and more.
+                      Promote internal community activities, help with mentoring
+                      of colleagues and technical assessments to identify and
+                      attack areas of improvement.
                     </li>
                   </ul>
                 </section>
+                <section className='mb-4.5 break-inside-avoid'>
+                  <header>
+                    <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
+                      Edify Software Consulting
+                    </h3>
+                    <p className='leading-normal text-md text-gray-650'>
+                      Apr 2011 – Jun 2016 | Senior Front-end Developer
+                    </p>
+                  </header>
+                  <ul>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>
+                      Built highly responsive web applications for the EdTech
+                      industry.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>
+                      Maintained and improved existing JavaScript applications.
+                    </li>
+                    <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
+                      <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
+                        ›
+                      </span>
+                      Led development efforts behind JavaScript-intense
+                      applications, using VanillaJS, Backbone.js, and Ember.js.
+                    </li>
+                  </ul>
+                  <p className='mt-4.5 pt-4.5 text-md text-gray-700 leading-normal border-gray border-t'>
+                    There's more, learn about my experience on{' '}
+                    <a
+                      className='group'
+                      href='https://www.linkedin.com/in/arturocr/'
+                      rel='noopener noreferrer'
+                      target='_blank'
+                    >
+                      LinkedIn
+                      <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
+                        ↗
+                      </span>
+                    </a>
+                  </p>
+                </section>
               </div>
-              <section className='mb-4.5 break-inside-avoid'>
-                <header>
-                  <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
-                    Freelance Front-end Engineer
-                  </h3>
-                  <p className='leading-normal text-md text-gray-650'>
-                    2008 – Present | Senior Front-end Engineer
-                  </p>
-                </header>
-                <ul>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                    <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                      ›
-                    </span>
-                    I offer my skills for freelance projects in a variety of
-                    technologies, mostly focused on front-end engineering, but
-                    also work on back-end services if needed.
-                  </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                    <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                      ›
-                    </span>
-                    Marketing, online presence, e-commerce, and tooling
-                    development using ReactJS, Angular2+, EmberJS, VanillaJS,
-                    WordPress, PHP, MySQL, MongoDB, etc.
-                  </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                    <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                      ›
-                    </span>
-                    Provide UI/UX and brand design to clients who need the
-                    complete design/development package.
-                  </li>
-                </ul>
-              </section>
-
-              <section className='mb-4.5 break-inside-avoid'>
-                <header>
-                  <h3 className='text-lg font-semibold text-gray-700 leading-snugish'>
-                    Edify Software Consulting
-                  </h3>
-                  <p className='leading-normal text-md text-gray-650'>
-                    Apr 2011 – Jun 2016 | Senior Front-end Developer
-                  </p>
-                </header>
-                <ul>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                    <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                      ›
-                    </span>
-                    Built highly responsive web applications for the EdTech
-                    industry.
-                  </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                    <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                      ›
-                    </span>
-                    Maintained and improved existing JavaScript applications.
-                  </li>
-                  <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
-                    <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
-                      ›
-                    </span>
-                    Led development efforts behind JavaScript-intense
-                    applications, using VanillaJS, Backbone.js, and Ember.js.
-                  </li>
-                </ul>
-                <p className='mt-4.5 pt-4.5 text-md text-gray-700 leading-normal border-gray border-t'>
-                  More about my experience on{' '}
-                  <a
-                    className='group'
-                    href='https://www.linkedin.com/in/arturocr/'
-                    rel='noopener noreferrer'
-                    target='_blank'
-                  >
-                    LinkedIn
-                    <span className='inline-block ml-1 font-normal transition duration-100 ease-in text-gray-550 print:text-black group-hover:text-gray-700'>
-                      ↗
-                    </span>
-                  </a>
-                </p>
-              </section>
             </section>
           </div>
         </div>
