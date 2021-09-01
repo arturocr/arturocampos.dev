@@ -1,10 +1,14 @@
-const i18n = require('./i18n/config');
-
 module.exports = {
+  experimental: {
+    esmExternals: true,
+  },
   future: {
     strictPostcssConfiguration: true,
   },
-  i18n,
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es'],
+  },
   async redirects() {
     return [
       {
@@ -18,11 +22,5 @@ module.exports = {
         permanent: true,
       },
     ];
-  },
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      require('./scripts/generate-sitemap');
-    }
-    return config;
-  },
+  }
 };
