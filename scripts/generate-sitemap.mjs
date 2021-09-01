@@ -1,13 +1,12 @@
-const fs = require('fs');
-const globby = require('globby');
-const prettier = require('prettier');
+import { writeFileSync } from 'fs';
+import { globby } from 'globby';
+import prettier from 'prettier';
 
-const i18nConfig = require('../i18n/config');
-
-const { defaultLocale, locales } = i18nConfig;
+const defaultLocale = 'en';
+const locales = ['en', 'es'];
 const modDate = new Date().toISOString();
 
-(async () => {
+const generateSitemap = async () => {
   const prettierConfig = await prettier.resolveConfig('./.prettierrc.js');
   const pages = await globby([
     'pages/**/*.js',
@@ -78,5 +77,7 @@ const modDate = new Date().toISOString();
   });
 
   // eslint-disable-next-line no-sync
-  fs.writeFileSync('public/sitemap.xml', formatted);
-})();
+  writeFileSync('public/sitemap.xml', formatted);
+};
+
+generateSitemap();
