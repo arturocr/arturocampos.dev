@@ -13,38 +13,38 @@
     {
       "id": "tract1",
       "from": 0,
-      "to": 842000,
+      "to": 863000,
       "percentage": 0
     },
     {
       "id": "tract2",
-      "from": 842000,
-      "to": 1236000,
+      "from": 863000,
+      "to": 1267000,
       "percentage": 10
     },
     {
       "id": "tract3",
-      "from": 1236000,
-      "to": 2169000,
+      "from": 1267000,
+      "to": 2223000,
       "percentage": 15
     },
     {
       "id": "tract4",
-      "from": 2169000,
-      "to": 4337000,
+      "from": 2223000,
+      "to": 4445000,
       "percentage": 20
     },
     {
       "id": "tract5",
-      "from": 4337000,
+      "from": 4445000,
       "to": null,
       "percentage": 25
     }
   ],
   "config": {
-    "periodBegins": "2021-01-01T00:00:00-06:00",
-    "periodEnds": "2021-12-31T11:59:59-06:00",
+    "periodBegins": "2022-01-01T00:00:00-06:00",
+    "periodEnds": "2022-12-31T11:59:59-06:00",
     "socialSecurityTax": 10.5,
-    "sourceLink": "https://www.hacienda.go.cr/noticias/16175-hacienda-actualizo-los-tramos-del-impuesto-sobre-la-renta-que-regiran-a-partir-de-enero-2021"
+    "sourceLink": "https://www.hacienda.go.cr/docs/Tarifas_para_calcular_el_impuesto_al_salario_jub_o_pen_P_2022.pdf"
   }
 }
