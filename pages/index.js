@@ -266,7 +266,8 @@ export default function IndexPage() {
                       University of Costa Rica
                     </h3>
                     <p className='leading-normal text-md text-gray-650'>
-                      2004 – 2007 | Bachelor&apos;s Degree in Software Engineering
+                      2004 – 2007 | Bachelor&apos;s Degree in Software
+                      Engineering
                     </p>
                   </header>
                 </section>
@@ -441,7 +442,7 @@ export default function IndexPage() {
                       Parsley Health
                     </h3>
                     <p className='leading-normal text-md text-gray-650'>
-                      Jul 2021 – Present | Principal Software Engineer / Pod
+                      Jul 2021 – Apr 2022 | Principal Software Engineer / Pod
                       Lead
                     </p>
                   </header>
@@ -508,7 +509,8 @@ export default function IndexPage() {
                         ›
                       </span>{' '}
                       Decide, propose and implement systems architectures that
-                      align with and solve (existing and new) client&apos;s needs.
+                      align with and solve (existing and new) client&apos;s
+                      needs.
                     </li>
                     <li className='mt-2.1 text-md text-gray-700 leading-normal relative'>
                       <span className='absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px'>
