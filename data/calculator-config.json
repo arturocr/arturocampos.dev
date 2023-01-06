@@ -13,38 +13,38 @@
     {
       "id": "tract1",
       "from": 0,
-      "to": 863000,
+      "to": 941000,
       "percentage": 0
     },
     {
       "id": "tract2",
-      "from": 863000,
-      "to": 1267000,
+      "from": 941000,
+      "to": 1381000,
       "percentage": 10
     },
     {
       "id": "tract3",
-      "from": 1267000,
-      "to": 2223000,
+      "from": 1381000,
+      "to": 2423000,
       "percentage": 15
     },
     {
       "id": "tract4",
-      "from": 2223000,
-      "to": 4445000,
+      "from": 2423000,
+      "to": 4845000,
       "percentage": 20
     },
     {
       "id": "tract5",
-      "from": 4445000,
+      "from": 4845000,
       "to": null,
       "percentage": 25
     }
   ],
   "config": {
-    "periodBegins": "2022-01-01T00:00:00-06:00",
-    "periodEnds": "2022-12-31T11:59:59-06:00",
+    "periodBegins": "2023-01-01T00:00:00-06:00",
+    "periodEnds": "2023-12-31T11:59:59-06:00",
     "socialSecurityTax": 10.5,
-    "sourceLink": "https://www.hacienda.go.cr/docs/Tarifas_para_calcular_el_impuesto_al_salario_jub_o_pen_P_2022.pdf"
+    "sourceLink": "https://www.elfinancierocr.com/economia-y-politica/estos-son-los-nuevos-tramos-del-impuesto-sobre-la/ML4YQ4MOM5D6XJG62TUPHWGPC4/story/"
   }
 }
