@@ -13,38 +13,38 @@
     {
       "id": "tract1",
       "from": 0,
-      "to": 941000,
+      "to": 929000,
       "percentage": 0
     },
     {
       "id": "tract2",
-      "from": 941000,
-      "to": 1381000,
+      "from": 929000,
+      "to": 1363000,
       "percentage": 10
     },
     {
       "id": "tract3",
-      "from": 1381000,
-      "to": 2423000,
+      "from": 1363000,
+      "to": 2392000,
       "percentage": 15
     },
     {
       "id": "tract4",
-      "from": 2423000,
-      "to": 4845000,
+      "from": 2392000,
+      "to": 4783000,
       "percentage": 20
     },
     {
       "id": "tract5",
-      "from": 4845000,
+      "from": 4783000,
       "to": null,
       "percentage": 25
     }
   ],
   "config": {
-    "periodBegins": "2023-01-01T00:00:00-06:00",
-    "periodEnds": "2023-12-31T11:59:59-06:00",
+    "periodBegins": "2024-01-01T00:00:00-06:00",
+    "periodEnds": "2024-12-31T11:59:59-06:00",
     "socialSecurityTax": 10.67,
-    "sourceLink": "https://www.elfinancierocr.com/economia-y-politica/estos-son-los-nuevos-tramos-del-impuesto-sobre-la/ML4YQ4MOM5D6XJG62TUPHWGPC4/story/"
+    "sourceLink": "https://www.elfinancierocr.com/economia-y-politica/estos-son-los-tramos-del-impuesto-sobre-la-renta/GABNT3T4LNATVHTOCTTSPTCCBY/story/"
   }
 }
