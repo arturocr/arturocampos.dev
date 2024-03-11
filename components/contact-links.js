@@ -3,21 +3,18 @@ const ContactLinks = () => (
     <li className='inline-flex mx-1'>
       <a
         className='inline-block p-2 transition-colors text-middle hover:text-secondary'
-        href='https://twitter.com/arturocr'
+        href='https://x.com/arturocr'
         rel='noopener noreferrer'
         target='_blank'
       >
         <svg
-          className='w-5 stroke-2'
-          fill='none'
-          stroke='currentColor'
-          strokeLinecap='round'
-          strokeLinejoin='round'
+          className='w-5'
+          fill='currentColor'
           viewBox='0 0 24 24'
           xmlns='http://www.w3.org/2000/svg'
         >
-          <title>Twitter</title>
-          <path d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z' />
+          <title>x.com</title>
+          <path d="M14.095479,10.316482L22.286354,1h-1.940718l-7.115352,8.087682L7.551414,1H1l8.589488,12.231093L1,23h1.940717  l7.509372-8.542861L16.448587,23H23L14.095479,10.316482z M11.436522,13.338465l-0.871624-1.218704l-6.924311-9.68815h2.981339  l5.58978,7.82155l0.867949,1.218704l7.26506,10.166271h-2.981339L11.436522,13.338465z"/>
         </svg>
       </a>
     </li>
