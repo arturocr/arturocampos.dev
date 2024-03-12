@@ -78,7 +78,7 @@ const NavLinks = () => {
         <a
           aria-label={t('resume')}
           className='flex items-center px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
-          href='https://resume.arturocampos.dev/'
+          href='https://arturocampos.dev/ResumeArturoCampos.pdf'
           onClick={onTap}
           rel='noopener noreferrer'
           target='_blank'
