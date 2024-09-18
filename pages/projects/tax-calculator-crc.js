@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
-import useSWR from 'swr';
+// import useSWR from 'swr';
 
 import DonateButton from '@/components/donate-button';
 import Heading from '@/components/heading';
 import Calculator from '@/components/tax-calculator';
 import Disclaimer from '@/components/tax-calculator/disclaimer';
-import ViewsCounter from '@/components/views-counter';
+// import ViewsCounter from '@/components/views-counter';
 import useTranslation from '@/i18n/useTranslation';
 import { siteBaseUrl } from '@/lib/constants';
 import { getData } from '@/lib/content';
-import fetcher from '@/lib/fetcher';
+// import fetcher from '@/lib/fetcher';
 import { getLocalizedPath } from '@/lib/util';
 
 const TaxCalculator = ({ config, salaryCurrencies, tracts }) => {
@@ -25,12 +25,12 @@ const TaxCalculator = ({ config, salaryCurrencies, tracts }) => {
     url: `${siteBaseUrl}/images/calculator-og.png`,
     alt: title,
   };
-  const { data } = useSWR(
-    `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
-    fetcher,
-    { revalidateOnFocus: false }
-  );
-  const views = data?.pageViews || 0;
+  // const { data } = useSWR(
+  //   `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
+  //   fetcher,
+  //   { revalidateOnFocus: false }
+  // );
+  // const views = data?.pageViews || 0;
 
   return (
     <>
@@ -60,7 +60,7 @@ const TaxCalculator = ({ config, salaryCurrencies, tracts }) => {
       <section>
         <Heading>{t('calculator')}</Heading>
         <div className='flex justify-end my-2 text-sm text-gray-600'>
-          <ViewsCounter loading={!data} views={views} />
+          {/* <ViewsCounter loading={!data} views={views} /> */}
         </div>
         <p className='my-3'>{t('calculator-description')}.</p>
         <Calculator

@@ -1,36 +1,36 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+// import useSWR from 'swr';
 
 import Heading from '@/components/heading';
 import PublishedDate from '@/components/published-date';
 import ReadMore from '@/components/read-more';
-import ViewsCounter from '@/components/views-counter';
-import fetcher from '@/lib/fetcher';
-import { getLocalizedPath } from '@/lib/util';
+// import ViewsCounter from '@/components/views-counter';
+// import fetcher from '@/lib/fetcher';
+// import { getLocalizedPath } from '@/lib/util';
 
 const BlogPost = ({ index, post }) => {
   const router = useRouter();
-  const { defaultLocale, locale } = router;
+  const { /*defaultLocale,*/ locale } = router;
   const blogPostPath = `/blog/${post.slug}`;
-  const localizedPath = getLocalizedPath({
-    defaultLocale,
-    locale,
-    asPath: blogPostPath,
-  });
-  const { data } = useSWR(
-    `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
-    fetcher
-  );
-  const views = data?.pageViews || 0;
+  // const localizedPath = getLocalizedPath({
+  //   defaultLocale,
+  //   locale,
+  //   asPath: blogPostPath,
+  // });
+  // const { data } = useSWR(
+  //   `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
+  //   fetcher
+  // );
+  // const views = data?.pageViews || 0;
 
   return (
     <article className='mb-4 border-b last:border-b-0'>
       <Heading linkTo={blogPostPath}>{post.frontMatter?.title}</Heading>
       <div className='flex justify-between my-2 text-sm text-gray-600'>
         <PublishedDate date={post.frontMatter?.date} locale={locale} />
-        <ViewsCounter loading={!data} views={views} />
+        {/* <ViewsCounter loading={!data} views={views} /> */}
       </div>
       {post?.frontMatter?.image ? (
         <Link href={blogPostPath}>

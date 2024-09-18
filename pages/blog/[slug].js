@@ -2,16 +2,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
-import useSWR from 'swr';
+// import useSWR from 'swr';
 
 import Heading from '@/components/heading';
 import PostSeo from '@/components/post-seo';
 import PublishedDate from '@/components/published-date';
-import ViewsCounter from '@/components/views-counter';
+// import ViewsCounter from '@/components/views-counter';
 import useTranslation from '@/i18n/useTranslation';
 import { siteBaseUrl } from '@/lib/constants';
 import { getAllPostSlugs, getContent } from '@/lib/content';
-import fetcher from '@/lib/fetcher';
+// import fetcher from '@/lib/fetcher';
 import { getComponents, getLocalizedPath } from '@/lib/util';
 
 const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
@@ -21,12 +21,12 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
   const components = getComponents(hydrationComponentsList);
   const { image: imagePath } = frontMatter;
   const localizedPath = getLocalizedPath(router);
-  const { data } = useSWR(
-    `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
-    fetcher,
-    { revalidateOnFocus: false }
-  );
-  const views = data?.pageViews || 0;
+  // const { data } = useSWR(
+  //   `/api/page-views?slug=${encodeURIComponent(localizedPath)}`,
+  //   fetcher,
+  //   { revalidateOnFocus: false }
+  // );
+  // const views = data?.pageViews || 0;
 
   return (
     <>
@@ -50,7 +50,7 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
         <Heading>{frontMatter.title}</Heading>
         <div className='flex justify-between my-2 text-sm text-gray-600'>
           <PublishedDate date={frontMatter.date} locale={locale} />
-          <ViewsCounter loading={!data} views={views} />
+          {/* <ViewsCounter loading={!data} views={views} /> */}
         </div>
         {imagePath ? (
           <picture className='block mx-auto my-3 max-w-media'>
