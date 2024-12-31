@@ -13,38 +13,38 @@
     {
       "id": "tract1",
       "from": 0,
-      "to": 929000,
+      "to": 922000,
       "percentage": 0
     },
     {
       "id": "tract2",
-      "from": 929000,
-      "to": 1363000,
+      "from": 922000,
+      "to": 1352000,
       "percentage": 10
     },
     {
       "id": "tract3",
-      "from": 1363000,
-      "to": 2392000,
+      "from": 1352000,
+      "to": 2373000,
       "percentage": 15
     },
     {
       "id": "tract4",
-      "from": 2392000,
-      "to": 4783000,
+      "from": 2373000,
+      "to": 4745000,
       "percentage": 20
     },
     {
       "id": "tract5",
-      "from": 4783000,
+      "from": 4745000,
       "to": null,
       "percentage": 25
     }
   ],
   "config": {
-    "periodBegins": "2024-01-01T00:00:00-06:00",
-    "periodEnds": "2024-12-31T11:59:59-06:00",
+    "periodBegins": "2025-01-01T00:00:00-06:00",
+    "periodEnds": "2025-12-31T11:59:59-06:00",
     "socialSecurityTax": 10.67,
-    "sourceLink": "https://www.elfinancierocr.com/economia-y-politica/estos-son-los-tramos-del-impuesto-sobre-la-renta/GABNT3T4LNATVHTOCTTSPTCCBY/story/"
+    "sourceLink": "https://www.hacienda.go.cr/docs/CP1032024.pdf"
   }
 }
