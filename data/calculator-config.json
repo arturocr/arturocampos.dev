@@ -13,38 +13,38 @@
     {
       "id": "tract1",
       "from": 0,
-      "to": 922000,
+      "to": 918000,
       "percentage": 0
     },
     {
       "id": "tract2",
-      "from": 922000,
-      "to": 1352000,
+      "from": 918000,
+      "to": 1347000,
       "percentage": 10
     },
     {
       "id": "tract3",
-      "from": 1352000,
-      "to": 2373000,
+      "from": 1347000,
+      "to": 2364000,
       "percentage": 15
     },
     {
       "id": "tract4",
-      "from": 2373000,
-      "to": 4745000,
+      "from": 2364000,
+      "to": 4727000,
       "percentage": 20
     },
     {
       "id": "tract5",
-      "from": 4745000,
+      "from": 4727000,
       "to": null,
       "percentage": 25
     }
   ],
   "config": {
-    "periodBegins": "2025-01-01T00:00:00-06:00",
-    "periodEnds": "2025-12-31T11:59:59-06:00",
-    "socialSecurityTax": 10.67,
-    "sourceLink": "https://www.hacienda.go.cr/docs/CP1032024.pdf"
+    "periodBegins": "2026-01-01T00:00:00-06:00",
+    "periodEnds": "2026-12-31T11:59:59-06:00",
+    "socialSecurityTax": 10.83,
+    "sourceLink": "https://www.monumental.co.cr/2025/12/07/salarios-superiores-a-los-%C2%A2918-000-pagaran-impuesto-sobre-la-renta-en-2026/"
   }
 }
