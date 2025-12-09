@@ -1,9 +1,7 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  mode: 'jit',
-  darkMode: false,
-  purge: ['./components/**/*.js', './data/**/*.{md,mdx}', './pages/**/*.js'],
+  content: ['./components/**/*.js', './data/**/*.{md,mdx}', './pages/**/*.js'],
   theme: {
     extend: {
       boxShadow: {

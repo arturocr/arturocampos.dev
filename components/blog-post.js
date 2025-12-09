@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 // import useSWR from 'swr';
@@ -33,19 +33,19 @@ const BlogPost = ({ index, post }) => {
         {/* <ViewsCounter loading={!data} views={views} /> */}
       </div>
       {post?.frontMatter?.image ? (
-        <Link href={blogPostPath}>
-          <a className='block mx-auto my-3 max-w-media'>
-            <Image
-              alt={post.frontMatter.title}
-              className='rounded-md'
-              height={1080}
-              layout='responsive'
-              priority={index < 2}
-              quality={70}
-              src={post.frontMatter.image}
-              width={1920}
-            />
-          </a>
+        <Link href={blogPostPath} className='block mx-auto my-3 max-w-media'>
+
+          <Image
+            alt={post.frontMatter.title}
+            className='rounded-md'
+            height={1080}
+            layout='responsive'
+            priority={index < 2}
+            quality={70}
+            src={post.frontMatter.image}
+            width={1920}
+          />
+
         </Link>
       ) : null}
       <div className='mt-2 mb-4'>

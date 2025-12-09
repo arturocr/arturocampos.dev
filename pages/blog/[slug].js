@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
 // import useSWR from 'swr';
@@ -36,12 +36,12 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }) => {
         {...frontMatter}
       />
       <div className='flex items-center px-2 py-1 mb-4 space-x-1 overflow-hidden text-xs font-medium text-gray-600 uppercase bg-gray-100 border border-gray-300 rounded-md'>
-        <Link href='/'>
-          <a className='inline-flex items-center'>{t('home')}</a>
+        <Link href='/' className='inline-flex items-center'>
+          {t('home')}
         </Link>
         <span>/</span>
-        <Link href='/blog'>
-          <a className='inline-flex items-center'>{t('blog')}</a>
+        <Link href='/blog' className='inline-flex items-center'>
+          {t('blog')}
         </Link>
         <span>/</span>
         <span className='truncate'>{frontMatter.title}</span>

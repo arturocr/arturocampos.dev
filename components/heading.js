@@ -9,8 +9,8 @@ const Heading = ({ className, children, linkTo }) => (
     )}
   >
     {linkTo ? (
-      <Link href={linkTo}>
-        <a className='gradient-text'>{children}</a>
+      <Link href={linkTo} className='gradient-text'>
+        {children}
       </Link>
     ) : (
       <span className='gradient-text'>{children}</span>

@@ -42,38 +42,35 @@ const NavLinks = () => {
             : 'h-0 border-transparent'
         )}
       >
-        <ActiveLink activeClassName='border-middle text-middle' href='/blog'>
-          <a
-            aria-label={t('blog')}
-            className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
-            onClick={onTap}
-            title={t('blog')}
-          >
-            {t('blog')}
-          </a>
+        <ActiveLink
+          activeClassName='border-middle text-middle'
+          href='/blog'
+          aria-label={t('blog')}
+          className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
+          onClick={onTap}
+          title={t('blog')}
+        >
+          <span>{t('blog')}</span>
         </ActiveLink>
         <ActiveLink
           activeClassName='border-middle text-middle'
           href='/projects'
+          aria-label={t('projects')}
+          className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
+          onClick={onTap}
+          title={t('projects')}
         >
-          <a
-            aria-label={t('projects')}
-            className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
-            onClick={onTap}
-            title={t('projects')}
-          >
-            {t('projects')}
-          </a>
+          <span>{t('projects')}</span>
         </ActiveLink>
-        <ActiveLink activeClassName='border-middle text-middle' href='/uses'>
-          <a
-            aria-label={`/${t('uses')}`}
-            className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
-            onClick={onTap}
-            title={`/${t('uses')}`}
-          >
-            {`/${t('uses')}`}
-          </a>
+        <ActiveLink
+          activeClassName='border-middle text-middle'
+          href='/uses'
+          aria-label={`/${t('uses')}`}
+          className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
+          onClick={onTap}
+          title={`/${t('uses')}`}
+        >
+          <span>{`/${t('uses')}`}</span>
         </ActiveLink>
         <a
           aria-label={t('resume')}

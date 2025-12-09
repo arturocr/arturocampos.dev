@@ -15,14 +15,14 @@ const Header = () => {
           <NavLinks />
         </div>
         <div className='flex justify-center w-2/12'>
-          <Link href='/'>
-            <a
-              aria-label={t('home')}
-              title={t('home')}
-              className='inline-block px-2 text-current'
-            >
-              <Logo className='w-10 stroke-2 group' />
-            </a>
+          <Link
+            href='/'
+            aria-label={t('home')}
+            title={t('home')}
+            className='inline-block px-2 text-current'>
+
+            <Logo className='w-10 stroke-2 group' />
+
           </Link>
         </div>
         <div className='flex justify-end w-5/12'>

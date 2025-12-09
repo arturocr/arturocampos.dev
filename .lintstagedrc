@@ -1,0 +1,3 @@
+{
+  "{pages,components}/**/*.{js}": "npm run lint:fix"
+}
