@@ -1,6 +1,11 @@
 @reference "./globals.css";
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px; /* offset for sticky header */
+  }
+
   hr {
     @apply border-gray-300;
   }
