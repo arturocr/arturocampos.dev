@@ -76,7 +76,7 @@ const generateSitemap = async () => {
     parser: 'html',
   });
 
-  // eslint-disable-next-line no-sync
+   
   writeFileSync('public/sitemap.xml', formatted);
 };
 
