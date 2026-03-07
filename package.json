@@ -7,9 +7,9 @@
     "dev:watch": "next-remote-watch ./posts",
     "build": "next build",
     "postbuild": "node ./scripts/generate-sitemap.mjs",
-    "prettier": "prettier --write \"**/*.{html,js,json,md,mdx,yml}\"",
+    "prettier": "prettier --write \"**/*.{html,js,ts,tsx,json,md,mdx,yml}\"",
     "start": "next start",
-    "lint": "eslint . --ext .js",
+    "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky"
   },
@@ -28,8 +28,12 @@
   "devDependencies": {
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
+    "@eslint/eslintrc": "^3.3.5",
     "@mdx-js/react": "^1.6.22",
     "@tailwindcss/forms": "^0.5.10",
+    "@types/node": "^25.3.5",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.22",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.0.8",
@@ -47,7 +51,8 @@
     "rehype": "^12.0.0",
     "remark-code-titles": "^0.1.2",
     "stylelint-config-recommended": "^6.0.0",
-    "tailwindcss": "^3.4.18"
+    "tailwindcss": "^3.4.18",
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
