@@ -54,7 +54,12 @@ export default async function UsesPage({
       <div>
         <MDXRemote
           source={content}
-          components={{ ...MDXComponents, Image: Image as any, Vimeo: Vimeo as any, YouTube: YouTube as any }}
+          components={{
+            ...MDXComponents,
+            Image: Image as any,
+            Vimeo: Vimeo as any,
+            YouTube: YouTube as any,
+          }}
           options={{ mdxOptions }}
         />
       </div>

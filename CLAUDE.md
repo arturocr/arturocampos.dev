@@ -10,13 +10,14 @@ Personal website and blog for Arturo Campos (arturocampos.dev). Built with Next.
 
 - `pnpm dev` - Start dev server
 - `pnpm build` - Production build (auto-generates sitemap via `postbuild`)
-- `pnpm lint` - ESLint
-- `pnpm lint:fix` - ESLint with auto-fix
-- `pnpm prettier` - Format all files
+- `pnpm lint` - oxlint
+- `pnpm lint:fix` - oxlint with auto-fix
+- `pnpm fmt` - Format all files with oxfmt
+- `pnpm fmt:check` - Check formatting without writing
 
 ## Commit Conventions
 
-Commits are enforced by commitlint (conventional commits) via Husky. Allowed types: `build`, `chore`, `ci`, `content`, `deps`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`. The subject must be all lowercase. lint-staged runs `lint:fix` on staged `.ts`/`.tsx` files in `components/`.
+Commits are enforced by commitlint (conventional commits) via Husky. Allowed types: `build`, `chore`, `ci`, `content`, `deps`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`. The subject must be all lowercase. lint-staged runs `oxlint --fix` and `oxfmt` on staged files.
 
 ## Code Style
 
@@ -51,6 +52,7 @@ API route: `app/api/page-views/route.ts`
 ### Locale Routing
 
 `proxy.ts` (Next.js middleware, exported as `proxy` not `middleware`) handles locale routing:
+
 - English: no URL prefix (`/blog`, `/uses`, etc.)
 - Spanish: `/es/` prefix (`/es/blog`, etc.)
 - Rewrites prefix-less paths → `/en/...` internally
@@ -61,6 +63,7 @@ The matcher regex excludes static files, API routes, and `_next/*`. Extensions u
 ### Content System
 
 Content is MDX files under `data/`, organized by type and locale:
+
 - `data/posts/{en,es}/` - Blog posts (frontmatter: `slug`, `date`, `title`, `description`)
 - `data/content/{en,es}/` - Static page content (index, uses)
 - `data/calculator-config.json` - Tax calculator configuration
@@ -77,9 +80,14 @@ import { mdxOptions } from '@/lib/mdx';
 
 <MDXRemote
   source={content}
-  components={{ ...MDXComponents, Image: Image as any, Vimeo: Vimeo as any, YouTube: YouTube as any }}
+  components={{
+    ...MDXComponents,
+    Image: Image as any,
+    Vimeo: Vimeo as any,
+    YouTube: YouTube as any,
+  }}
   options={{ mdxOptions }}
-/>
+/>;
 ```
 
 `Image`, `Vimeo`, and `YouTube` must be cast as `any` for the `components` prop. `rehype-raw` is configured with `passThrough` for MDX-specific node types to allow `mdx-prism` syntax highlighting to work alongside MDX JSX.
@@ -87,6 +95,7 @@ import { mdxOptions } from '@/lib/mdx';
 ### i18n
 
 Custom lightweight i18n (no library). Two helpers:
+
 - `i18n/getTranslation.ts` — `getTranslation(locale)` for server components
 - `i18n/useTranslation.ts` — `useTranslation()` hook (`'use client'`) using `useParams()` from `next/navigation`
 

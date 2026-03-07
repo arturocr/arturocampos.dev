@@ -24,7 +24,6 @@ const BlogPost = ({ index, locale, post }: BlogPostProps) => {
       </div>
       {post?.frontMatter?.image ? (
         <Link href={blogPostPath} className='block mx-auto my-3 max-w-media'>
-
           <Image
             alt={post.frontMatter.title}
             className='rounded-md'
@@ -35,13 +34,16 @@ const BlogPost = ({ index, locale, post }: BlogPostProps) => {
             src={post.frontMatter.image}
             width={1920}
           />
-
         </Link>
       ) : null}
       <div className='mt-2 mb-4'>
         {post.frontMatter.description && <p>{post.frontMatter.description}</p>}
         <p className='mt-2'>
-          <ReadMore locale={locale} title={post.frontMatter.title} url={blogPostPath} />
+          <ReadMore
+            locale={locale}
+            title={post.frontMatter.title}
+            url={blogPostPath}
+          />
         </p>
       </div>
     </article>

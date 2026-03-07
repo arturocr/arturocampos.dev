@@ -76,7 +76,6 @@ const generateSitemap = async () => {
     parser: 'html',
   });
 
-   
   writeFileSync('public/sitemap.xml', formatted);
 };
 

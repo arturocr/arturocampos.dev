@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/forms";
 
 @theme {
@@ -25,9 +25,11 @@
   --color-prism-string: #a3be8c;
 
   /* Typography */
-  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+  --font-mono:
+    Inconsolata, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   --text-7xl: 5rem;
 

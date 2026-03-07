@@ -17,7 +17,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const { frontMatter } = getContent({ slug: 'index', locale, type: 'content' });
+  const { frontMatter } = getContent({
+    slug: 'index',
+    locale,
+    type: 'content',
+  });
   const path = getLocalizedPath(locale, '/');
   const url = `${siteBaseUrl}${path}`;
   return {
@@ -48,7 +52,12 @@ export default async function Home({
       <Heading className='md:text-center!'>{frontMatter.title}</Heading>
       <MDXRemote
         source={content}
-        components={{ ...MDXComponents, Image: Image as any, Vimeo: Vimeo as any, YouTube: YouTube as any }}
+        components={{
+          ...MDXComponents,
+          Image: Image as any,
+          Vimeo: Vimeo as any,
+          YouTube: YouTube as any,
+        }}
         options={{ mdxOptions }}
       />
     </>

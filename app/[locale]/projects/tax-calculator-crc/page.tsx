@@ -31,7 +31,9 @@ export async function generateMetadata({
       description,
       url,
       locale,
-      images: [{ url: `${siteBaseUrl}/images/calculator-og.png`, alt: pageTitle }],
+      images: [
+        { url: `${siteBaseUrl}/images/calculator-og.png`, alt: pageTitle },
+      ],
     },
   };
 }
@@ -43,7 +45,9 @@ export default async function TaxCalculatorPage({
 }) {
   const { locale } = await params;
   const { t } = getTranslation(locale);
-  const calculatorConfig: CalculatorData = JSON.parse(getData('calculator-config.json'));
+  const calculatorConfig: CalculatorData = JSON.parse(
+    getData('calculator-config.json')
+  );
   const { config, salaryCurrencies, tracts } = calculatorConfig;
 
   const homePath = getLocalizedPath(locale, '/');

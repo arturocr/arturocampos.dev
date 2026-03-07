@@ -32,8 +32,8 @@ export default async function Projects({
         <article className='w-1/2 md:w-1/3'>
           <Link
             href={calcPath}
-            className='block p-4 m-1 font-bold leading-tight text-center transition-all border border-gray-200 rounded-md shadow-lg hover:shadow-xl'>
-
+            className='block p-4 m-1 font-bold leading-tight text-center transition-all border border-gray-200 rounded-md shadow-lg hover:shadow-xl'
+          >
             <Image
               alt={t('calculator')}
               className='rounded-md'
@@ -44,7 +44,6 @@ export default async function Projects({
               width={1134}
             />
             {t('calculator')}
-
           </Link>
         </article>
       </section>

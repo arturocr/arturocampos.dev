@@ -11,8 +11,10 @@ interface ReadMoreProps {
 const ReadMore = ({ locale, title, url }: ReadMoreProps) => {
   const { t } = getTranslation(locale);
   return (
-    <Link href={url} className='transition-colors text-middle hover:text-secondary'>
-
+    <Link
+      href={url}
+      className='transition-colors text-middle hover:text-secondary'
+    >
       <span className='sr-only'>{title}</span>
       <span className='not-sr-only'>{t('read-more')} </span>
       <svg
@@ -29,7 +31,6 @@ const ReadMore = ({ locale, title, url }: ReadMoreProps) => {
           d='M14 5l7 7m0 0l-7 7m7-7H3'
         />
       </svg>
-
     </Link>
   );
 };

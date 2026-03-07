@@ -17,7 +17,7 @@ const Tracts = ({ tracts }: TractsProps) => {
         {t('tracts')}*
       </caption>
       <tbody>
-        {tracts.map((tract) => (
+        {tracts.map(tract => (
           <tr
             key={tract.id}
             className={clsx(

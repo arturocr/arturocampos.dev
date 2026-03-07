@@ -19,7 +19,7 @@ const getAllFileNames = (
     return [];
   }
   const files = fs.readdirSync(directoryPath);
-  files.forEach((file) => {
+  files.forEach(file => {
     if (fs.statSync(`${directoryPath}/${file}`).isDirectory()) {
       filesList = getAllFileNames(`${directoryPath}/${file}`, filesList);
     } else {
@@ -28,7 +28,7 @@ const getAllFileNames = (
   });
 
   // Filter to include only *.mdx files
-  const filteredList = filesList.filter((file) => file.includes('.mdx'));
+  const filteredList = filesList.filter(file => file.includes('.mdx'));
   return filteredList;
 };
 
@@ -51,7 +51,7 @@ export const getSortedPostsData = ({
   if (!fs.existsSync(directory)) {
     return [];
   }
-  const allPostsData: PostData[] = fs.readdirSync(directory).map((p) => {
+  const allPostsData: PostData[] = fs.readdirSync(directory).map(p => {
     const content = fs.readFileSync(path.join(directory, p), 'utf8');
     const frontMatter = matter(content).data;
     return {
@@ -75,7 +75,7 @@ export const getSortedPostsData = ({
 export const getAllPostSlugs = (): { locale: string; slug: string }[] => {
   const fileNames = getAllFileNames(directories.posts);
 
-  return fileNames.map((fileName) => ({
+  return fileNames.map(fileName => ({
     slug: fileName.split('/')[1].replace(/\.mdx$/, ''),
     locale: fileName.split('/')[0],
   }));
@@ -83,7 +83,11 @@ export const getAllPostSlugs = (): { locale: string; slug: string }[] => {
 
 // Return the raw content and front matter of a file given a slug,
 // a locale and a type ('content' or 'posts')
-export const getContent = ({ slug, locale, type }: GetContentParams): ContentResult => {
+export const getContent = ({
+  slug,
+  locale,
+  type,
+}: GetContentParams): ContentResult => {
   const fullPath = path.join(`${directories[type]}/${locale}`, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf-8');
   const { data, content } = matter(fileContents);

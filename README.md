@@ -51,14 +51,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Commands
 
-| Command         | Description                               |
-|-----------------|-------------------------------------------|
-| `pnpm dev`      | Start the development server              |
-| `pnpm build`    | Production build (also generates sitemap) |
-| `pnpm start`    | Start the production server               |
-| `pnpm lint`     | Run ESLint                                |
-| `pnpm lint:fix` | Run ESLint with auto-fix                  |
-| `pnpm prettier` | Format all files with Prettier            |
+| Command          | Description                               |
+| ---------------- | ----------------------------------------- |
+| `pnpm dev`       | Start the development server              |
+| `pnpm build`     | Production build (also generates sitemap) |
+| `pnpm start`     | Start the production server               |
+| `pnpm lint`      | Run oxlint                                |
+| `pnpm lint:fix`  | Run oxlint with auto-fix                  |
+| `pnpm fmt`       | Format all files with oxfmt               |
+| `pnpm fmt:check` | Check formatting without writing          |
 
 ## Content
 

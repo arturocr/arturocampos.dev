@@ -1,3 +1,4 @@
 {
-  "{pages,components}/**/*.{ts,tsx}": "npm run lint:fix"
+  "**/*.{ts,tsx,js,jsx}": ["oxlint --fix", "oxfmt"],
+  "**/*.{json,md,mdx,css,html,yml}": "oxfmt"
 }

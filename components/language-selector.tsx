@@ -18,7 +18,9 @@ const LanguageSelector = () => {
     if (selectedLocale === 'es') {
       newPath = pathname.startsWith('/es') ? pathname : `/es${pathname}`;
     } else {
-      newPath = pathname.startsWith('/es') ? pathname.slice(3) || '/' : pathname;
+      newPath = pathname.startsWith('/es')
+        ? pathname.slice(3) || '/'
+        : pathname;
     }
     router.push(newPath);
   };
@@ -31,7 +33,7 @@ const LanguageSelector = () => {
         value={currentLocale}
         title={t('language')}
       >
-        {['en', 'es'].map((loc) => (
+        {['en', 'es'].map(loc => (
           <option key={loc} value={loc}>
             {t(`locale-${loc}`)}
           </option>

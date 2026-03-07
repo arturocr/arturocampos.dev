@@ -21,7 +21,11 @@ interface CalculatorProps {
   tracts: Tract[];
 }
 
-const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }: CalculatorProps) => {
+const Calculator = ({
+  salaryCurrencies,
+  socialSecurityTax,
+  tracts,
+}: CalculatorProps) => {
   const { t } = useTranslation();
   const [calculatorState, setCalculatorState] = useState<CalculatorState>({
     exchangeRate: 0,
@@ -31,7 +35,7 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }: CalculatorP
 
   useSWR('https://tipodecambio.paginasweb.cr/api', fetcher, {
     revalidateOnFocus: false,
-    onSuccess: (data) => {
+    onSuccess: data => {
       setCalculatorState({
         ...calculatorState,
         exchangeRate: (data as { compra: number }).compra,
@@ -58,7 +62,7 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }: CalculatorP
     return (tractDiff * tract.percentage) / 100;
   };
 
-  const tractsWithDeductible: TractWithDeductible[] = tracts.map((tract) => ({
+  const tractsWithDeductible: TractWithDeductible[] = tracts.map(tract => ({
     ...tract,
     deductible: tractDeductible(tract),
   }));
@@ -70,7 +74,7 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }: CalculatorP
 
   const getCurrencySymbol = (): string =>
     salaryCurrencies.find(
-      (currency) => currency.value === calculatorState.salaryCurrency
+      currency => currency.value === calculatorState.salaryCurrency
     )!.symbol;
 
   return (
@@ -117,7 +121,7 @@ const Calculator = ({ salaryCurrencies, socialSecurityTax, tracts }: CalculatorP
                   })
                 }
               >
-                {salaryCurrencies.map((salaryCurrency) => (
+                {salaryCurrencies.map(salaryCurrency => (
                   <option
                     key={salaryCurrency.value}
                     value={salaryCurrency.value}

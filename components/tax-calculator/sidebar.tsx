@@ -7,7 +7,11 @@ interface SidebarProps {
   socialSecurityTax: number;
 }
 
-const Sidebar = ({ salary, rentDeductions, socialSecurityTax }: SidebarProps) => {
+const Sidebar = ({
+  salary,
+  rentDeductions,
+  socialSecurityTax,
+}: SidebarProps) => {
   const { t } = useTranslation();
   const socialSecurityDeduction = (salary * socialSecurityTax) / 100;
   const totalDeductions = rentDeductions + socialSecurityDeduction;

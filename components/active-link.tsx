@@ -12,7 +12,11 @@ interface ActiveLinkProps extends LinkProps {
   [key: string]: unknown;
 }
 
-const ActiveLink = ({ children, activeClassName, ...props }: ActiveLinkProps) => {
+const ActiveLink = ({
+  children,
+  activeClassName,
+  ...props
+}: ActiveLinkProps) => {
   const pathname = usePathname();
   const child = Children.only(children);
   const childClassName = child.props.className || '';
