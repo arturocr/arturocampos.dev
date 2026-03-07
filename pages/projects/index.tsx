@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import Heading from '@/components/heading';
@@ -20,8 +20,8 @@ const Projects = () => {
               alt={t('calculator')}
               className='rounded-md'
               height={1134}
-              layout='responsive'
               priority
+              style={{ width: '100%', height: 'auto' }}
               src='/images/calculator-logo.png'
               width={1134}
             />

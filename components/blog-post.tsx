@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -30,9 +30,9 @@ const BlogPost = ({ index, post }: BlogPostProps) => {
             alt={post.frontMatter.title}
             className='rounded-md'
             height={1080}
-            layout='responsive'
             priority={index < 2}
-            quality={70}
+            quality={75}
+            style={{ width: '100%', height: 'auto' }}
             src={post.frontMatter.image}
             width={1920}
           />

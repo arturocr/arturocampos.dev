@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { MDXRemote } from 'next-mdx-remote';
 import type { GetStaticPathsResult, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
@@ -44,17 +44,17 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }: InferGetStati
           <PublishedDate date={frontMatter.date} locale={locale} />
         </div>
         {imagePath ? (
-          <picture className='block mx-auto my-3 max-w-media'>
+          <div className='block mx-auto my-3 max-w-media'>
             <Image
               alt={frontMatter.title}
               className='rounded-md'
               height={1080}
-              layout='responsive'
               priority
               src={imagePath}
+              style={{ width: '100%', height: 'auto' }}
               width={1920}
             />
-          </picture>
+          </div>
         ) : null}
         <div>
           <MDXRemote {...mdxSource} components={components as unknown as Record<string, React.ReactNode>} />

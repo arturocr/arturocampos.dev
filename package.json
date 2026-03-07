@@ -18,11 +18,11 @@
     "googleapis": "^89.0.0",
     "lite-vimeo-embed": "^0.3.0",
     "lite-youtube-embed": "^0.3.4",
-    "next": "^14.2.33",
+    "next": "^16.1.6",
     "next-seo": "^4.28.1",
-    "react": "^18.3.1",
+    "react": "^19.2.4",
     "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-dom": "^18.3.1",
+    "react-dom": "^19.2.4",
     "swr": "^2.4.1"
   },
   "devDependencies": {

@@ -1,7 +1,4 @@
 module.exports = {
-  experimental: {
-    esmExternals: false,
-  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],
