@@ -36,7 +36,7 @@ module.exports = {
 // https://securityheaders.com
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.vimeo.com *.twitter.com *.googletagmanager.com *.google-analytics.com *.googlesyndication.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.vimeo.com *.twitter.com *.googletagmanager.com *.google-analytics.com *.googlesyndication.com *.adtrafficquality.google;
   child-src *.youtube.com *.vimeo.com *.google.com *.twitter.com *.googlesyndication.com *.doubleclick.net;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data:;
