@@ -1,6 +1,10 @@
 @reference "./globals.css";
 
 @layer base {
+  hr {
+    @apply border-gray-300;
+  }
+
   /* Override of main container */
   #__next {
     @apply relative z-0 flex flex-col items-stretch min-h-screen bg-white;
