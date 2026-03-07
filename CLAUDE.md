@@ -16,7 +16,7 @@ Personal website and blog for Arturo Campos (arturocampos.dev). Built with Next.
 
 ## Commit Conventions
 
-Commits are enforced by commitlint (conventional commits) via Husky. Allowed types: `build`, `chore`, `ci`, `content`, `deps`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`. lint-staged runs `lint:fix` on staged `.ts`/`.tsx` files in `components/`.
+Commits are enforced by commitlint (conventional commits) via Husky. Allowed types: `build`, `chore`, `ci`, `content`, `deps`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`. The subject must be all lowercase. lint-staged runs `lint:fix` on staged `.ts`/`.tsx` files in `components/`.
 
 ## Code Style
 
