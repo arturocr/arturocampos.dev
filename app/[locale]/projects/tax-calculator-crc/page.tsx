@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
+import AdUnit from '@/components/ad-unit';
 import DonateButton from '@/components/donate-button';
 import Heading from '@/components/heading';
 import PostViews from '@/components/post-views';
@@ -75,6 +76,7 @@ export default async function TaxCalculatorPage({
           />
         </div>
         <p className='my-3'>{t('calculator-description')}.</p>
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_CALCULATOR_SLOT!} />
         <Calculator
           salaryCurrencies={salaryCurrencies}
           socialSecurityTax={config.socialSecurityTax}

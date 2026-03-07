@@ -9,5 +9,5 @@
   "trailingComma": "es5",
   "useTabs": false,
   "sortPackageJson": false,
-  "ignorePatterns": [".mdx-data", ".next", ".now", ".vercel"]
+  "ignorePatterns": [".mdx-data", ".next", ".now", ".vercel", "next-env.d.ts"]
 }

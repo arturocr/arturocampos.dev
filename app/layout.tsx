@@ -67,6 +67,13 @@ export default function RootLayout({
           href='https://fonts.googleapis.com/css2?family=Inconsolata&display=optional'
           rel='stylesheet'
         />
+        {process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID}`}
+            crossOrigin='anonymous'
+          />
+        )}
       </head>
       <body className='text-gray-700 body-font selection:bg-secondary/40 md:before:fixed md:before:z-50 md:before:p-2 md:before:top-0 md:before:left-0 md:before:right-0 md:before:bg-gradient-to-r md:before:from-secondary md:before:via-middle md:before:to-accent md:after:fixed md:after:top-0 md:after:bottom-0 md:after:left-0 md:after:z-50 md:after:p-2 md:after:bg-secondary relative z-0 flex flex-col items-stretch min-h-screen bg-white'>
         {children}
