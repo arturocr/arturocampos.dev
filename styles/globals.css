@@ -2,10 +2,12 @@
 @plugin "@tailwindcss/forms";
 
 @theme {
-  /* Breakpoints */
+  /* Breakpoints — mirrors the original v3 screens config (no xl/2xl) */
   --breakpoint-sm: 600px;
   --breakpoint-md: 700px;
   --breakpoint-lg: 800px;
+  --breakpoint-xl: initial;
+  --breakpoint-2xl: initial;
 
   /* Colors */
   --color-accent: #efa25c;
