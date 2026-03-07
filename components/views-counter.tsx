@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import useTranslation from '@/i18n/useTranslation';
 

@@ -1,8 +1,12 @@
-import useTranslation from '@/i18n/useTranslation';
+import { getTranslation } from '@/i18n/getTranslation';
 import ContactLinks from '@/components/contact-links';
 
-const Footer = () => {
-  const { t } = useTranslation();
+interface FooterProps {
+  locale: string;
+}
+
+const Footer = ({ locale }: FooterProps) => {
+  const { t } = getTranslation(locale);
   return (
     <footer className='w-full pt-3 pb-2 text-sm font-light text-center text-gray-600 bg-gray-100 md:pb-6'>
       <p className='my-0'>

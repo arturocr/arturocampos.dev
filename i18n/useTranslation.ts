@@ -1,21 +1,21 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useParams } from 'next/navigation';
 
 import Strings from './strings';
 
 const useTranslation = () => {
-  const router = useRouter();
-  const { locale, defaultLocale } = router;
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
 
   const t = (key: string): string => {
     try {
-      const loc = locale || 'en';
-      const defLoc = defaultLocale || 'en';
-      if (!Strings[loc][key]) {
-        console.warn(`No string '${key}' for locale '${loc}'`);
-        return key;
+      if (!Strings[locale]?.[key]) {
+        console.warn(`No string '${key}' for locale '${locale}'`);
+        return Strings['en']?.[key] || key;
       }
-      return Strings[loc][key] || Strings[defLoc][key] || key;
-    } catch (error) {
+      return Strings[locale][key];
+    } catch {
       return key;
     }
   };

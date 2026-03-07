@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, type ChangeEvent } from 'react';
 import clsx from 'clsx';
 import useSWR from 'swr';

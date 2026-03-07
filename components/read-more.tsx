@@ -1,14 +1,15 @@
 import Link from 'next/link';
 
-import useTranslation from '@/i18n/useTranslation';
+import { getTranslation } from '@/i18n/getTranslation';
 
 interface ReadMoreProps {
+  locale: string;
   title: string;
   url: string;
 }
 
-const ReadMore = ({ title, url }: ReadMoreProps) => {
-  const { t } = useTranslation();
+const ReadMore = ({ locale, title, url }: ReadMoreProps) => {
+  const { t } = getTranslation(locale);
   return (
     <Link href={url} className='transition-colors text-middle hover:text-secondary'>
 

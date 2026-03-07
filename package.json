@@ -19,9 +19,7 @@
     "lite-vimeo-embed": "^0.3.0",
     "lite-youtube-embed": "^0.3.4",
     "next": "^16.1.6",
-    "next-seo": "^7.2.0",
     "react": "^19.2.4",
-    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^19.2.4",
     "swr": "^2.4.1"
   },

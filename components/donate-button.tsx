@@ -1,7 +1,11 @@
-import useTranslation from '@/i18n/useTranslation';
+import { getTranslation } from '@/i18n/getTranslation';
 
-const DonateButton = () => {
-  const { t } = useTranslation();
+interface DonateButtonProps {
+  locale: string;
+}
+
+const DonateButton = ({ locale }: DonateButtonProps) => {
+  const { t } = getTranslation(locale);
   const title = t('donate');
   const donationProse = t('donation-prose');
   return (

@@ -1,5 +1,3 @@
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 export interface FrontMatter {
   title: string;
   date: string;
@@ -23,11 +21,8 @@ export interface GetContentParams {
 }
 
 export interface ContentResult {
-  props: {
-    mdxSource: MDXRemoteSerializeResult;
-    frontMatter: FrontMatter;
-    hydrationComponentsList: string[];
-  };
+  content: string;
+  frontMatter: FrontMatter;
 }
 
 export interface SalaryCurrency {
@@ -63,12 +58,6 @@ export interface CalculatorState {
   exchangeRate: number;
   salary: number;
   salaryCurrency: string;
-}
-
-export interface LocalizedPathParams {
-  defaultLocale?: string;
-  locale?: string;
-  asPath: string;
 }
 
 export interface GTagEventParams {

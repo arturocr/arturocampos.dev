@@ -1,11 +1,29 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
 import Heading from '@/components/heading';
-import useTranslation from '@/i18n/useTranslation';
+import { getTranslation } from '@/i18n/getTranslation';
+import { getLocalizedPath } from '@/lib/util';
 
-const Projects = () => {
-  const { t } = useTranslation();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { t } = getTranslation(locale);
+  return { title: t('projects') };
+}
+
+export default async function Projects({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const { t } = getTranslation(locale);
+  const calcPath = getLocalizedPath(locale, '/projects/tax-calculator-crc');
 
   return (
     <>
@@ -13,7 +31,7 @@ const Projects = () => {
       <section className='flex flex-wrap my-4'>
         <article className='w-1/2 md:w-1/3'>
           <Link
-            href='/projects/tax-calculator-crc'
+            href={calcPath}
             className='block p-4 m-1 font-bold leading-tight text-center transition-all border border-gray-200 rounded-md shadow-lg hover:shadow-xl'>
 
             <Image
@@ -32,6 +50,4 @@ const Projects = () => {
       </section>
     </>
   );
-};
-
-export default Projects;
+}

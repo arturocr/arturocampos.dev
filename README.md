@@ -1,31 +1,41 @@
 # arturocampos.dev
 
-Personal website and blog built with Next.js, TypeScript, and Tailwind CSS. Content is served in two languages — English and Spanish — using Next.js built-in i18n routing.
+Personal website and blog built with Next.js, TypeScript, and Tailwind CSS. Content is served in two languages — English and Spanish — using a custom i18n routing setup.
 
 ## Tech Stack
 
-- **[Next.js](https://nextjs.org)** — Pages Router with built-in i18n routing and image optimization
+- **[Next.js](https://nextjs.org)** — App Router with image optimization
 - **[React](https://react.dev)** — v19
 - **[TypeScript](https://www.typescriptlang.org)** — strict mode
 - **[Tailwind CSS](https://tailwindcss.com)** — v4 with CSS-based theme configuration
 - **[MDX](https://mdxjs.com)** via [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote) — for blog posts and page content
-- **[next-seo](https://github.com/garmeeh/next-seo)** — SEO meta tags and Open Graph
 - **[Vercel](https://vercel.com)** — deployment
 
 ## Project Structure
 
 ```
-├── components/        # React components
+├── app/
+│   ├── layout.tsx             # Root layout (metadata, GA scripts, CSS imports)
+│   └── [locale]/              # Locale-aware pages
+│       ├── layout.tsx         # Locale layout (Header + Footer)
+│       ├── page.tsx           # Home
+│       ├── blog/
+│       │   ├── page.tsx       # Blog listing
+│       │   └── [slug]/page.tsx# Individual blog post
+│       ├── projects/
+│       │   ├── page.tsx       # Projects listing
+│       │   └── tax-calculator-crc/page.tsx
+│       └── uses/page.tsx
+├── components/                # React components (server and client)
 ├── data/
-│   ├── content/       # Static page content (index, uses) in {en,es}/
-│   ├── posts/         # Blog posts as MDX files in {en,es}/
+│   ├── content/               # Static page content (index, uses) in {en,es}/
+│   ├── posts/                 # Blog posts as MDX files in {en,es}/
 │   └── calculator-config.json
-├── i18n/              # Translations, strings, and useTranslation hook
-├── lib/               # Helper functions and content utilities
-├── pages/             # Next.js pages (static, dynamic, and API routes)
-├── public/            # Static assets
-├── scripts/           # Build-time scripts (sitemap generator)
-└── styles/            # Global CSS (Tailwind theme, Prism syntax highlighting)
+├── i18n/                      # Translations and locale helpers
+├── lib/                       # Content utilities and helper functions
+├── proxy.ts                   # Locale routing middleware
+├── public/                    # Static assets
+└── styles/                    # Global CSS (Tailwind theme, Prism syntax highlighting)
 ```
 
 ## Getting Started
@@ -41,14 +51,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Commands
 
-| Command         | Description                              |
-|-----------------|------------------------------------------|
-| `pnpm dev`      | Start the development server             |
-| `pnpm build`    | Production build (also generates sitemap)|
-| `pnpm start`    | Start the production server              |
-| `pnpm lint`     | Run ESLint                               |
-| `pnpm lint:fix` | Run ESLint with auto-fix                 |
-| `pnpm prettier` | Format all files with Prettier           |
+| Command         | Description                               |
+|-----------------|-------------------------------------------|
+| `pnpm dev`      | Start the development server              |
+| `pnpm build`    | Production build (also generates sitemap) |
+| `pnpm start`    | Start the production server               |
+| `pnpm lint`     | Run ESLint                                |
+| `pnpm lint:fix` | Run ESLint with auto-fix                  |
+| `pnpm prettier` | Format all files with Prettier            |
 
 ## Content
 
@@ -70,11 +80,14 @@ description: A short description of the post.
 ---
 ```
 
-MDX files can embed `<Image>`, `<YouTube>`, and `<Vimeo>` components directly.
+MDX files can embed `<Image>`, `<YouTube>`, and `<Vimeo>` components directly without importing them. Use string attributes for numeric values (e.g. `width="160"` not `width={160}`), as JSX expressions are stripped by the MDX renderer for security.
 
 ## Internationalization
 
-The site supports English (`en`, default) and Spanish (`es`). Locale routing is handled by Next.js — Spanish pages are served at `/es/*`. UI strings live in `i18n/strings.ts` and are accessed via the `useTranslation` hook.
+The site supports English (`en`, default) and Spanish (`es`). `proxy.ts` handles locale routing — Spanish pages are served at `/es/*`, English pages at the root. UI strings live in `i18n/strings.ts` and are accessed via:
+
+- `getTranslation(locale)` — server components
+- `useTranslation()` hook — client components
 
 ## Commit Conventions
 

@@ -1,14 +1,14 @@
-import useTranslation from '@/i18n/useTranslation';
+import { getTranslation } from '@/i18n/getTranslation';
 import { shortDateOptions } from '@/lib/constants';
 import type { CalculatorConfig } from '../../types';
 
 interface DisclaimerProps {
   config: CalculatorConfig;
-  locale?: string;
+  locale: string;
 }
 
 const Disclaimer = ({ config, locale }: DisclaimerProps) => {
-  const { t } = useTranslation();
+  const { t } = getTranslation(locale);
   const { periodBegins, periodEnds, sourceLink } = config;
 
   return (

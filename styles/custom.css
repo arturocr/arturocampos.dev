@@ -5,11 +5,6 @@
     @apply border-gray-300;
   }
 
-  /* Override of main container */
-  #__next {
-    @apply relative z-0 flex flex-col items-stretch min-h-screen bg-white;
-  }
-
   /* Fixes for lite-youtube web component */
   lite-youtube::before {
     @apply box-content;

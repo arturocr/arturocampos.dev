@@ -1,6 +1,8 @@
+'use client';
+
 import React, { Children, type ReactElement } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import type { LinkProps } from 'next/link';
 
 interface ActiveLinkProps extends LinkProps {
@@ -11,10 +13,10 @@ interface ActiveLinkProps extends LinkProps {
 }
 
 const ActiveLink = ({ children, activeClassName, ...props }: ActiveLinkProps) => {
-  const { asPath } = useRouter();
+  const pathname = usePathname();
   const child = Children.only(children);
   const childClassName = child.props.className || '';
-  const className = asPath.startsWith(props.href as string)
+  const className = pathname.startsWith(props.href as string)
     ? `${childClassName} ${activeClassName}`.trim()
     : childClassName;
 

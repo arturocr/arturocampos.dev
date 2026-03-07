@@ -1,13 +1,8 @@
 import fs from 'fs';
 import matter from 'gray-matter';
-import mdxPrism from 'mdx-prism';
-import rehypeRaw from 'rehype-raw';
 import path from 'path';
-import { serialize } from 'next-mdx-remote/serialize';
-import remarkCodeTitles from 'remark-code-titles';
 
-import { getComponents, getHydrationComponentsList } from '@/lib/util';
-import type { GetContentParams, ContentResult, PostData } from '../types';
+import type { ContentResult, GetContentParams, PostData } from '../types';
 
 // Directories used to read markdown files
 const directories: Record<string, string> = {
@@ -77,51 +72,24 @@ export const getSortedPostsData = ({
 };
 
 // Returns the list of slugs with corresponding locales
-export const getAllPostSlugs = (): {
-  params: { slug: string };
-  locale: string;
-}[] => {
-  // Get the list of *.mdx files in the posts directory
+export const getAllPostSlugs = (): { locale: string; slug: string }[] => {
   const fileNames = getAllFileNames(directories.posts);
 
-  // Splits the locale and filename/slug parts of ['en/post-name.mdx']
-  // and return them as parameters for later use in Next
   return fileNames.map((fileName) => ({
-    params: {
-      slug: fileName.split('/')[1].replace(/\.mdx$/, ''),
-    },
+    slug: fileName.split('/')[1].replace(/\.mdx$/, ''),
     locale: fileName.split('/')[0],
   }));
 };
 
-// Return the parsed content of a file given a slug,
+// Return the raw content and front matter of a file given a slug,
 // a locale and a type ('content' or 'posts')
-export const getContent = async ({
-  slug,
-  locale,
-  type,
-}: GetContentParams): Promise<ContentResult> => {
+export const getContent = ({ slug, locale, type }: GetContentParams): ContentResult => {
   const fullPath = path.join(`${directories[type]}/${locale}`, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf-8');
   const { data, content } = matter(fileContents);
-  // List of components found inside the MDX
-  const hydrationComponentsList = getHydrationComponentsList(content);
-  const mdxSource = await serialize(content, {
-    blockJS: false,
-    mdxOptions: {
-      remarkPlugins: [remarkCodeTitles],
-      rehypePlugins: [
-        [rehypeRaw, { passThrough: ['mdxJsxFlowElement', 'mdxJsxTextElement', 'mdxjsEsm', 'mdxFlowExpression', 'mdxTextExpression'] }],
-        mdxPrism,
-      ],
-    },
-  });
 
   return {
-    props: {
-      mdxSource,
-      frontMatter: data as ContentResult['props']['frontMatter'],
-      hydrationComponentsList,
-    },
+    content,
+    frontMatter: data as ContentResult['frontMatter'],
   };
 };

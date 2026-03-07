@@ -1,16 +1,26 @@
+'use client';
+
 import { useState } from 'react';
 import clsx from 'clsx';
+import { useParams } from 'next/navigation';
 
 import ActiveLink from '@/components/active-link';
 import useTranslation from '@/i18n/useTranslation';
+import { getLocalizedPath } from '@/lib/util';
 
 const NavLinks = () => {
   const { t } = useTranslation();
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onTap = () => {
     setIsMenuOpen(false);
   };
+
+  const blogPath = getLocalizedPath(locale, '/blog');
+  const projectsPath = getLocalizedPath(locale, '/projects');
+  const usesPath = getLocalizedPath(locale, '/uses');
 
   return (
     <>
@@ -44,7 +54,7 @@ const NavLinks = () => {
       >
         <ActiveLink
           activeClassName='border-middle text-middle'
-          href='/blog'
+          href={blogPath}
           aria-label={t('blog')}
           className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
           onClick={onTap}
@@ -54,7 +64,7 @@ const NavLinks = () => {
         </ActiveLink>
         <ActiveLink
           activeClassName='border-middle text-middle'
-          href='/projects'
+          href={projectsPath}
           aria-label={t('projects')}
           className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
           onClick={onTap}
@@ -64,7 +74,7 @@ const NavLinks = () => {
         </ActiveLink>
         <ActiveLink
           activeClassName='border-middle text-middle'
-          href='/uses'
+          href={usesPath}
           aria-label={`/${t('uses')}`}
           className='px-1 font-semibold tracking-tighter text-current uppercase transition-colors border-l-4 border-transparent lg:border-l-0 lg:border-b-4 lg:pt-1 hover:border-secondary'
           onClick={onTap}

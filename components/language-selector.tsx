@@ -1,20 +1,26 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { usePathname, useRouter } from 'next/navigation';
 import type { ChangeEvent } from 'react';
 
 import useTranslation from '@/i18n/useTranslation';
 
 const LanguageSelector = () => {
-  const {
-    locale,
-    locales,
-    asPath: currentRoute,
-    push: navigateTo,
-  } = useRouter();
+  const pathname = usePathname();
+  const router = useRouter();
   const { t } = useTranslation();
+
+  const currentLocale = pathname.startsWith('/es') ? 'es' : 'en';
 
   const navigate = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedLocale = e.target.value;
-    navigateTo(currentRoute, currentRoute, { locale: selectedLocale });
+    let newPath: string;
+    if (selectedLocale === 'es') {
+      newPath = pathname.startsWith('/es') ? pathname : `/es${pathname}`;
+    } else {
+      newPath = pathname.startsWith('/es') ? pathname.slice(3) || '/' : pathname;
+    }
+    router.push(newPath);
   };
 
   return (
@@ -22,10 +28,10 @@ const LanguageSelector = () => {
       <select
         className='transition-colors bg-transparent border-gray-600 rounded-full appearance-none cursor-pointer pr-7 hover:border-secondary focus:ring-0 focus:border-secondary'
         onChange={navigate}
-        defaultValue={locale}
+        value={currentLocale}
         title={t('language')}
       >
-        {locales?.map((loc) => (
+        {['en', 'es'].map((loc) => (
           <option key={loc} value={loc}>
             {t(`locale-${loc}`)}
           </option>

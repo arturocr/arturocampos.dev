@@ -1,28 +1,25 @@
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef } from 'react';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const CustomLink = (props: ComponentPropsWithoutRef<'a'>) => {
   const href = props.href;
-  const isAnchorLink = href?.startsWith('#');
   const isInternalLink = href?.startsWith('/');
+  const isAnchorLink = href?.startsWith('#');
 
   if (isInternalLink) {
     return (
       <Link
         href={href!}
         className='transition-colors text-middle hover:text-secondary'
-        {...props}>
-
-      </Link>
+        {...props}
+      ></Link>
     );
   }
 
   if (isAnchorLink) {
     return (
-      <AnchorLink
+      <a
         className='transition-colors text-middle hover:text-secondary'
-        offset={() => 120} // Offset of sticky header
         href={href!}
         {...props}
       />

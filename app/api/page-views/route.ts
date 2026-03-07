@@ -1,9 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 import { google } from 'googleapis';
 
-const pageViewsAPI = async (req: NextApiRequest, res: NextApiResponse) => {
-  const startDate = (req.query.startDate as string) || '2020-01-01';
-  const slug = req.query.slug as string | undefined;
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const startDate = searchParams.get('startDate') || '2020-01-01';
+  const slug = searchParams.get('slug') || undefined;
 
   try {
     const auth = new google.auth.GoogleAuth({
@@ -31,12 +32,8 @@ const pageViewsAPI = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const pageViews = response?.data?.totalsForAllResults?.['ga:pageviews'];
 
-    return res.status(200).json({
-      pageViews,
-    });
+    return Response.json({ pageViews });
   } catch (err) {
-    return res.status(500).json({ error: (err as Error).message });
+    return Response.json({ error: (err as Error).message }, { status: 500 });
   }
-};
-
-export default pageViewsAPI;
+}

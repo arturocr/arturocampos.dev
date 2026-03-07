@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect } from 'react';
 import 'lite-youtube-embed/src/lite-yt-embed.css';
 
