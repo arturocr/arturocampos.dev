@@ -1,0 +1,216 @@
+---
+author: Arturo Campos
+title: Actualizando el contador de visitas a GA4 y el App Router de Next.js
+slug: updating-page-views-to-ga4
+date: '2026-03-07T12:00:00-06:00'
+description: Google cerró Universal Analytics en 2024. Así actualicé el contador de visitas de este sitio para usar la API de datos de GA4 y el App Router de Next.js.
+image: /images/blog/updating-page-views-to-ga4.png
+---
+
+A finales de 2020 escribí [un artículo](/es/blog/nextjs-with-google-analytics) sobre cómo configuré Google Analytics en este sitio y lo usé como fuente de datos para el contador de visitas que se muestra en cada entrada del blog. Funcionó bien — por un tiempo.
+
+Avanzando a 2024, dos cosas rompieron ese enfoque al mismo tiempo:
+
+1. **Google cerró Universal Analytics (GA3).** El endpoint al que llamaba el código anterior (`analytics.data.ga.get`) dejó de responder. Google dio suficiente aviso, pero la API simplemente ya no existe.
+2. **Migré el sitio del Pages Router de Next.js al App Router.** La antigua ruta API en `pages/api/page-views.ts` y la llamada a `useSWR` dentro de `pages/blog/[slug].tsx` ya no existían de la misma forma.
+
+Este artículo documenta exactamente qué cambié para que todo volviera a funcionar.
+
+---
+
+## Qué cambió del lado de Google
+
+Las propiedades de GA3 (Universal Analytics) tenían un **View ID** con el formato `ga:XXXXXXXXX`. Las consultas iban a la Reporting API v3 mediante `google.analytics({ version: 'v3' })`.
+
+Las propiedades de GA4 funcionan diferente:
+
+- El identificador es un **Property ID** numérico, referenciado como `properties/XXXXXXXXX`.
+- Las consultas van a la **Analytics Data API v1beta** mediante `google.analyticsdata({ version: 'v1beta' })`.
+- El método es `properties.runReport` en lugar de `data.ga.get`.
+- La métrica es `screenPageViews` en lugar de `ga:pageviews`.
+- Los filtros son objetos estructurados (`dimensionFilter`) en lugar de cadenas de texto.
+
+El paquete npm `googleapis` ya incluye la API de datos de GA4, por lo que no fue necesario instalar nada nuevo — solo un cambio de código.
+
+### Dar acceso a la cuenta de servicio en la propiedad GA4
+
+Las credenciales de la cuenta de servicio (client email, client ID, private key) se mantienen iguales. Lo que sí necesita actualizarse es el **acceso a la propiedad**:
+
+1. En GA4, ir a **Admin** → **Property access management**.
+2. Hacer clic en `+` → **Add users**.
+3. Ingresar el `client_email` de la cuenta de servicio → Rol: **Viewer** → Agregar.
+
+El acceso de la propiedad Universal Analytics anterior no se transfiere automáticamente a GA4.
+
+---
+
+## Actualizando la ruta API
+
+El sitio ahora usa el App Router, por lo que la ruta vive en `app/api/page-views/route.ts` como un Route Handler. La configuración de autenticación es idéntica; solo cambia la llamada a Analytics.
+
+**Antes (GA3, Pages Router):**
+
+```typescript:pages/api/page-views.ts
+const analytics = google.analytics({ auth, version: 'v3' });
+
+const response = await analytics.data.ga.get({
+  'end-date': 'today',
+  ids: `ga:${process.env.GOOGLE_ANALYTICS_VIEW_ID}`,
+  metrics: 'ga:pageviews',
+  dimensions: 'ga:pagePath',
+  filters: `ga:pagePath==${slug}`,
+  'start-date': startDate,
+});
+
+const pageViews = response?.data?.totalsForAllResults?.['ga:pageviews'];
+```
+
+**Después (GA4, App Router):**
+
+```typescript:app/api/page-views/route.ts
+import { NextRequest } from 'next/server';
+import { google } from 'googleapis';
+
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const startDate = searchParams.get('startDate') || '2020-01-01';
+  const slug = searchParams.get('slug') || undefined;
+
+  try {
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        client_id: process.env.GOOGLE_CLIENT_ID,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
+      },
+      scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+    });
+
+    const analyticsData = google.analyticsdata({ auth, version: 'v1beta' });
+
+    const response = await analyticsData.properties.runReport({
+      property: `properties/${process.env.GOOGLE_ANALYTICS_PROPERTY_ID}`,
+      requestBody: {
+        dateRanges: [{ startDate, endDate: 'today' }],
+        metrics: [{ name: 'screenPageViews' }],
+        metricAggregations: ['TOTAL'],
+        ...(slug
+          ? {
+              dimensions: [{ name: 'pagePath' }],
+              dimensionFilter: {
+                filter: {
+                  fieldName: 'pagePath',
+                  stringFilter: {
+                    value: slug,
+                    matchType: 'EXACT',
+                  },
+                },
+              },
+            }
+          : {}),
+      },
+    });
+
+    const pageViews = response?.data?.totals?.[0]?.metricValues?.[0]?.value;
+
+    return Response.json({ pageViews });
+  } catch (err) {
+    return Response.json({ error: (err as Error).message }, { status: 500 });
+  }
+}
+```
+
+Algunas observaciones:
+
+- `metricAggregations: ['TOTAL']` le indica a GA4 que incluya totales agregados en la respuesta, de modo que puedo leer el total de visitas directamente desde `totals[0].metricValues[0].value` en lugar de sumar filas individuales.
+- El `dimensionFilter` reemplaza el parámetro `filters` basado en cadenas de texto del código anterior.
+- `Response.json()` es el estándar de la Web API — los Route Handlers del App Router lo usan en lugar de `res.status(200).json()`.
+- La nueva variable de entorno es `GOOGLE_ANALYTICS_PROPERTY_ID` (solo el número, sin el prefijo `properties/` en el archivo `.env`).
+
+---
+
+## Actualizando el lado del cliente
+
+En el setup anterior con Pages Router, la llamada a `useSWR` vivía directamente dentro de `pages/blog/[slug].tsx`, un componente de página renderizado en el cliente. En el App Router, `app/[locale]/blog/[slug]/page.tsx` es un React Server Component — los hooks no pueden ejecutarse ahí.
+
+La solución es un pequeño componente cliente dedicado:
+
+```tsx:components/post-views.tsx
+'use client';
+
+import useSWR from 'swr';
+import ViewsCounter from '@/components/views-counter';
+
+const fetcher = (url: string) => fetch(url).then(res => res.json());
+
+const PostViews = ({ path }: { path: string }) => {
+  const { data } = useSWR(
+    `/api/page-views?slug=${encodeURIComponent(path)}`,
+    fetcher,
+    { revalidateOnFocus: false }
+  );
+
+  return <ViewsCounter loading={!data} views={Number(data?.pageViews) || 0} />;
+};
+
+export default PostViews;
+```
+
+`PostViews` se inserta en el componente servidor como una hoja — el servidor renderiza la estructura de la página y le cede al cliente únicamente el contador de visitas. El componente `ViewsCounter` se encarga de la presentación y aplica formato de número según el locale mediante `toLocaleString`:
+
+```tsx:components/views-counter.tsx
+'use client';
+
+import clsx from 'clsx';
+import useTranslation from '@/i18n/useTranslation';
+
+const ViewsCounter = ({ loading = false, views }: { loading?: boolean; views: number }) => {
+  const { locale, t } = useTranslation();
+
+  return (
+    <span className={clsx('transition-opacity', loading && 'opacity-0')}>
+      {views.toLocaleString(locale)} {views !== 1 ? t('views') : t('view')}
+    </span>
+  );
+};
+
+export default ViewsCounter;
+```
+
+Usar el locale de `useParams()` garantiza que el número se formatee correctamente según el idioma — `1,234` en inglés y `1.234` en español.
+
+Finalmente, el componente servidor le pasa la ruta localizada a `PostViews`:
+
+```tsx:app/[locale]/blog/[slug]/page.tsx
+<div className='flex justify-between my-2 text-sm text-gray-600'>
+  <PublishedDate date={frontMatter.date} locale={locale} />
+  <PostViews path={getLocalizedPath(locale, `/blog/${slug}`)} />
+</div>
+```
+
+---
+
+## Variables de entorno
+
+Reemplazar el antiguo `GOOGLE_ANALYTICS_VIEW_ID` con el Property ID de GA4:
+
+```shell:.env.local
+# Eliminar esto:
+# GOOGLE_ANALYTICS_VIEW_ID=123456789
+
+# Agregar esto:
+GOOGLE_ANALYTICS_PROPERTY_ID=123456789
+
+# Estas se mantienen igual:
+GOOGLE_CLIENT_EMAIL=service-account@project.iam.gserviceaccount.com
+GOOGLE_CLIENT_ID=1234567890
+GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+```
+
+El Property ID de GA4 se encuentra en GA4 Admin → **Property Settings** → **Property ID**. Es un número simple — no incluir el prefijo `properties/` en el archivo de entorno.
+
+---
+
+Eso es todo el proceso de actualización. La idea central del artículo original se mantiene: usar el cliente Node.js de las APIs de Google para obtener las visitas del lado del servidor y enviarlas a un componente cliente. El trabajo principal fue adaptarse a la forma diferente de consulta de la GA4 Data API y respetar el límite de RSC introducido por el App Router.
+
+Gracias por leerme. ⚡️
