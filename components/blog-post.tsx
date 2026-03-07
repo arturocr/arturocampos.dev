@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Heading from '@/components/heading';
+import PostViews from '@/components/post-views';
 import PublishedDate from '@/components/published-date';
 import ReadMore from '@/components/read-more';
 import { getLocalizedPath } from '@/lib/util';
@@ -21,6 +22,7 @@ const BlogPost = ({ index, locale, post }: BlogPostProps) => {
       <Heading linkTo={blogPostPath}>{post.frontMatter?.title}</Heading>
       <div className='flex justify-between my-2 text-sm text-gray-600'>
         <PublishedDate date={post.frontMatter?.date} locale={locale} />
+        <PostViews path={blogPostPath} />
       </div>
       {post?.frontMatter?.image ? (
         <Link href={blogPostPath} className='block mx-auto my-3 max-w-media'>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import Heading from '@/components/heading';
+import PostViews from '@/components/post-views';
 import { getTranslation } from '@/i18n/getTranslation';
 import { getLocalizedPath } from '@/lib/util';
 
@@ -28,6 +29,9 @@ export default async function Projects({
   return (
     <>
       <Heading>{t('projects')}</Heading>
+      <div className='flex justify-end my-2 text-sm text-gray-600'>
+        <PostViews path={getLocalizedPath(locale, '/projects')} />
+      </div>
       <section className='flex flex-wrap my-4'>
         <article className='w-1/2 md:w-1/3'>
           <Link

@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import Heading from '@/components/heading';
 import MDXComponents from '@/components/mdx-components';
+import PostViews from '@/components/post-views';
 import Vimeo from '@/components/vimeo';
 import YouTube from '@/components/youtube';
 import { getTranslation } from '@/i18n/getTranslation';
@@ -50,7 +51,9 @@ export default async function UsesPage({
   return (
     <>
       <Heading>{frontMatter.title}</Heading>
-      <div className='flex justify-end my-2 text-sm text-gray-600'></div>
+      <div className='flex justify-end my-2 text-sm text-gray-600'>
+        <PostViews path={getLocalizedPath(locale, '/uses')} />
+      </div>
       <div>
         <MDXRemote
           source={content}

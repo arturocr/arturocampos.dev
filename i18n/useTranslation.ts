@@ -20,7 +20,7 @@ const useTranslation = () => {
     }
   };
 
-  return { t };
+  return { locale, t };
 };
 
 export default useTranslation;

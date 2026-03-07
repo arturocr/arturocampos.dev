@@ -16,21 +16,32 @@ export async function GET(request: NextRequest) {
       scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
     });
 
-    const analytics = google.analytics({
-      auth,
-      version: 'v3',
+    const analyticsData = google.analyticsdata({ auth, version: 'v1beta' });
+
+    const response = await analyticsData.properties.runReport({
+      property: `properties/${process.env.GOOGLE_ANALYTICS_PROPERTY_ID}`,
+      requestBody: {
+        dateRanges: [{ startDate, endDate: 'today' }],
+        metrics: [{ name: 'screenPageViews' }],
+        metricAggregations: ['TOTAL'],
+        ...(slug
+          ? {
+              dimensions: [{ name: 'pagePath' }],
+              dimensionFilter: {
+                filter: {
+                  fieldName: 'pagePath',
+                  stringFilter: {
+                    value: slug,
+                    matchType: 'EXACT',
+                  },
+                },
+              },
+            }
+          : {}),
+      },
     });
 
-    const response = await analytics.data.ga.get({
-      'end-date': 'today',
-      ids: 'ga:200655605',
-      metrics: 'ga:pageviews',
-      dimensions: 'ga:pagePath',
-      ...(slug ? { filters: `ga:pagePath==${slug}` } : {}),
-      'start-date': startDate,
-    });
-
-    const pageViews = response?.data?.totalsForAllResults?.['ga:pageviews'];
+    const pageViews = response?.data?.totals?.[0]?.metricValues?.[0]?.value;
 
     return Response.json({ pageViews });
   } catch (err) {

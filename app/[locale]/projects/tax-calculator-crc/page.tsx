@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 
 import DonateButton from '@/components/donate-button';
 import Heading from '@/components/heading';
+import PostViews from '@/components/post-views';
 import Calculator from '@/components/tax-calculator';
 import Disclaimer from '@/components/tax-calculator/disclaimer';
 import { getTranslation } from '@/i18n/getTranslation';
@@ -68,7 +69,11 @@ export default async function TaxCalculatorPage({
       </div>
       <section>
         <Heading>{t('calculator')}</Heading>
-        <div className='flex justify-end my-2 text-sm text-gray-600'></div>
+        <div className='flex justify-end my-2 text-sm text-gray-600'>
+          <PostViews
+            path={getLocalizedPath(locale, '/projects/tax-calculator-crc')}
+          />
+        </div>
         <p className='my-3'>{t('calculator-description')}.</p>
         <Calculator
           salaryCurrencies={salaryCurrencies}

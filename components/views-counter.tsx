@@ -9,11 +9,11 @@ interface ViewsCounterProps {
 }
 
 const ViewsCounter = ({ loading = false, views }: ViewsCounterProps) => {
-  const { t } = useTranslation();
+  const { locale, t } = useTranslation();
 
   return (
     <span className={clsx('transition-opacity', loading && 'opacity-0')}>
-      {views} {views !== 1 ? t('views') : t('view')}
+      {views.toLocaleString(locale)} {views !== 1 ? t('views') : t('view')}
     </span>
   );
 };

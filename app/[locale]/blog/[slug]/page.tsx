@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import Heading from '@/components/heading';
 import MDXComponents from '@/components/mdx-components';
+import PostViews from '@/components/post-views';
 import PublishedDate from '@/components/published-date';
 import Vimeo from '@/components/vimeo';
 import YouTube from '@/components/youtube';
@@ -85,6 +86,7 @@ export default async function PostPage({
         <Heading>{frontMatter!.title}</Heading>
         <div className='flex justify-between my-2 text-sm text-gray-600'>
           <PublishedDate date={frontMatter!.date} locale={locale} />
+          <PostViews path={getLocalizedPath(locale, `/blog/${slug}`)} />
         </div>
         {imagePath ? (
           <div className='block mx-auto my-3 max-w-media'>
