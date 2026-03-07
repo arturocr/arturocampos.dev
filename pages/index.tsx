@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import { generateNextSeo } from 'next-seo/pages';
 import { MDXRemote } from 'next-mdx-remote';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 
@@ -17,17 +18,19 @@ const Home = ({ mdxSource, frontMatter, hydrationComponentsList }: InferGetStati
 
   return (
     <>
-      <NextSeo
-        canonical={`${siteBaseUrl}${localizedPath}`}
-        description={description}
-        openGraph={{
+      <Head>
+        {generateNextSeo({
+          canonical: `${siteBaseUrl}${localizedPath}`,
           description,
-          locale,
-          url: `${siteBaseUrl}${localizedPath}`,
-        }}
-      />
-      <Heading className='md:text-center'>{frontMatter.title}</Heading>
-      <MDXRemote {...mdxSource} components={components as unknown as Record<string, React.ReactNode>} />
+          openGraph: {
+            description,
+            locale,
+            url: `${siteBaseUrl}${localizedPath}`,
+          },
+        })}
+      </Head>
+      <Heading className='md:text-center!'>{frontMatter.title}</Heading>
+      <MDXRemote {...mdxSource} components={components} />
     </>
   );
 };

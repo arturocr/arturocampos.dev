@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import { generateNextSeo } from 'next-seo/pages';
 import { MDXRemote } from 'next-mdx-remote';
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 
@@ -19,17 +20,19 @@ const Uses = ({ mdxSource, frontMatter }: InferGetStaticPropsType<typeof getStat
 
   return (
     <>
-      <NextSeo
-        title={title}
-        canonical={`${siteBaseUrl}${localizedPath}`}
-        description={description}
-        openGraph={{
-          url: `${siteBaseUrl}${localizedPath}`,
-          locale,
+      <Head>
+        {generateNextSeo({
           title,
+          canonical: `${siteBaseUrl}${localizedPath}`,
           description,
-        }}
-      />
+          openGraph: {
+            url: `${siteBaseUrl}${localizedPath}`,
+            locale,
+            title,
+            description,
+          },
+        })}
+      </Head>
       <Heading>{frontMatter.title}</Heading>
       <div className='flex justify-end my-2 text-sm text-gray-600'>
       </div>

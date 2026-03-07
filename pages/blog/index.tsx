@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import { generateNextSeo } from 'next-seo/pages';
 import type { GetStaticPropsContext } from 'next';
 
 import BlogPost from '@/components/blog-post';
@@ -34,17 +35,19 @@ const Blog = ({ allPostsData = [] }: BlogProps) => {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        canonical={`${siteBaseUrl}${localizedPath}`}
-        description={description}
-        openGraph={{
-          url: `${siteBaseUrl}${localizedPath}`,
-          locale,
+      <Head>
+        {generateNextSeo({
           title,
+          canonical: `${siteBaseUrl}${localizedPath}`,
           description,
-        }}
-      />
+          openGraph: {
+            url: `${siteBaseUrl}${localizedPath}`,
+            locale,
+            title,
+            description,
+          },
+        })}
+      </Head>
       {pagedPosts.length ? (
         pagedPosts.map((post, index) => (
           <BlogPost

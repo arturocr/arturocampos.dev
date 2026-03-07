@@ -1,6 +1,10 @@
-import resolveConfig from 'tailwindcss/resolveConfig';
-import themeConfig from '../tailwind.config';
+// tailwindcss/resolveConfig was removed in v4.
+// These values are sourced directly from tailwind.config.js.
+const theme = {
+  colors: {
+    white: '#ffffff',
+    primary: '#3f425e',
+  },
+};
 
-const { theme } = resolveConfig(themeConfig);
-
-export default theme!;
+export default theme;

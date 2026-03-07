@@ -21,7 +21,7 @@ const Tracts = ({ tracts }: TractsProps) => {
           <tr
             key={tract.id}
             className={clsx(
-              'border-t border-b transition-colors',
+              'border-t border-b border-gray-200 transition-colors',
               tract.deductible > 0 && 'bg-opacity-30 bg-prism-regex'
             )}
           >

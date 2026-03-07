@@ -1,76 +1,80 @@
-/* Override of main container */
-#__next {
-  @apply relative z-0 flex flex-col items-stretch min-h-screen bg-white;
-}
+@reference "./globals.css";
 
-/* Fixes for lite-youtube web component */
-lite-youtube::before {
-  @apply box-content;
-}
-lite-youtube > iframe {
-  @apply absolute top-0 left-0 w-full h-full;
-}
-lite-youtube.lyt-activated {
-  cursor: unset;
-}
-lite-youtube.lyt-activated::before,
-lite-youtube.lyt-activated > .lty-playbtn {
-  @apply opacity-0 pointer-events-none;
-}
+@layer base {
+  /* Override of main container */
+  #__next {
+    @apply relative z-0 flex flex-col items-stretch min-h-screen bg-white;
+  }
 
-/* Global shared styles */
-a {
-  @apply transition-colors text-middle hover:text-secondary;
-}
+  /* Fixes for lite-youtube web component */
+  lite-youtube::before {
+    @apply box-content;
+  }
+  lite-youtube > iframe {
+    @apply absolute top-0 left-0 w-full h-full;
+  }
+  lite-youtube.lyt-activated {
+    cursor: unset;
+  }
+  lite-youtube.lyt-activated::before,
+  lite-youtube.lyt-activated > .lty-playbtn {
+    @apply opacity-0 pointer-events-none;
+  }
 
-blockquote > * {
-  @apply relative;
-}
-blockquote::before,
-blockquote::after {
-  @apply absolute z-0 font-mono font-bold text-gray-400 opacity-75 pointer-events-none text-7xl;
-}
-blockquote::before {
-  @apply top-0 left-0 leading-none;
-  content: '\201C';
-}
-blockquote::after {
-  @apply bottom-0 right-0 -mb-2 leading-3;
-  content: '\201D';
-}
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+  /* Global shared styles */
+  a {
+    @apply transition-colors text-middle hover:text-secondary;
+  }
 
-/* Hamburguer Icon */
-#menu-icon > path {
-  @apply stroke-current stroke-4;
-  fill: none;
-  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
-    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-#menu-icon > path:nth-child(1) {
-  stroke-dasharray: 60 207;
-}
-#menu-icon > path:nth-child(2) {
-  stroke-dasharray: 60 60;
-}
-#menu-icon > path:nth-child(3) {
-  stroke-dasharray: 60 207;
-}
-#menu-icon.opened > path:nth-child(1) {
-  stroke-dasharray: 90 207;
-  stroke-dashoffset: -134;
-}
-#menu-icon.opened > path:nth-child(2) {
-  stroke-dasharray: 1 60;
-  stroke-dashoffset: -30;
-}
-#menu-icon.opened > path:nth-child(3) {
-  stroke-dasharray: 90 207;
-  stroke-dashoffset: -134;
+  blockquote > * {
+    @apply relative;
+  }
+  blockquote::before,
+  blockquote::after {
+    @apply absolute z-0 font-mono font-bold text-gray-400 opacity-75 pointer-events-none text-7xl;
+  }
+  blockquote::before {
+    @apply top-0 left-0 leading-none;
+    content: '\201C';
+  }
+  blockquote::after {
+    @apply bottom-0 right-0 -mb-2 leading-3;
+    content: '\201D';
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hamburguer Icon */
+  #menu-icon > path {
+    @apply stroke-current stroke-4;
+    fill: none;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+      stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  #menu-icon > path:nth-child(1) {
+    stroke-dasharray: 60 207;
+  }
+  #menu-icon > path:nth-child(2) {
+    stroke-dasharray: 60 60;
+  }
+  #menu-icon > path:nth-child(3) {
+    stroke-dasharray: 60 207;
+  }
+  #menu-icon.opened > path:nth-child(1) {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+  }
+  #menu-icon.opened > path:nth-child(2) {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+  }
+  #menu-icon.opened > path:nth-child(3) {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+  }
 }
 
 /* Gradient text */

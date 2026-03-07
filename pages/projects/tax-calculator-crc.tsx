@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import { generateNextSeo } from 'next-seo/pages';
 
 import DonateButton from '@/components/donate-button';
 import Heading from '@/components/heading';
@@ -28,18 +29,20 @@ const TaxCalculator = ({ config, salaryCurrencies, tracts }: TaxCalculatorProps)
 
   return (
     <>
-      <NextSeo
-        title={title}
-        canonical={`${siteBaseUrl}${localizedPath}`}
-        description={description}
-        openGraph={{
-          url: `${siteBaseUrl}${localizedPath}`,
-          locale,
+      <Head>
+        {generateNextSeo({
           title,
+          canonical: `${siteBaseUrl}${localizedPath}`,
           description,
-          images: [featuredImage],
-        }}
-      />
+          openGraph: {
+            url: `${siteBaseUrl}${localizedPath}`,
+            locale,
+            title,
+            description,
+            images: [featuredImage],
+          },
+        })}
+      </Head>
       <div className='flex items-center px-2 py-1 mb-4 space-x-1 overflow-hidden text-xs font-medium text-gray-600 uppercase bg-gray-100 border border-gray-300 rounded-md'>
         <Link href='/' className='inline-flex items-center'>
           {t('home')}

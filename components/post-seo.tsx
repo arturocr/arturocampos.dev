@@ -1,4 +1,6 @@
-import { NextSeo, ArticleJsonLd } from 'next-seo';
+import Head from 'next/head';
+import { ArticleJsonLd } from 'next-seo';
+import { generateNextSeo } from 'next-seo/pages';
 import { siteBaseUrl } from '@/lib/constants';
 
 interface PostSeoProps {
@@ -28,31 +30,32 @@ const PostSeo = ({
 
   return (
     <>
-      <NextSeo
-        title={`${title} – Arturo Campos`}
-        description={description}
-        canonical={url}
-        openGraph={{
-          type: 'article',
-          article: {
-            publishedTime: publishedAt,
+      <Head>
+        {generateNextSeo({
+          title: `${title} – Arturo Campos`,
+          description,
+          canonical: url,
+          openGraph: {
+            type: 'article',
+            article: {
+              publishedTime: publishedAt,
+            },
+            locale,
+            url,
+            title,
+            description,
+            images: [featuredImage],
           },
-          locale,
-          url,
-          title,
-          description: description,
-          images: [featuredImage],
-        }}
-      />
+        })}
+      </Head>
       <ArticleJsonLd
-        authorName={author || ''}
+        headline={title}
+        author={author || ''}
         dateModified={publishedAt}
         datePublished={publishedAt}
         description={description || ''}
-        images={[featuredImage.url]}
-        publisherLogo='/android-chrome-192x192.png'
-        publisherName={author || ''}
-        title={title}
+        image={featuredImage.url}
+        publisher={author || ''}
         url={url}
       />
     </>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { MDXProvider } from '@mdx-js/react';
 import Head from 'next/head';
-import { DefaultSeo } from 'next-seo';
+import { generateDefaultSeo } from 'next-seo/pages';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
@@ -35,7 +35,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
         <meta content={(theme as unknown as Record<string, Record<string, string>>).colors.primary} name='msapplication-TileColor' />
         <meta content='/browserconfig.xml' name='msapplication-config' />
       </Head>
-      <DefaultSeo {...SEO} />
+      <Head>{generateDefaultSeo(SEO)}</Head>
       <Header />
       <div className='flex flex-1 md:before:fixed md:before:z-50 md:before:p-2 md:before:top-0 md:before:bottom-0 md:before:right-0 md:before:bg-accent md:after:fixed md:after:z-50 md:after:p-2 md:after:right-0 md:after:left-0 md:after:bg-gradient-to-r md:after:from-secondary md:after:via-middle md:after:to-accent md:after:bottom-0'>
         <main className='container relative flex-1 px-4 py-5 mx-auto'>

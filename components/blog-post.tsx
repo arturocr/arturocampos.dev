@@ -18,7 +18,7 @@ const BlogPost = ({ index, post }: BlogPostProps) => {
   const blogPostPath = `/blog/${post.slug}`;
 
   return (
-    <article className='mb-4 border-b last:border-b-0'>
+    <article className='mb-4 border-b border-gray-200 last:border-b-0'>
       <Heading linkTo={blogPostPath}>{post.frontMatter?.title}</Heading>
       <div className='flex justify-between my-2 text-sm text-gray-600'>
         <PublishedDate date={post.frontMatter?.date} locale={locale} />

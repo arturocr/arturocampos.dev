@@ -5,7 +5,7 @@ const DonateButton = () => {
   const title = t('donate');
   const donationProse = t('donation-prose');
   return (
-    <div className='pt-6 mt-8 text-sm font-light border-t border-dashed'>
+    <div className='pt-6 mt-8 text-sm font-light border-t border-dashed border-gray-200'>
       <p>
         {donationProse}
         <span aria-label={t('coffee')} className='ml-1 align-middle' role='img'>

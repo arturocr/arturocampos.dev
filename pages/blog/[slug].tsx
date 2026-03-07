@@ -57,7 +57,7 @@ const Post = ({ mdxSource, frontMatter, hydrationComponentsList }: InferGetStati
           </div>
         ) : null}
         <div>
-          <MDXRemote {...mdxSource} components={components as unknown as Record<string, React.ReactNode>} />
+          <MDXRemote {...mdxSource} components={components} />
         </div>
       </article>
     </>

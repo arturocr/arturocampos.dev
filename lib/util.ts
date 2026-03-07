@@ -2,14 +2,15 @@ import Image from 'next/image';
 
 import Vimeo from '@/components/vimeo';
 import YouTube from '@/components/youtube';
+import type { ComponentType } from 'react';
 import type { LocalizedPathParams } from '../types';
+
+type AnyComponent = ComponentType<any>;  
 
 const checkForComponentUse = (tagName: string, str: string): boolean => {
   const exp = new RegExp(`<${tagName}`);
   return exp.test(str);
 };
-
-type AnyComponent = React.ComponentType<any>;
 
 // Contains the list of components that can be embed in MDX files
 const components: Record<string, AnyComponent> = {

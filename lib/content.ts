@@ -1,6 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import mdxPrism from 'mdx-prism';
+import rehypeRaw from 'rehype-raw';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkCodeTitles from 'remark-code-titles';
@@ -106,9 +107,13 @@ export const getContent = async ({
   // List of components found inside the MDX
   const hydrationComponentsList = getHydrationComponentsList(content);
   const mdxSource = await serialize(content, {
+    blockJS: false,
     mdxOptions: {
       remarkPlugins: [remarkCodeTitles],
-      rehypePlugins: [mdxPrism],
+      rehypePlugins: [
+        [rehypeRaw, { passThrough: ['mdxJsxFlowElement', 'mdxJsxTextElement', 'mdxjsEsm', 'mdxFlowExpression', 'mdxTextExpression'] }],
+        mdxPrism,
+      ],
     },
   });
 

@@ -20,19 +20,19 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }: SidebarProps) =>
           {t('details')}
         </caption>
         <tbody>
-          <tr className='border-t'>
+          <tr className='border-t border-gray-200'>
             <td className='py-2'>{t('gross-salary')}:</td>
             <td className='pr-2 font-mono text-right'>
               {currencyFormatter(salary)}
             </td>
           </tr>
-          <tr className='border-t'>
+          <tr className='border-t border-gray-200'>
             <td className='py-2'>{t('income-taxes')}:</td>
             <td className='pr-2 font-mono text-right'>
               {currencyFormatter(rentDeductions)}
             </td>
           </tr>
-          <tr className='border-t'>
+          <tr className='border-t border-gray-200'>
             <td className='py-2'>
               {t('ccss')} (
               <span className='p-1 font-mono bg-gray-200 rounded'>
@@ -44,7 +44,7 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }: SidebarProps) =>
               {currencyFormatter(socialSecurityDeduction)}
             </td>
           </tr>
-          <tr className='border-t'>
+          <tr className='border-t border-gray-200'>
             <td className='py-2'>
               <strong>{t('total-deductions')}:</strong>
             </td>
@@ -52,7 +52,7 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }: SidebarProps) =>
               {currencyFormatter(totalDeductions)}
             </td>
           </tr>
-          <tr className='border-t'>
+          <tr className='border-t border-gray-200'>
             <td className='py-2'>
               <strong>{t('net-salary')}:</strong>
             </td>
@@ -60,7 +60,7 @@ const Sidebar = ({ salary, rentDeductions, socialSecurityTax }: SidebarProps) =>
               {currencyFormatter(salary - totalDeductions)}
             </td>
           </tr>
-          <tr className='border-t border-b'>
+          <tr className='border-t border-b border-gray-200'>
             <td className='py-2'>
               <strong>{t('percentage-retained')}:</strong>
             </td>
