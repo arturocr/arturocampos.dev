@@ -1,3 +1,41 @@
 @import "tailwindcss";
-@config "../tailwind.config.js";
 @plugin "@tailwindcss/forms";
+
+@theme {
+  /* Breakpoints */
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 700px;
+  --breakpoint-lg: 800px;
+
+  /* Colors */
+  --color-accent: #efa25c;
+  --color-middle: #f04770;
+  --color-primary: #3f425e;
+  --color-secondary: #00bad9;
+  --color-prism-base: #f8f8f2;
+  --color-prism-bg: #2e3440;
+  --color-prism-comment: #636f88;
+  --color-prism-function: #88c0d0;
+  --color-prism-marker: #384153;
+  --color-prism-number: #b48ead;
+  --color-prism-punctuation: #81a1c1;
+  --color-prism-regex: #ebcb8b;
+  --color-prism-string: #a3be8c;
+
+  /* Typography */
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  --text-7xl: 5rem;
+
+  /* Shadows */
+  --shadow-prism-marker: inset 5px 0px 0 0px #ebcb8b;
+
+  /* Stroke widths */
+  --stroke-width-4: 4;
+}
+
+@utility max-w-media {
+  max-width: 768px;
+}
