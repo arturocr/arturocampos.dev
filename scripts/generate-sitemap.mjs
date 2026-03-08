@@ -19,7 +19,13 @@ const generateSitemap = async () => {
   });
 
   // Static app routes (one entry per locale)
-  const staticRoutes = ['', '/blog', '/projects', '/projects/tax-calculator-crc', '/uses'];
+  const staticRoutes = [
+    '',
+    '/blog',
+    '/projects',
+    '/projects/tax-calculator-crc',
+    '/uses',
+  ];
   const pagesRoutes = staticRoutes.flatMap(route =>
     locales.map(locale =>
       locale === defaultLocale ? route || '/' : `/${locale}${route}`

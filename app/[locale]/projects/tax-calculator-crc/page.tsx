@@ -57,7 +57,7 @@ export default async function TaxCalculatorPage({
 
   return (
     <>
-      <div className='flex items-center px-2 py-1 mb-4 space-x-1 overflow-hidden text-xs font-medium text-gray-600 uppercase bg-gray-100 border border-gray-300 rounded-md'>
+      <div className='flex overflow-hidden items-center px-2 py-1 mb-4 space-x-1 text-xs font-medium text-gray-600 uppercase bg-gray-100 rounded-md border border-gray-300'>
         <Link href={homePath} className='inline-flex items-center'>
           {t('home')}
         </Link>
@@ -76,12 +76,12 @@ export default async function TaxCalculatorPage({
           />
         </div>
         <p className='my-3'>{t('calculator-description')}.</p>
-        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_CALCULATOR_SLOT!} />
         <Calculator
           salaryCurrencies={salaryCurrencies}
           socialSecurityTax={config.socialSecurityTax}
           tracts={tracts}
         />
+        <AdUnit slot={process.env.NEXT_PUBLIC_ADSENSE_CALCULATOR_SLOT!} />
         <Disclaimer config={config} locale={locale} />
         <DonateButton locale={locale} />
       </section>

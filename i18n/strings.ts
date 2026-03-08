@@ -48,6 +48,8 @@ const LangStrings: Record<string, Record<string, string>> = {
     uses: 'Uses',
     view: 'view',
     views: 'views',
+    visit: 'visit',
+    visits: 'visits',
     'your-salary': 'Your salary',
   },
   es: {
@@ -99,6 +101,8 @@ const LangStrings: Record<string, Record<string, string>> = {
     uses: 'Uses',
     view: 'vista',
     views: 'vistas',
+    visit: 'visita',
+    visits: 'visitas',
     'your-salary': 'Su salario',
   },
 };

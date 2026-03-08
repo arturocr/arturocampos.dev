@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 
 import Analytics from '@/components/analytics';
-import { GA_TRACKING_ID } from '@/lib/gtag';
 import { description, siteBaseUrl, title } from '@/lib/constants';
+import { GA_TRACKING_ID } from '@/lib/gtag';
 
-import '@/styles/globals.css';
 import '@/styles/custom.css';
+import '@/styles/globals.css';
 import '@/styles/prism.css';
 
 export const metadata: Metadata = {
@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html data-scroll-behavior='smooth'>
       <head>
         <link
           href='https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=optional'
@@ -75,7 +75,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className='text-gray-700 body-font selection:bg-secondary/40 md:before:fixed md:before:z-50 md:before:p-2 md:before:top-0 md:before:left-0 md:before:right-0 md:before:bg-gradient-to-r md:before:from-secondary md:before:via-middle md:before:to-accent md:after:fixed md:after:top-0 md:after:bottom-0 md:after:left-0 md:after:z-50 md:after:p-2 md:after:bg-secondary relative z-0 flex flex-col items-stretch min-h-screen bg-white'>
+      <body className='flex relative z-0 flex-col items-stretch min-h-screen text-gray-700 bg-white body-font selection:bg-secondary/40 md:before:fixed md:before:z-50 md:before:p-2 md:before:top-0 md:before:left-0 md:before:right-0 md:before:bg-gradient-to-r md:before:from-secondary md:before:via-middle md:before:to-accent md:after:fixed md:after:top-0 md:after:bottom-0 md:after:left-0 md:after:z-50 md:after:p-2 md:after:bg-secondary'>
         {children}
         {GA_TRACKING_ID && (
           <>

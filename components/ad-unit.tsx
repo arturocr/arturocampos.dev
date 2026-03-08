@@ -24,15 +24,16 @@ const AdUnit = ({ slot }: AdUnitProps) => {
   if (!publisherId || !slot) return null;
 
   return (
-    <div className='my-4 overflow-hidden text-center'>
+    <div className='overflow-hidden my-4 text-center'>
       <ins
         className='adsbygoogle'
-        style={{ display: 'block' }}
+        style={{ display: 'block', textAlign: 'center' }}
         data-ad-client={publisherId}
+        data-ad-format='fluid'
+        data-ad-layout='in-article'
         data-ad-slot={slot}
-        data-ad-format='auto'
         data-full-width-responsive='true'
-      />
+      ></ins>
     </div>
   );
 };
