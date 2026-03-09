@@ -1,12 +1,11 @@
 'use client';
 
 import useSWR from 'swr';
+import fetcher from '@/lib/fetcher';
 import ViewsCounter from '@/components/views-counter';
 
-const fetcher = (url: string) => fetch(url).then(res => res.json());
-
 const PostViews = ({ path }: { path: string }) => {
-  const { data } = useSWR(
+  const { data } = useSWR<{ pageViews: string }>(
     `/api/page-views?slug=${encodeURIComponent(path)}`,
     fetcher,
     { revalidateOnFocus: false }

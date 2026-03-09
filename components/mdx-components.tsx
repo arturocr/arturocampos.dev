@@ -89,8 +89,8 @@ const MDXComponents = {
       {...props}
     />
   ),
-  td: (props: ComponentPropsWithoutRef<'th'>) => (
-    <th
+  td: (props: ComponentPropsWithoutRef<'td'>) => (
+    <td
       className='px-4 py-2 font-light border-r border-gray-400 last:border-r-0'
       {...props}
     />

@@ -10,7 +10,6 @@ export interface FrontMatter {
 
 export interface PostData {
   slug: string;
-  content: string;
   frontMatter: FrontMatter;
 }
 

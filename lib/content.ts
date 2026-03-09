@@ -1,6 +1,7 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
+import { cache } from 'react';
 
 import type { ContentResult, GetContentParams, PostData } from '../types';
 
@@ -52,11 +53,10 @@ export const getSortedPostsData = ({
     return [];
   }
   const allPostsData: PostData[] = fs.readdirSync(directory).map(p => {
-    const content = fs.readFileSync(path.join(directory, p), 'utf8');
-    const frontMatter = matter(content).data;
+    const fileContents = fs.readFileSync(path.join(directory, p), 'utf8');
+    const frontMatter = matter(fileContents).data;
     return {
       slug: frontMatter.slug,
-      content,
       frontMatter: frontMatter as PostData['frontMatter'],
     };
   });
@@ -83,17 +83,15 @@ export const getAllPostSlugs = (): { locale: string; slug: string }[] => {
 
 // Return the raw content and front matter of a file given a slug,
 // a locale and a type ('content' or 'posts')
-export const getContent = ({
-  slug,
-  locale,
-  type,
-}: GetContentParams): ContentResult => {
-  const fullPath = path.join(`${directories[type]}/${locale}`, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf-8');
-  const { data, content } = matter(fileContents);
+export const getContent = cache(
+  ({ slug, locale, type }: GetContentParams): ContentResult => {
+    const fullPath = path.join(`${directories[type]}/${locale}`, `${slug}.mdx`);
+    const fileContents = fs.readFileSync(fullPath, 'utf-8');
+    const { data, content } = matter(fileContents);
 
-  return {
-    content,
-    frontMatter: data as ContentResult['frontMatter'],
-  };
-};
+    return {
+      content,
+      frontMatter: data as ContentResult['frontMatter'],
+    };
+  }
+);
