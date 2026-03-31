@@ -1,0 +1,249 @@
+---
+author: Arturo Campos
+title: Bilingual Next.js without an i18n library
+slug: bilingual-nextjs-without-a-library
+date: '2026-03-31T10:00:00-06:00'
+description: How I added English and Spanish support to this statically generated Next.js site without reaching for next-intl, i18next, or any other dependency.
+image: /images/blog/bilingual-nextjs-without-a-library.png
+---
+
+There's a moment in every developer's life when they stare at an npm install command and think: _do I actually need this?_
+
+I had that moment when I decided to make this site bilingual. The usual suspects — `next-intl`, `next-i18next`, `react-i18next` — are great libraries. But for two languages and a handful of UI strings on a statically generated blog, pulling in a full i18n framework felt like renting a semi-truck to move a couch.
+
+So I built a lightweight custom solution instead. Here's how it works.
+
+---
+
+## The setup: static generation with two locales
+
+This site uses the Next.js App Router with **static generation** (`output: 'export'` is not required here — Vercel handles it, but everything is statically pre-rendered at build time). The key is `generateStaticParams` in the locale layout.
+
+The folder structure looks like this:
+
+```
+app/
+└── [locale]/
+    ├── layout.tsx        ← generates static pages for 'en' and 'es'
+    ├── page.tsx
+    ├── blog/
+    │   ├── page.tsx
+    │   └── [slug]/page.tsx
+    └── uses/page.tsx
+```
+
+In `app/[locale]/layout.tsx`, telling Next.js which locales to pre-render is two lines:
+
+```tsx:app/[locale]/layout.tsx
+export function generateStaticParams() {
+  return [{ locale: 'en' }, { locale: 'es' }];
+}
+```
+
+That's it. Next.js will statically generate every page under `[locale]` for both `en` and `es`. No runtime locale detection, no client-side redirects, no server that needs to be awake at 3 AM.
+
+---
+
+## URL strategy: English is the default
+
+The URLs follow a simple rule:
+
+- English → no prefix: `/blog`, `/uses`, `/projects`
+- Spanish → `/es/` prefix: `/es/blog`, `/es/uses`, `/es/projects`
+
+This keeps English URLs clean (better for SEO, less typing) while Spanish gets an explicit prefix. Inside the app, both live under `app/[locale]/`, so Next.js sees `/en/blog` and `/es/blog` as the same route with different params.
+
+The trick is a middleware file — called `proxy.ts` here instead of `middleware.ts`, because Next.js 16 renamed the export — that handles the URL translation transparently:
+
+```ts:proxy.ts
+import { NextRequest, NextResponse } from 'next/server';
+
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Redirect /en/... → /... (keep English URLs canonical and prefix-free)
+  if (pathname.startsWith('/en/') || pathname === '/en') {
+    const newPath = pathname.replace(/^\/en/, '') || '/';
+    return NextResponse.redirect(new URL(newPath, request.url), 308);
+  }
+
+  // Rewrite prefix-less paths → /en/... internally
+  if (!pathname.startsWith('/es/') && pathname !== '/es') {
+    return NextResponse.rewrite(new URL(`/en${pathname}`, request.url));
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: ['/((?!_next/static|_next/image|api|.*\\.[a-zA-Z0-9]{2,20}$).*)'],
+};
+```
+
+The matcher regex excludes static files, API routes, and `_next/*`. The extension pattern `[a-zA-Z0-9]{2,20}` covers everything up to `.webmanifest` — a surprisingly long extension that would catch you off guard if you forgot about it.
+
+So from the browser's perspective:
+
+- `/blog` → rewritten internally to `/en/blog` → rendered by `app/[locale]/blog/page.tsx` with `locale: 'en'`
+- `/es/blog` → passes through → rendered with `locale: 'es'`
+- `/en/blog` → **redirected** back to `/blog` (canonical URL)
+
+---
+
+## Translations: just a dictionary
+
+The whole translation system is a single `strings.ts` file with a nested object:
+
+```ts:i18n/strings.ts
+const LangStrings: Record<string, Record<string, string>> = {
+  en: {
+    blog: 'Blog',
+    'read-more': 'Read more',
+    views: 'views',
+    // ...
+  },
+  es: {
+    blog: 'Blog',
+    'read-more': 'Leer más',
+    views: 'vistas',
+    // ...
+  },
+};
+
+export default LangStrings;
+```
+
+No ICU message format, no pluralization rules, no nested namespaces. Just keys and values. For a personal site this is more than enough — and if you ever need pluralization, you can handle it in the component itself (the views counter on this site does exactly that: `views !== 1 ? t('views') : t('view')`).
+
+---
+
+## Two helpers: one for the server, one for the client
+
+This is where the App Router's server/client split actually matters. You can't use hooks in Server Components, so you need two different ways to access translations.
+
+### Server Components: `getTranslation(locale)`
+
+Server components receive `locale` as a prop (passed down from the layout). The helper is a plain function:
+
+```ts:i18n/getTranslation.ts
+import Strings from './strings';
+
+export const getTranslation = (locale: string) => {
+  const t = (key: string): string => {
+    try {
+      const loc = locale || 'en';
+      if (!Strings[loc]?.[key]) {
+        console.warn(`No string '${key}' for locale '${loc}'`);
+        return Strings['en']?.[key] || key;
+      }
+      return Strings[loc][key];
+    } catch {
+      return key;
+    }
+  };
+
+  return { t };
+};
+```
+
+Usage in a server component:
+
+```tsx:components/header.tsx
+import { getTranslation } from '@/i18n/getTranslation';
+
+export default async function Header({ locale }: { locale: string }) {
+  const { t } = getTranslation(locale);
+
+  return <nav>{t('blog')}</nav>;
+}
+```
+
+No magic. No context. No provider wrapping the entire app. Just a function that takes a string and returns another string.
+
+### Client Components: `useTranslation()`
+
+Client components can't receive `locale` as a prop from the server layout (well, they can, but why bother). Instead, they read it from the URL via `useParams()`:
+
+```ts:i18n/useTranslation.ts
+'use client';
+
+import { useParams } from 'next/navigation';
+import Strings from './strings';
+
+const useTranslation = () => {
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
+
+  const t = (key: string): string => {
+    try {
+      if (!Strings[locale]?.[key]) {
+        console.warn(`No string '${key}' for locale '${locale}'`);
+        return Strings['en']?.[key] || key;
+      }
+      return Strings[locale][key];
+    } catch {
+      return key;
+    }
+  };
+
+  return { locale, t };
+};
+
+export default useTranslation;
+```
+
+Since the URL always contains the locale (either explicitly as `/es/...` or implicitly as `/...` which maps to `en`), `useParams()` reliably returns the right value without any additional setup.
+
+Usage in a client component:
+
+```tsx:components/views-counter.tsx
+'use client';
+
+import useTranslation from '@/i18n/useTranslation';
+
+const ViewsCounter = ({ views }: { views: number }) => {
+  const { locale, t } = useTranslation();
+
+  return (
+    <span>
+      {views.toLocaleString(locale)} {views !== 1 ? t('views') : t('view')}
+    </span>
+  );
+};
+```
+
+The `locale` from the hook is also used for `toLocaleString()`, which means `1234` formats as `1,234` in English and `1.234` in Spanish. A small detail that makes the whole thing feel cohesive.
+
+---
+
+## Building localized links
+
+When you render links, you need to know whether to prefix them with `/es/` or not. There's a small helper for that:
+
+```ts:lib/util.ts
+const getLocalizedPath = (locale: string, path: string): string => {
+  return locale === 'en' ? path : `/${locale}${path}`;
+};
+```
+
+So `getLocalizedPath('es', '/blog')` returns `/es/blog`, and `getLocalizedPath('en', '/blog')` returns `/blog`. Used anywhere you build an `href`.
+
+---
+
+## What this approach is good for
+
+- **Statically generated sites** — everything is pre-rendered, there's nothing dynamic that needs runtime locale detection
+- **Small to medium string counts** — two languages with ~50 keys each is well within "just use an object" territory
+- **Full control** — the entire i18n system is four small files you can read in five minutes
+
+## What it's not good for
+
+- **Right-to-left languages** — you'd need more infrastructure
+- **Complex pluralization rules** — manageable for two or three cases, annoying at scale
+- **Large teams** — a flat dictionary doesn't scale as well as namespace-based systems
+
+---
+
+If you're building a personal site, a portfolio, or a small product with a known set of languages, this approach removes a surprisingly large amount of complexity. The best dependency is one you don't need.
+
+Thanks for reading. ⚡️
