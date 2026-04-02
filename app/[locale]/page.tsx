@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 
 import Heading from '@/components/heading';
 import MDXComponents from '@/components/mdx-components';
+import PostViews from '@/components/post-views';
 import PublishedDate from '@/components/published-date';
 import ReadMore from '@/components/read-more';
 import Vimeo from '@/components/vimeo';
@@ -98,11 +99,12 @@ export default async function Home({
                         {post.frontMatter.title}
                       </Link>
                     </h3>
-                    <p className='text-sm text-gray-500'>
+                    <p className='flex items-center gap-3 text-sm text-gray-500'>
                       <PublishedDate
                         date={post.frontMatter.date}
                         locale={locale}
                       />
+                      <PostViews path={postPath} />
                     </p>
                     {post.frontMatter.description && (
                       <p className='flex-1 text-sm text-gray-600'>
