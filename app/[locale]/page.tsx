@@ -99,7 +99,7 @@ export default async function Home({
                         {post.frontMatter.title}
                       </Link>
                     </h3>
-                    <p className='flex items-center gap-3 text-sm text-gray-500'>
+                    <p className='flex justify-between text-sm text-gray-500'>
                       <PublishedDate
                         date={post.frontMatter.date}
                         locale={locale}
