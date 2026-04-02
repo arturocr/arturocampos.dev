@@ -31,6 +31,7 @@ const LangStrings: Record<string, Record<string, string>> = {
     love: 'Love',
     'made-with': 'Made with',
     'net-salary': 'Net Salary',
+    'latest-posts': 'Latest posts in the blog',
     'no-blog-posts':
       "I haven't written any posts yet. Please check again soon.",
     'open-menu': 'Open menu',
@@ -84,6 +85,7 @@ const LangStrings: Record<string, Record<string, string>> = {
     love: 'Amor',
     'made-with': 'Hecho con',
     'net-salary': 'Salario Neto',
+    'latest-posts': 'Últimos posts en el blog',
     'no-blog-posts':
       'Aún no he escrito ningún artículo. Por favor revisa de nuevo pronto.',
     'open-menu': 'Abrir menú',

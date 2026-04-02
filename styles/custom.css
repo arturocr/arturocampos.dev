@@ -27,7 +27,20 @@
 
   /* Global shared styles */
   a {
-    @apply transition-colors text-middle hover:text-secondary;
+    @apply text-middle hover:text-secondary;
+  }
+
+  :not(nav) > a:not(.gradient-text) {
+    text-decoration-line: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition:
+      color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+      text-decoration-color 0.3s ease;
+  }
+
+  :not(nav) > a:not(.gradient-text):hover {
+    text-decoration-color: currentColor;
   }
 
   /* Inline code (plain backticks, no language class) */

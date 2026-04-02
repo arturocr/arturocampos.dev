@@ -13,12 +13,12 @@ const ReadMore = ({ locale, title, url }: ReadMoreProps) => {
   return (
     <Link
       href={url}
-      className='transition-colors text-middle hover:text-secondary'
+      className='group inline-flex items-center gap-1 font-medium text-middle hover:text-secondary'
     >
       <span className='sr-only'>{title}</span>
-      <span className='not-sr-only'>{t('read-more')} </span>
+      <span className='not-sr-only'>{t('read-more')}</span>
       <svg
-        className='inline-block w-4 h-4 align-middle'
+        className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1'
         fill='none'
         stroke='currentColor'
         viewBox='0 0 24 24'
