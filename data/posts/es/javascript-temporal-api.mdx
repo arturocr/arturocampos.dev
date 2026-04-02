@@ -1,0 +1,268 @@
+---
+author: Arturo Campos
+title: La API Temporal llegó para acabar con la era de las librerías de fechas
+slug: javascript-temporal-api
+date: '2026-04-01T10:00:00-06:00'
+description: Después de años con moment.js, date-fns y pesadillas de zonas horarias, la API Temporal de JavaScript finalmente nos da un sistema de fechas y horas decente integrado en el lenguaje.
+image: /images/blog/temporal-api.png
+---
+
+Todo desarrollador de JavaScript tiene una historia con fechas. La mía involucra un bug en producción a medianoche en el último día del mes, una llamada a `new Date()` que se comportaba diferente en la zona horaria UTC del servidor versus la zona horaria local del usuario, y unos cuarenta minutos de pánico antes de rastrear el problema hasta una sola línea que asumía que los meses eran 1-indexados.
+
+No lo son. Nunca lo han sido.
+
+---
+
+## Las librerías a las que recurrimos
+
+El objeto `Date` de JavaScript llegó con el lenguaje en 1995, modelado sobre `java.util.Date` de Java — que Java mismo después deprecó porque era terrible. Llevamos treinta años viviendo con esa decisión.
+
+Entonces nos adaptamos a usar librerías.
+
+**Moment.js** fue la primera que se sintió como una solución real. `moment().add(7, 'days').format('YYYY-MM-DD')` — legible, encadenable, expresivo. Lo usé en todos mis proyectos desde 2014 hasta 2019. Luego un día noté que el bundle pesaba 67KB minificado. Para un formateador de fechas. El propio equipo de Moment eventualmente [recomendó no usarlo en proyectos nuevos](https://momentjs.com/docs/#/-project-status/).
+
+Hay otra cosa de Moment de la que nadie habla suficiente: es **mutable**.
+
+```js
+const start = moment('2024-01-15');
+const end = start.add(7, 'days'); // ¡muta start!
+
+console.log(start.format('YYYY-MM-DD')); // '2024-01-22' — ¿qué?
+console.log(end.format('YYYY-MM-DD')); // '2024-01-22'
+```
+
+Tanto `start` como `end` apuntan al mismo objeto mutado. Si no sabías esto y pasabas una instancia de Moment a una función que llamaba `.add()`, corrompías el valor original. Me pasó más veces de las que me gustaría admitir.
+
+**date-fns** resolvió el problema de mutabilidad con un enfoque funcional — cada operación retorna un nuevo valor. Más liviana, tree-shakeable, buen soporte para TypeScript. Cambié a ella y estuve mayormente contento. Pero aún se sentía como un parche en una fundación rota. Seguías pasando objetos `Date` por todos lados, y `Date` seguía al acecho con todas sus peculiaridades.
+
+**Day.js** llegó después con el argumento de "la API de Moment pero 2KB". Genial. Pero misma historia: un wrapper delgado, no una solución.
+
+Las librerías no eran el problema. El problema era `Date`.
+
+---
+
+## ¿Qué está realmente mal con `Date`?
+
+Voy a ser específico, porque las quejas son concretas:
+
+**Los meses son zero-indexed.** `new Date(2024, 0, 15)` es el 15 de enero. No mes 0 de nada — enero. Esto causó más bugs de off-by-one de los que puedo contar.
+
+```js
+// Lo que escribes
+const date = new Date(2024, 3, 1);
+
+// Lo que obtienes
+console.log(date.toISOString()); // '2024-04-01T...' — es abril, no marzo
+```
+
+**Mutabilidad.** Métodos como `setMonth()`, `setDate()`, `setFullYear()` mutan en sitio. Pasas un `Date` a una función, la función llama `.setDate(1)`, y tu valor original desapareció.
+
+**No existe el concepto de "fecha sin hora".** No puedes representar el 1 de abril sin también anclarlo a una hora específica. Todo `Date` es secretamente un timestamp. Cuando haces `new Date('2024-04-01')` lo interpreta como medianoche UTC, lo que significa que en UTC-6 se muestra como 31 de marzo.
+
+```js
+const d = new Date('2024-04-01');
+console.log(d.toLocaleDateString('es-CR', { timeZone: 'America/Costa_Rica' }));
+// '31/3/2024' — aquí es 31 de marzo
+```
+
+**El manejo de zonas horarias es una pesadilla.** `Date` solo conoce UTC y "local" (la zona horaria de la máquina). No hay forma de decir "dame la hora actual en Tokio" sin recurrir a `Intl.DateTimeFormat` o una librería.
+
+**El parsing es inconsistente.** `new Date('2024-13-01')` no lanza error — retorna `Invalid Date`. Históricamente, diferentes navegadores han interpretado el mismo string de maneras distintas.
+
+---
+
+## ¡Bienvenida la API Temporal! 🎉
+
+La [API Temporal](https://tc39.es/proposal-temporal/) es una propuesta de TC39 que estuvo años en Stage 3, pero [alcanzó el Stage 4 del proceso TC39 en marzo de 2026](https://bloomberg.github.io/js-blog/post/temporal/), convirtiéndola oficialmente en parte de la próxima especificación ES2026 (ECMAScript 2026). No es una librería — es un nuevo namespace global integrado en el lenguaje, diseñado por las personas que conocen cada error que cometió `Date`.
+
+La intuición central es que "un punto en el tiempo" y "una fecha en el calendario" son cosas fundamentalmente distintas, y la API las modela por separado.
+
+### Los tipos
+
+| Tipo                      | Qué representa                                      |
+| ------------------------- | --------------------------------------------------- |
+| `Temporal.Instant`        | Un punto fijo en el tiempo (como un Unix timestamp) |
+| `Temporal.PlainDate`      | Una fecha del calendario sin hora ni zona horaria   |
+| `Temporal.PlainTime`      | Una hora del reloj sin fecha ni zona horaria        |
+| `Temporal.PlainDateTime`  | Fecha + hora sin zona horaria                       |
+| `Temporal.ZonedDateTime`  | Fecha + hora anclada a una zona horaria específica  |
+| `Temporal.Duration`       | Una duración de tiempo                              |
+| `Temporal.PlainMonthDay`  | Un par mes-día (ej. un cumpleaños)                  |
+| `Temporal.PlainYearMonth` | Un par año-mes (ej. un período de facturación)      |
+
+Esta especificidad es toda la idea. Cuando guardas el cumpleaños de un usuario, quieres un `PlainDate` — sin zona horaria, sin hora. Cuando agendas una reunión, quieres un `ZonedDateTime`. Cuando registras cuándo se procesó un pago, quieres un `Instant`.
+
+---
+
+## Haciendo cosas reales con Temporal
+
+### Obtener la fecha de hoy
+
+```js
+// Manera antigua — obtienes un timestamp, no una fecha
+const today = new Date();
+console.log(today); // Wed Apr 01 2026 00:00:00 GMT-0600
+
+// Con Temporal — obtienes exactamente lo que pediste
+const today = Temporal.Now.plainDateISO();
+console.log(today.toString()); // '2026-04-01'
+console.log(today.year); // 2026
+console.log(today.month); // 4 — abril, y sí, es 1-indexado
+console.log(today.day); // 1
+```
+
+Los meses son 1-indexados. Enero es 1. Diciembre es 12. Como la naturaleza ordena.
+
+### Crear una fecha específica
+
+```js
+// Manera antigua
+const date = new Date(2026, 3, 1); // ¿Es marzo o abril? Hay que recordar: 0-indexado
+// o
+const date = new Date('2026-04-01'); // Se interpreta como medianoche UTC — zona horaria incorrecta
+
+// Con Temporal
+const date = Temporal.PlainDate.from({ year: 2026, month: 4, day: 1 });
+// o
+const date = Temporal.PlainDate.from('2026-04-01');
+console.log(date.toString()); // '2026-04-01' — sin ambigüedad
+```
+
+### Aritmética de fechas
+
+Aquí es donde Temporal realmente brilla. Todo es inmutable y explícito.
+
+```js
+const today = Temporal.PlainDate.from('2026-04-01');
+
+// Sumar 7 días
+const nextWeek = today.add({ days: 7 });
+console.log(today.toString()); // '2026-04-01' — sin cambios
+console.log(nextWeek.toString()); // '2026-04-08'
+
+// Restar 3 meses
+const threeMonthsAgo = today.subtract({ months: 3 });
+console.log(threeMonthsAgo.toString()); // '2026-01-01'
+
+// Sumar meses
+const inSixMonths = today.add({ months: 6 });
+console.log(inSixMonths.toString()); // '2026-10-01'
+```
+
+Compara esto con el enfoque antiguo donde tenías que hacer `setDate(date.getDate() + 7)` (mutación) o clonar el objeto cuidadosamente primero.
+
+### Comparar fechas
+
+```js
+const a = Temporal.PlainDate.from('2026-04-01');
+const b = Temporal.PlainDate.from('2026-06-15');
+
+// Retorna -1, 0 o 1 — perfecto para Array.sort()
+const comparison = Temporal.PlainDate.compare(a, b);
+console.log(comparison); // -1 (a es antes que b)
+
+// O usa .until() para obtener la duración entre ellas
+const duration = a.until(b);
+console.log(duration.toString()); // 'P75D' (75 días)
+console.log(duration.total({ unit: 'days' })); // 75
+```
+
+### Trabajar con zonas horarias
+
+Esta era la pesadilla de antes, ahora manejada limpiamente:
+
+```js
+// Obtener la hora actual en una zona horaria específica
+const nowInTokyo = Temporal.Now.zonedDateTimeISO('Asia/Tokyo');
+console.log(nowInTokyo.toString());
+// '2026-04-02T00:00:00+09:00[Asia/Tokyo]'
+
+const nowInCR = Temporal.Now.zonedDateTimeISO('America/Costa_Rica');
+console.log(nowInCR.toString());
+// '2026-04-01T10:00:00-06:00[America/Costa_Rica]'
+
+// Convertir entre zonas horarias
+const meeting = Temporal.ZonedDateTime.from(
+  '2026-04-15T14:00:00[America/New_York]'
+);
+const meetingInCR = meeting.withTimeZone('America/Costa_Rica');
+console.log(meetingInCR.toString());
+// '2026-04-15T13:00:00-06:00[America/Costa_Rica]'
+```
+
+Sin `getTimezoneOffset()`. Sin malabarismos de conversión UTC. Solo dile qué zona horaria quieres.
+
+### Duraciones
+
+```js
+const start = Temporal.PlainDate.from('2026-01-01');
+const end = Temporal.PlainDate.from('2026-04-01');
+
+const duration = start.until(end, { largestUnit: 'months' });
+console.log(duration.months); // 3
+console.log(duration.days); // 0
+
+// O con unidades mixtas
+const duration2 = start.until(end, { largestUnit: 'days' });
+console.log(duration2.days); // 90
+```
+
+---
+
+## El namespace `now`
+
+`Temporal.Now` es tu punto de entrada para valores de tiempo actual:
+
+```js
+Temporal.Now.instant(); // Instant — ahora mismo como timestamp
+Temporal.Now.plainDateISO(); // PlainDate — hoy en zona horaria local
+Temporal.Now.plainDateTimeISO(); // PlainDateTime — ahora, sin zona horaria
+Temporal.Now.zonedDateTimeISO(); // ZonedDateTime — ahora en zona horaria local
+Temporal.Now.zonedDateTimeISO('America/Costa_Rica'); // ahora en una tz específica
+Temporal.Now.timeZoneId(); // el string de la zona horaria local, ej. 'America/Costa_Rica'
+```
+
+---
+
+## Estado actual y cómo usarlo hoy
+
+Temporal lleva un tiempo siendo incluído en los navegadores modernos. A principios de 2026 ya está en Chrome/V8 y expandiéndose a otros. Ahora que alcanzó el Stage 4 de TC39, significa que se está convirtiendo en estándar como parte de ES2026. Mientras tanto, para entornos que aún no lo tienen, el [polyfill oficial](https://github.com/js-temporal/temporal-polyfill) está disponible:
+
+```bash
+npm install temporal-polyfill
+```
+
+```js
+import { Temporal } from 'temporal-polyfill';
+```
+
+El polyfill es compatible con la especificación y está listo para producción. Puedes usarlo hoy y eliminarlo conforme el soporte de navegadores se amplíe.
+
+---
+
+## ¿Todavía necesitas una librería de fechas?
+
+Para la mayoría de casos de uso — **no**. Temporal cubre:
+
+- Parsing de strings ISO
+- Aritmética de fechas y horas
+- Operaciones con zona horaria
+- Cálculos de duración
+- Comparaciones y ordenamiento
+- Formateo a través de `Intl.DateTimeFormat` (los objetos Temporal funcionan directamente con él)
+
+Donde todavía podrías querer una librería:
+
+- **Formateo localizado complejo** más allá de lo que maneja `Intl.DateTimeFormat` en algunos edge cases
+- **Strings de tiempo relativo** como "hace 3 días" — aunque puedes construirlo tú mismo con `until()` en pocas líneas
+- **Calendarios no gregorianos** — Temporal los soporta via la opción `calendar`, pero una librería podría ofrecer una API más cómoda
+
+La era del `npm install moment` como primera acción en un proyecto nuevo terminó. No porque las librerías fueran malas — cargaron JavaScript durante treinta años de inadecuación de `Date` — sino porque el lenguaje finalmente los alcanzó.
+
+---
+
+La primera vez que escribí `Temporal.PlainDate.from('2026-04-01').add({ months: 1 }).toString()` y obtuve `'2026-05-01'` sin tocar una librería, sentí algo que solo puedo describir como alivio.
+
+Si alguna vez desplegaste un bug por el mes zero-indexado, si tuviste un incidente de zona horaria a medianoche, si alguna vez clonaste cuidadosamente un objeto `Date` antes de pasarlo a una función — este artículo es para ti.
+
+Gracias por leerme. ⚡️

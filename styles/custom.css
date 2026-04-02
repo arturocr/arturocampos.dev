@@ -30,6 +30,14 @@
     @apply transition-colors text-middle hover:text-secondary;
   }
 
+  /* Inline code (plain backticks, no language class) */
+  :not(pre) > code:not([class*='language-']) {
+    @apply font-mono font-medium text-prism-base bg-prism-bg rounded-md whitespace-normal;
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
+    vertical-align: baseline;
+  }
+
   blockquote > * {
     @apply relative;
   }

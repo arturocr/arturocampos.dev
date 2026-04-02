@@ -121,7 +121,7 @@ pre[class*='language-'] {
 }
 
 .remark-code-title {
-  @apply w-full px-4 py-2 mt-4 mb-0 font-mono text-sm font-semibold rounded-t-md text-prism-base bg-gradient-to-r from-secondary via-middle to-accent;
+  @apply w-full px-4 py-2 mt-4 mb-0 font-mono text-sm font-semibold rounded-t-md text-white bg-gradient-to-r from-secondary via-middle to-accent;
 }
 
 .remark-code-title + pre {

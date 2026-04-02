@@ -14,15 +14,15 @@
   --color-middle: #f04770;
   --color-primary: #3f425e;
   --color-secondary: #00bad9;
-  --color-prism-base: #f8f8f2;
-  --color-prism-bg: #2e3440;
-  --color-prism-comment: #636f88;
-  --color-prism-function: #88c0d0;
-  --color-prism-marker: #384153;
-  --color-prism-number: #b48ead;
-  --color-prism-punctuation: #81a1c1;
-  --color-prism-regex: #ebcb8b;
-  --color-prism-string: #a3be8c;
+  --color-prism-base: #24292e;
+  --color-prism-bg: #f6f8fa;
+  --color-prism-comment: #6a737d;
+  --color-prism-function: #6f42c1;
+  --color-prism-marker: #fffbdd;
+  --color-prism-number: #005cc5;
+  --color-prism-punctuation: #d73a49;
+  --color-prism-regex: #e36209;
+  --color-prism-string: #032f62;
 
   /* Typography */
   --font-sans:
@@ -34,7 +34,7 @@
   --text-7xl: 5rem;
 
   /* Shadows */
-  --shadow-prism-marker: inset 5px 0px 0 0px #ebcb8b;
+  --shadow-prism-marker: inset 5px 0px 0 0px #f9c513;
 
   /* Stroke widths */
   --stroke-width-4: 4;
