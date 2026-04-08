@@ -38,7 +38,7 @@ const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.vimeo.com *.twitter.com *.x.com *.googletagmanager.com *.google-analytics.com *.googlesyndication.com *.adtrafficquality.google adtrafficquality.google *.google.com *.googleadservices.com;
   child-src *.youtube.com *.vimeo.com *.google.com *.twitter.com *.x.com *.googlesyndication.com *.doubleclick.net;
-  frame-src *.youtube.com *.vimeo.com *.google.com *.twitter.com *.x.com *.googlesyndication.com *.doubleclick.net *.adtrafficquality.google adtrafficquality.google;
+  frame-src *.youtube.com *.vimeo.com *.google.com *.twitter.com *.x.com *.googlesyndication.com *.doubleclick.net *.adtrafficquality.google adtrafficquality.google giscus.app;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src * blob: data:;
   media-src 'none';

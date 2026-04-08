@@ -15,6 +15,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@giscus/react": "^3.1.0",
     "clsx": "^2.1.1",
     "googleapis": "^171.4.0",
     "lite-vimeo-embed": "^0.3.0",

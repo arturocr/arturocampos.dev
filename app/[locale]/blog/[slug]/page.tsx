@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
+import GiscusComments from '@/components/giscus-comments';
 import Heading from '@/components/heading';
 import MDXComponents from '@/components/mdx-components';
 import PostViews from '@/components/post-views';
@@ -114,6 +115,7 @@ export default async function PostPage({
           />
         </div>
       </article>
+      <GiscusComments locale={locale} />
     </>
   );
 }
