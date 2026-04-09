@@ -1,0 +1,312 @@
+---
+author: Arturo Campos
+title: 'ky: el wrapper de fetch que no sabías que necesitabas'
+slug: ky-http-client
+date: '2026-04-08T11:23:00-06:00'
+description: ky es un cliente HTTP pequeño y elegante construido sobre la Fetch API que agrega reintentos, timeouts, hooks y manejo de errores sensato sin el peso de Axios.
+image: /images/blog/ky.png
+---
+
+El 31 de marzo de 2026, el paquete npm de Axios — el cliente HTTP con aproximadamente 100 millones de descargas semanales — fue [comprometido en un ataque a la cadena de suministro](https://thehackernews.com/2026/03/axios-supply-chain-attack-pushes-cross.html). Las versiones maliciosas 1.14.1 y 0.30.4 fueron publicadas bajo el tag `latest`, lo que significa que cualquiera que ejecutara `npm install axios` o un `npm update` de rutina ese día recibió silenciosamente un troyano de acceso remoto (RAT 🐀) multiplataforma dirigido a macOS, Windows y Linux. El ataque fue posteriormente [atribuido a un actor estatal norcoreano](https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package) conocido como Sapphire Sleet. Las versiones seguras son la 1.14.0 y la 0.30.3 o anteriores.
+
+Fue un buen momento para preguntarse: ¿realmente necesitamos Axios? Solo unos días después, [Sindre Sorhus anunció ky v2](https://x.com/sindresorhus/status/2041626377892589679) — una nueva versión de su elegante cliente HTTP basado en Fetch. Dos buenas razones para finalmente escribir este artículo.
+
+---
+
+## Qué tiene de malo el `fetch` simple
+
+Nada, técnicamente. `fetch` es una API sólida y bien especificada. Pero usarla en una aplicación real es verbosa:
+
+```js
+// Un simple POST con JSON
+const response = await fetch('https://api.example.com/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify({ name: 'Arturo' }),
+});
+
+if (!response.ok) {
+  throw new Error(`Error HTTP: ${response.status}`);
+}
+
+const data = await response.json();
+```
+
+El `if (!response.ok)` es lo que siempre me mata. `fetch` considera que un 404 o 500 es una promesa exitosa — tenés que verificar manualmente cada vez, o vas a procesar silenciosamente respuestas de error como si fueran datos.
+
+Multiplicá este patrón en todo un proyecto — agregá headers de auth, lógica de reintentos, timeouts — y terminás escribiendo tu propio mini Axios de todas formas.
+
+---
+
+## Conociendo ky
+
+ky es un cliente HTTP pequeño de [Sindre Sorhus](https://github.com/sindresorhus). Siempre he admirado su trabajo — su [portafolio de open source](https://github.com/sindresorhus/sindresorhus) es verdaderamente notable, con cientos de paquetes que alimentan en silencio una gran parte del ecosistema de JavaScript: `chalk`, `execa`, `p-limit`, `got`, `ora`, `is-ci` — la lista no termina. Si alguna vez ejecutaste un proyecto en Node.js, dependiste de su trabajo lo supieras o no.
+
+ky envuelve `fetch` con lo justo para hacerlo agradable, sin reinventar la rueda. El mismo llamado de arriba:
+
+```js
+import ky from 'ky';
+
+const data = await ky
+  .post('https://api.example.com/users', {
+    json: { name: 'Arturo' },
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  .json();
+```
+
+Tres cosas pasaron acá:
+
+1. La opción `json` serializó el body y configuró `Content-Type` automáticamente
+2. Una respuesta que no sea 2xx lanza un `HTTPError` — sin verificación manual
+3. `.json()` parseó la respuesta
+
+Menos código, el mismo Fetch por debajo.
+
+---
+
+## Las funcionalidades
+
+### Lanzamiento automático de errores
+
+```js
+try {
+  const data = await ky.get('https://api.example.com/thing').json();
+} catch (error) {
+  if (error instanceof ky.HTTPError) {
+    // error.data tiene el body ya parseado — sin await adicional
+    console.error(`${error.response.status}:`, error.data.message);
+  }
+}
+```
+
+`HTTPError` te da el objeto de respuesta completo más `error.data` — el body de la respuesta ya parseado y disponible de forma sincrónica. Compará eso con el patrón de `fetch` puro donde tendrías que verificar `response.ok`, parsear el body condicionalmente y lanzar el error vos mismo.
+
+### Reintentos
+
+Una de mis funcionalidades favoritas. ky reintenta llamadas fallidas con valores por defecto sensatos — backoff exponencial, jitter y respeto automático de los headers `Retry-After`:
+
+```js
+const data = await ky
+  .get('https://api.example.com/endpoint-inestable', {
+    retry: {
+      limit: 3,
+      methods: ['get'],
+      statusCodes: [429, 500, 502, 503],
+    },
+  })
+  .json();
+```
+
+Por defecto, ky reintenta en fallos de red y en los códigos de estado 408, 413, 429 y 500–504. Podés sobreescribir o extender esto con una función de delay personalizada:
+
+```js
+const data = await ky
+  .get(url, {
+    retry: {
+      limit: 5,
+      delay: attemptCount => 0.3 * 2 ** (attemptCount - 1) * 1000,
+    },
+  })
+  .json();
+```
+
+### Timeouts
+
+ky soporta timeouts tanto por intento como total — útil cuando tenés reintentos y querés limitar el tiempo de espera global:
+
+```js
+const data = await ky
+  .get(url, {
+    timeout: 5000, // 5s por intento
+    totalTimeout: 15000, // 15s entre todos los reintentos combinados
+  })
+  .json();
+```
+
+Cuando una petición expira, ky lanza un `TimeoutError` — un tipo específico que podés verificar con `instanceof`.
+
+### Instancias base
+
+Cuando hablás con una sola API a lo largo de tu app, creá una instancia configurada:
+
+```js
+// lib/api.ts
+import ky from 'ky';
+
+export const api = ky.create({
+  prefix: 'https://api.example.com',
+  headers: {
+    Authorization: `Bearer ${process.env.API_TOKEN}`,
+  },
+  retry: { limit: 2 },
+  timeout: 10_000,
+  totalTimeout: 30_000,
+});
+```
+
+```js
+// en cualquier parte de tu app
+import { api } from '@/lib/api';
+
+const user = await api.get('users/42').json();
+const post = await api.post('posts', { json: { title: 'Hola' } }).json();
+```
+
+### Hooks
+
+El sistema de hooks es donde ky se vuelve genuinamente poderoso. Podés interceptar el ciclo de vida de la petición en múltiples puntos — yo lo uso para inyección de tokens de auth y refrescamiento transparente:
+
+```js
+import ky, { isHTTPError } from 'ky';
+
+const api = ky.create({
+  prefix: 'https://api.example.com',
+  hooks: {
+    beforeRequest: [
+      ({ request }) => {
+        request.headers.set('Authorization', `Bearer ${getAuthToken()}`);
+      },
+    ],
+    afterResponse: [
+      async ({ response }) => {
+        if (response.status === 401) {
+          await refreshAuthToken();
+        }
+        return response;
+      },
+    ],
+    beforeError: [
+      ({ error }) => {
+        if (isHTTPError(error) && error.response?.status === 422) {
+          error.message = 'Validación fallida — revisá tu entrada';
+        }
+        return error;
+      },
+    ],
+  },
+});
+```
+
+Este patrón reemplaza los interceptores de Axios con algo más limpio y explícito.
+
+---
+
+## Soporte de TypeScript
+
+ky tiene soporte de TypeScript de primera clase. El método `.json<T>()` acepta un generic:
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const user = await api.get('users/42').json<User>();
+```
+
+También hay type guards con nombre para el manejo de errores:
+
+```ts
+import { isHTTPError, isTimeoutError, isNetworkError } from 'ky';
+
+try {
+  const data = await api.get('endpoint').json<ResponseType>();
+} catch (error) {
+  if (isHTTPError(error)) {
+    console.error('Estado:', error.response.status);
+  } else if (isTimeoutError(error)) {
+    console.error('La petición expiró');
+  } else if (isNetworkError(error)) {
+    console.error('Red no disponible');
+  }
+}
+```
+
+---
+
+## Validación de esquemas
+
+Si usás Zod (3.24+) o cualquier validador [Standard Schema](https://standardschema.dev), ky puede validar los cuerpos de respuesta automáticamente:
+
+```ts
+import ky from 'ky';
+import { z } from 'zod';
+
+const UserSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  email: z.string().email(),
+});
+
+const user = await ky.get('https://api.example.com/users/1').json({
+  schema: UserSchema,
+});
+```
+
+Si la respuesta no coincide con el esquema, ky lanza antes de que tu código vea los datos. Sin discrepancias de tipos silenciosas en runtime.
+
+---
+
+## Qué hay de nuevo en v2
+
+Si ya usabas ky, esto es lo que cambió.
+
+**Firmas de hooks unificadas.** Todos los hooks ahora reciben un único objeto de estado en lugar de argumentos posicionales separados:
+
+```js
+// v1
+beforeRequest: [(request, options) => { ... }]
+
+// v2
+beforeRequest: [({ request, options }) => { ... }]
+```
+
+**`prefixUrl` renombrado a `prefix`.** El nombre es más corto y las barras al inicio de los paths ahora están permitidas.
+
+**Opción `totalTimeout`.** Limita el tiempo total entre todos los intentos de reintento, separada del `timeout` por intento.
+
+**`HTTPError.data`.** El body de la respuesta ahora se parsea automáticamente y está disponible de forma sincrónica — no más `await error.response.json()` en los bloques catch.
+
+**`beforeError` recibe todos los tipos de error.** Antes solo se disparaba para `HTTPError`. Usá los type guards (`isHTTPError`, `isTimeoutError`, `isNetworkError`) para manejar cada caso.
+
+**Requiere Node.js 22+.** Quedáte en v1 si estás en una versión anterior de Node.
+
+Las [notas de versión](https://github.com/sindresorhus/ky/releases) tienen la lista completa de cambios.
+
+---
+
+## vs. Axios
+
+|                   | ky                           | Axios                |
+| ----------------- | ---------------------------- | -------------------- |
+| Tamaño del bundle | ~4KB                         | ~13KB                |
+| Runtime           | Browser, Node 22+, Bun, Deno | Browser, Node        |
+| Construido sobre  | Fetch API                    | XMLHttpRequest       |
+| Reintentos        | Incorporados                 | Plugin de terceros   |
+| TypeScript        | Primera clase                | Primera clase        |
+| Interceptores     | Hooks                        | `axios.interceptors` |
+
+Axios está probado en producción y, en circunstancias normales, está bien. Pero el incidente de marzo de 2026 es un recordatorio de que un paquete grande y ampliamente dependido es un objetivo de alto valor. La pequeña superficie de ky y sus **cero dependencias** significan que hay simplemente menos superficie de ataque que comprometer. Para proyectos nuevos, ky es la mejor opción — construido sobre el estándar que comparten todos los runtimes, sin la herencia de XMLHttpRequest.
+
+---
+
+## Instalación
+
+```bash
+npm install ky
+```
+
+Sin dependencias. Funciona en el browser y en el servidor sin configuración.
+
+---
+
+Todavía no tengo nada en producción con ky, pero lo estoy usando en un proyecto secreto en el que estoy trabajando — y cuanto más lo uso, más convencido estoy de que es la decisión correcta. La superficie de la API es lo suficientemente pequeña como para tenerla en la cabeza, la experiencia con TypeScript es fluida y el sistema de retry/hooks cubre los casos que antes requerían una librería wrapper o boilerplate manual.
+
+Con v2 recién lanzado y el incidente de la cadena de suministro de Axios aún fresco, es un buen momento para hacer el cambio. Probalo — y si lo encontrás tan útil como yo, considerá [patrocinar el trabajo de Sindre](https://github.com/sponsors/sindresorhus). Pocas personas han contribuido tanto, tan silenciosamente, a este ecosistema.
+
+Gracias por leer. ⚡️
