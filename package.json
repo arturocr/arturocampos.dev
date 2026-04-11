@@ -20,7 +20,7 @@
     "googleapis": "^171.4.0",
     "lite-vimeo-embed": "^0.3.0",
     "lite-youtube-embed": "^0.3.4",
-    "next": "^16.2.2",
+    "next": "^16.2.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "remark-gfm": "^4.0.1",
