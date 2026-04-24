@@ -45,7 +45,7 @@
     "next-remote-watch": "^2.0.0",
     "oxfmt": "^0.43.0",
     "oxlint": "^1.58.0",
-    "postcss": "^8.5.8",
+    "postcss": "^8.5.10",
     "prismjs": "^1.30.0",
     "rehype": "^13.0.2",
     "rehype-raw": "^7.0.0",
