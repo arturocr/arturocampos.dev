@@ -29,6 +29,11 @@ module.exports = {
         destination: '/es/projects/tax-calculator-crc',
         permanent: true,
       },
+      {
+        source: '/images/sig-arturo-photo.png',
+        destination: '/images/sig/sig-arturo-photo.png',
+        permanent: true,
+      },
     ];
   },
 };
