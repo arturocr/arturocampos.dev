@@ -13,12 +13,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/i18n/*": ["i18n/*"],
-      "@/lib/*": ["lib/*"],
-      "@/styles/*": ["styles/*"]
+      "@/components/*": ["./components/*"],
+      "@/i18n/*": ["./i18n/*"],
+      "@/lib/*": ["./lib/*"],
+      "@/styles/*": ["./styles/*"]
     },
     "plugins": [
       {
