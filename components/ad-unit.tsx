@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface AdUnitProps {
   slot: string;
@@ -13,18 +13,20 @@ declare global {
 }
 
 const AdUnit = ({ slot }: AdUnitProps) => {
+  const [mounted, setMounted] = useState(false);
   const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
   useEffect(() => {
+    setMounted(true);
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch {}
   }, []);
 
-  if (!publisherId || !slot) return null;
+  if (!mounted || !publisherId || !slot) return null;
 
   return (
-    <div className='overflow-hidden my-4 text-center'>
+    <div className='overflow-hidden text-center'>
       <ins
         className='adsbygoogle'
         style={{ display: 'block', textAlign: 'center' }}

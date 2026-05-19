@@ -9,7 +9,7 @@ const DonateButton = ({ locale }: DonateButtonProps) => {
   const title = t('donate');
   const donationProse = t('donation-prose');
   return (
-    <div className='pt-6 mt-8 text-sm font-light border-t border-dashed border-gray-200'>
+    <div className='pt-6 mt-8 text-xs font-light border-t border-dashed border-gray-200'>
       <p>
         {donationProse}
         <span aria-label={t('coffee')} className='ml-1 align-middle' role='img'>
@@ -25,7 +25,7 @@ const DonateButton = ({ locale }: DonateButtonProps) => {
         <input type='hidden' name='business' value='K3WLNX7X3MFWS' />
         <input type='hidden' name='currency_code' value='USD' />
         <button
-          className='flex flex-col items-center justify-center px-4 pt-2 transition duration-300 bg-gray-200 rounded-lg cursor-pointer hover:bg-accent focus:outline-none'
+          className='flex flex-col items-center justify-center px-4 pt-2 transition duration-300 bg-gray-200 rounded-lg cursor-pointer hover:bg-secondary focus:outline-none'
           type='submit'
         >
           <svg
@@ -35,11 +35,10 @@ const DonateButton = ({ locale }: DonateButtonProps) => {
           >
             <path
               d='m370.148438 98.382812c0 48.808594-39.570313 88.378907-88.378907 88.378907-4.507812 0-8.941406-.339844-13.269531-.992188.011719 0 .019531-.007812.03125-.007812 1.089844-.300781 2.140625-.691407 3.160156-1.140625 8.949219-3.898438 15.109375-12.820313 15.109375-23.179688 0-7-2.839843-13.320312-7.421875-17.910156-4.578125-4.570312-10.898437-7.410156-17.898437-7.410156h-59.640625c-5.417969-11.441406-8.449219-24.238282-8.449219-37.738282 0-.863281.007813-1.722656.039063-2.582031 0-.039062 0-.089843.011718-.128906.027344-1.3125.097656-2.601563.199219-3.890625.929687-13.503906 5.140625-26.855469 12.089844-38.46875 1.972656-3.300781 4.148437-6.457031 6.507812-9.492188.980469-1.257812 2.011719-2.488281 3.070313-3.6875 16.191406-18.472656 39.960937-30.132812 66.460937-30.132812 48.820313 0 88.378907 39.570312 88.378907 88.382812zm0 0'
-              className='fill-current text-prism-string'
+              className='fill-current text-orange-300'
             />
             <path
               d='m442.773438 209.382812h-72.277344l-79.773438 33.019532c-13.953125 5.777344-20.527344 21.816406-14.640625 35.726562l.269531.636719c5.9375 14.019531 21.773438 20.742187 35.851563 15.3125 22.636719-8.734375 52.324219-20.148437 52.324219-20.148437l-76.441406 29.390624c-16.121094 6.199219-33.726563 7.449219-50.566407 3.59375l-78.316406-17.929687c-14.351563-3.289063-28.601563 5.855469-31.597656 20.269531-2.863281 13.773438 5.625 27.355469 19.257812 30.820313l93.449219 23.75c17.617188 4.480469 36.199219 3.316406 53.121094-3.320313l120.601562-47.304687h28.738282zm0 0'
-              fill='#ffd4be'
               className='fill-current text-middle'
             />
             <path
