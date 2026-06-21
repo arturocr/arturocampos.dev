@@ -22,7 +22,7 @@ const Tracts = ({ tracts }: TractsProps) => {
             key={tract.id}
             className={clsx(
               'border-t border-b border-gray-200 transition-colors',
-              tract.deductible > 0 && 'bg-opacity-30 bg-prism-regex'
+              tract.deductible > 0 && 'bg-prism-regex/10'
             )}
           >
             <td className='py-2 text-right'>
