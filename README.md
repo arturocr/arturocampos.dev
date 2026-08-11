@@ -1,3 +1,5 @@
+
+
 # arturocampos.dev
 
 Personal website and blog built with Next.js, TypeScript, and Tailwind CSS. Content is served in two languages — English and Spanish — using a custom i18n routing setup.
@@ -70,14 +72,15 @@ data/posts/en/my-post.mdx
 data/posts/es/my-post.mdx
 ```
 
-Each MDX file requires frontmatter with the following fields:
+Each MDX file requires frontmatter. `title` and `date` are required, while other fields are optional:
 
 ```mdx
 ---
-slug: my-post
-date: '2024-01-01'
 title: My Post Title
+date: '2024-01-01'
 description: A short description of the post.
+slug: my-post
+image: /path/to/featured-image.jpg
 ---
 ```
 
